@@ -19,13 +19,13 @@ docker run --rm -v "$PWD:/repo:ro" zricethezav/gitleaks:v8.28.0 dir /repo \
   --config /repo/.gitleaks.toml --redact --no-banner --exit-code 1 \
   --report-format json --report-path /dev/stdout 2>&1 | tee "$OUT/gitleaks.txt"
 [[ ${PIPESTATUS[0]} -eq 0 ]] || status=1
-echo "== trivy (fixed high and critical in built images; see .trivyignore for justified items)"
+echo "== trivy (fixed high and critical vulnerabilities, and secrets, in built images; see .trivyignore and trivy-secret.yaml)"
 mkdir -p "$HOME/.cache/trivy"
-TRIVY=(docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME/.cache/trivy:/root/.cache/trivy" -v "$PWD/.trivyignore:/.trivyignore:ro" aquasec/trivy:0.67.2)
+TRIVY=(docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME/.cache/trivy:/root/.cache/trivy" -v "$PWD/.trivyignore:/.trivyignore:ro" -v "$PWD/trivy-secret.yaml:/trivy-secret.yaml:ro" aquasec/trivy:0.67.2)
 : > "$OUT/trivy.txt"
 for image in medicompare-backend medicompare-worker medicompare-frontend; do
   echo "-- $image" | tee -a "$OUT/trivy.txt"
-  "${TRIVY[@]}" image --quiet --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --ignorefile /.trivyignore --exit-code 1 --format table "$image" 2>&1 | tee -a "$OUT/trivy.txt"
+  "${TRIVY[@]}" image --quiet --scanners vuln,secret --secret-config /trivy-secret.yaml --severity HIGH,CRITICAL --ignore-unfixed --ignorefile /.trivyignore --exit-code 1 --format table "$image" 2>&1 | tee -a "$OUT/trivy.txt"
   [[ ${PIPESTATUS[0]} -eq 0 ]] || status=1
 done
 exit $status

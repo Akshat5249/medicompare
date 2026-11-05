@@ -4,6 +4,8 @@
 - **Not fixed because:** the fix is in upstream wheels. `psycopg[c]` would remove one copy at the cost of a compiler in the build, and `rapidocr-onnxruntime` requires `opencv-python`.
 - **Action:** recheck on each dependency update. Listed in `.trivyignore`, so the gate passes only because of this explicit decision.
 
+**Accepted false positive: Trivy's `gcp-service-account` secret rule, 9 hits in the Anthropic SDK.** The lines are docstrings reading `{"type": "service_account"}`. The package contains no private key or service-account email, checked by inspecting the image. `trivy-secret.yaml` allows only that text in that package, so secret scanning stays on for everything else.
+
 **Fixed during the build:** removed `uv` and `setuptools` from the Python runtime images, moved the frontend to a runtime image without npm, overrode PostCSS under Next.js to 8.5.x, and applied Debian updates.
 
 **Gitleaks scope:** `.next`, `node_modules`, `.venv` and test output are excluded as generated files, and none ship in the zip. Next.js build manifests in `.next` did trigger the generic key rule. Development-only defaults are allowlisted in `.gitleaks.toml`.

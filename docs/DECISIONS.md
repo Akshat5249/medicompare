@@ -123,3 +123,8 @@ Each entry records the context, the options, the choice and why. Dates are 2026-
 - **Context:** sources describe tablets as film coated, uncoated or bilayered, and NPPA's ceiling lists do not distinguish them.
 - **Choice:** these are all `tablet`, with the wording kept in the source text. Mouth-dissolving and dispersible tablets, and gastro-resistant release, stay distinct.
 - **Needs:** pharmacist review. This is the most debatable equivalence decision in the import.
+
+## D26. Image secret scanning, with one narrow exception
+- **Context:** the first CI run of the image scan failed on a Trivy secret rule matching documentation text in the Anthropic SDK. Local scans had only checked vulnerabilities, so they missed it.
+- **Choice:** scan for secrets locally and in CI, with `trivy-secret.yaml` allowing that exact text in that package.
+- **Rejected:** turning off secret scanning or skipping the virtual environment, which could hide a real secret.

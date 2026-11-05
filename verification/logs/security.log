@@ -1,15 +1,788 @@
 $ make -s security
-Thu Nov  5 15:32:00 UTC 2026
+Thu Nov  5 15:52:22 UTC 2026
 == bandit (medium and above)
- Container medicompare-redis-1 Running 
- Container medicompare-postgres-1 Running 
  Container medicompare-minio-1 Running 
- Container medicompare-redis-1 Waiting 
+ Container medicompare-postgres-1 Running 
+ Container medicompare-redis-1 Running 
+ Image medicompare-backend-test Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 595B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.test
+#2 transferring dockerfile: 574B 0.0s done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#3 DONE 1.7s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 395B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/python:3.12-slim-bookworm@sha256:da54eb86849fe19be7584d8b3f291fcf0c53c196760ab3d70dc6382f681ef9c0
+#5 resolve docker.io/library/python:3.12-slim-bookworm@sha256:da54eb86849fe19be7584d8b3f291fcf0c53c196760ab3d70dc6382f681ef9c0 done
+#5 CACHED
+
+#6 [internal] load build context
+#6 transferring context: 340.80kB 0.0s done
+#6 DONE 0.0s
+
+#7 [2/5] RUN pip install --no-cache-dir uv==0.11.21 && apt-get update && apt-get install -y --no-install-recommends tesseract-ocr libgl1 libglib2.0-0 fonts-dejavu-core
+#7 2.468 Collecting uv==0.11.21
+#7 2.694   Downloading uv-0.11.21-py3-none-manylinux_2_28_aarch64.whl.metadata (11 kB)
+#7 2.742 Downloading uv-0.11.21-py3-none-manylinux_2_28_aarch64.whl (23.8 MB)
+#7 3.938    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.8/23.8 MB 21.6 MB/s eta 0:00:00
+#7 3.960 Installing collected packages: uv
+#7 4.795 Successfully installed uv-0.11.21
+#7 4.795 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#7 5.024 
+#7 5.024 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#7 5.024 [notice] To update, run: pip install --upgrade pip
+#7 5.472 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#7 5.490 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#7 5.501 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+#7 5.553 Get:4 http://deb.debian.org/debian bookworm/main arm64 Packages [8689 kB]
+#7 6.033 Get:5 http://deb.debian.org/debian bookworm-updates/main arm64 Packages [6936 B]
+#7 6.045 Get:6 http://deb.debian.org/debian-security bookworm-security/main arm64 Packages [359 kB]
+#7 6.728 Fetched 9297 kB in 1s (6669 kB/s)
+#7 6.728 Reading package lists...
+#7 7.010 Reading package lists...
+#7 7.277 Building dependency tree...
+#7 7.349 Reading state information...
+#7 7.445 The following additional packages will be installed:
+#7 7.445   fontconfig fontconfig-config libarchive13 libbrotli1 libbsd0 libcairo2
+#7 7.445   libcurl4 libdatrie1 libdeflate0 libdrm-amdgpu1 libdrm-common libdrm-nouveau2
+#7 7.445   libdrm-radeon1 libdrm2 libedit2 libelf1 libexpat1 libfontconfig1
+#7 7.445   libfreetype6 libfribidi0 libgif7 libgl1-mesa-dri libglapi-mesa libglvnd0
+#7 7.445   libglx-mesa0 libglx0 libgomp1 libgraphite2-3 libharfbuzz0b libicu72 libjbig0
+#7 7.445   libjpeg62-turbo libldap-2.5-0 liblept5 liblerc4 libllvm15 libnghttp2-14
+#7 7.445   libopenjp2-7 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+#7 7.445   libpixman-1-0 libpng16-16 libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db
+#7 7.445   libsensors-config libsensors5 libssh2-1 libtesseract5 libthai-data libthai0
+#7 7.445   libtiff6 libwebp7 libwebpmux3 libx11-6 libx11-data libx11-xcb1 libxau6
+#7 7.445   libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-randr0
+#7 7.445   libxcb-render0 libxcb-shm0 libxcb-sync1 libxcb-xfixes0 libxcb1 libxdmcp6
+#7 7.446   libxext6 libxfixes3 libxml2 libxrender1 libxshmfence1 libxxf86vm1 libz3-4
+#7 7.446   tesseract-ocr-eng tesseract-ocr-osd
+#7 7.447 Suggested packages:
+#7 7.447   lrzip low-memory-monitor lm-sensors
+#7 7.447 Recommended packages:
+#7 7.447   libglib2.0-data shared-mime-info xdg-user-dirs libldap-common publicsuffix
+#7 7.447   libsasl2-modules
+#7 7.676 The following NEW packages will be installed:
+#7 7.676   fontconfig fontconfig-config fonts-dejavu-core libarchive13 libbrotli1
+#7 7.676   libbsd0 libcairo2 libcurl4 libdatrie1 libdeflate0 libdrm-amdgpu1
+#7 7.676   libdrm-common libdrm-nouveau2 libdrm-radeon1 libdrm2 libedit2 libelf1
+#7 7.676   libexpat1 libfontconfig1 libfreetype6 libfribidi0 libgif7 libgl1
+#7 7.676   libgl1-mesa-dri libglapi-mesa libglib2.0-0 libglvnd0 libglx-mesa0 libglx0
+#7 7.676   libgomp1 libgraphite2-3 libharfbuzz0b libicu72 libjbig0 libjpeg62-turbo
+#7 7.676   libldap-2.5-0 liblept5 liblerc4 libllvm15 libnghttp2-14 libopenjp2-7
+#7 7.676   libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libpixman-1-0
+#7 7.676   libpng16-16 libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db
+#7 7.676   libsensors-config libsensors5 libssh2-1 libtesseract5 libthai-data libthai0
+#7 7.676   libtiff6 libwebp7 libwebpmux3 libx11-6 libx11-data libx11-xcb1 libxau6
+#7 7.676   libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-randr0
+#7 7.676   libxcb-render0 libxcb-shm0 libxcb-sync1 libxcb-xfixes0 libxcb1 libxdmcp6
+#7 7.677   libxext6 libxfixes3 libxml2 libxrender1 libxshmfence1 libxxf86vm1 libz3-4
+#7 7.677   tesseract-ocr tesseract-ocr-eng tesseract-ocr-osd
+#7 7.724 0 upgraded, 84 newly installed, 0 to remove and 0 not upgraded.
+#7 7.724 Need to get 64.3 MB of archives.
+#7 7.724 After this operation, 260 MB of additional disk space will be used.
+#7 7.724 Get:1 http://deb.debian.org/debian-security bookworm-security/main arm64 libexpat1 arm64 2.5.0-1+deb12u5 [91.7 kB]
+#7 7.742 Get:2 http://deb.debian.org/debian-security bookworm-security/main arm64 libbrotli1 arm64 1.0.9-2+deb12u1 [267 kB]
+#7 7.766 Get:3 http://deb.debian.org/debian-security bookworm-security/main arm64 libpng16-16 arm64 1.6.39-2+deb12u6 [271 kB]
+#7 7.782 Get:4 http://deb.debian.org/debian bookworm/main arm64 libfreetype6 arm64 2.12.1+dfsg-5+deb12u4 [368 kB]
+#7 7.800 Get:5 http://deb.debian.org/debian bookworm/main arm64 fonts-dejavu-core all 2.37-6 [1068 kB]
+#7 7.838 Get:6 http://deb.debian.org/debian bookworm/main arm64 fontconfig-config arm64 2.14.1-4 [315 kB]
+#7 7.853 Get:7 http://deb.debian.org/debian bookworm/main arm64 libfontconfig1 arm64 2.14.1-4 [381 kB]
+#7 7.874 Get:8 http://deb.debian.org/debian bookworm/main arm64 fontconfig arm64 2.14.1-4 [449 kB]
+#7 7.902 Get:9 http://deb.debian.org/debian bookworm/main arm64 libicu72 arm64 72.1-3+deb12u1 [9202 kB]
+#7 8.227 Get:10 http://deb.debian.org/debian bookworm/main arm64 libxml2 arm64 2.9.14+dfsg-1.3~deb12u6 [620 kB]
+#7 8.245 Get:11 http://deb.debian.org/debian-security bookworm-security/main arm64 libarchive13 arm64 3.6.2-1+deb12u5 [318 kB]
+#7 8.257 Get:12 http://deb.debian.org/debian bookworm/main arm64 libbsd0 arm64 0.11.7-2 [115 kB]
+#7 8.267 Get:13 http://deb.debian.org/debian bookworm/main arm64 libpixman-1-0 arm64 0.42.2-1 [470 kB]
+#7 8.287 Get:14 http://deb.debian.org/debian bookworm/main arm64 libxau6 arm64 1:1.0.9-1 [19.7 kB]
+#7 8.288 Get:15 http://deb.debian.org/debian bookworm/main arm64 libxdmcp6 arm64 1:1.1.2-3 [25.4 kB]
+#7 8.299 Get:16 http://deb.debian.org/debian bookworm/main arm64 libxcb1 arm64 1.15-1 [143 kB]
+#7 8.312 Get:17 http://deb.debian.org/debian bookworm/main arm64 libx11-data all 2:1.8.4-2+deb12u2 [292 kB]
+#7 8.331 Get:18 http://deb.debian.org/debian bookworm/main arm64 libx11-6 arm64 2:1.8.4-2+deb12u2 [735 kB]
+#7 8.375 Get:19 http://deb.debian.org/debian bookworm/main arm64 libxcb-render0 arm64 1.15-1 [115 kB]
+#7 8.386 Get:20 http://deb.debian.org/debian bookworm/main arm64 libxcb-shm0 arm64 1.15-1 [106 kB]
+#7 8.391 Get:21 http://deb.debian.org/debian bookworm/main arm64 libxext6 arm64 2:1.3.4-1+b1 [51.7 kB]
+#7 8.394 Get:22 http://deb.debian.org/debian bookworm/main arm64 libxrender1 arm64 1:0.9.10-1.1 [32.0 kB]
+#7 8.404 Get:23 http://deb.debian.org/debian bookworm/main arm64 libcairo2 arm64 1.16.0-7 [527 kB]
+#7 8.431 Get:24 http://deb.debian.org/debian-security bookworm-security/main arm64 libsasl2-modules-db arm64 2.1.28+dfsg-10+deb12u1 [21.0 kB]
+#7 8.432 Get:25 http://deb.debian.org/debian-security bookworm-security/main arm64 libsasl2-2 arm64 2.1.28+dfsg-10+deb12u1 [58.3 kB]
+#7 8.434 Get:26 http://deb.debian.org/debian bookworm/main arm64 libldap-2.5-0 arm64 2.5.13+dfsg-5 [171 kB]
+#7 8.441 Get:27 http://deb.debian.org/debian bookworm/main arm64 libnghttp2-14 arm64 1.52.0-1+deb12u3 [69.0 kB]
+#7 8.443 Get:28 http://deb.debian.org/debian bookworm/main arm64 libpsl5 arm64 0.21.2-1 [58.6 kB]
+#7 8.448 Get:29 http://deb.debian.org/debian bookworm/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2+b2 [59.4 kB]
+#7 8.450 Get:30 http://deb.debian.org/debian-security bookworm-security/main arm64 libssh2-1 arm64 1.10.0-3+deb12u1 [169 kB]
+#7 8.466 Get:31 http://deb.debian.org/debian bookworm/main arm64 libcurl4 arm64 7.88.1-10+deb12u15 [367 kB]
+#7 8.483 Get:32 http://deb.debian.org/debian bookworm/main arm64 libdatrie1 arm64 0.2.13-2+b1 [42.6 kB]
+#7 8.484 Get:33 http://deb.debian.org/debian bookworm/main arm64 libdeflate0 arm64 1.14-1 [54.3 kB]
+#7 8.485 Get:34 http://deb.debian.org/debian bookworm/main arm64 libdrm-common all 2.4.114-1 [7112 B]
+#7 8.486 Get:35 http://deb.debian.org/debian bookworm/main arm64 libdrm2 arm64 2.4.114-1+b1 [36.7 kB]
+#7 8.487 Get:36 http://deb.debian.org/debian bookworm/main arm64 libdrm-amdgpu1 arm64 2.4.114-1+b1 [20.4 kB]
+#7 8.487 Get:37 http://deb.debian.org/debian bookworm/main arm64 libdrm-nouveau2 arm64 2.4.114-1+b1 [18.4 kB]
+#7 8.490 Get:38 http://deb.debian.org/debian bookworm/main arm64 libdrm-radeon1 arm64 2.4.114-1+b1 [20.9 kB]
+#7 8.491 Get:39 http://deb.debian.org/debian bookworm/main arm64 libedit2 arm64 3.1-20221030-2 [88.1 kB]
+#7 8.503 Get:40 http://deb.debian.org/debian bookworm/main arm64 libelf1 arm64 0.188-2.1 [173 kB]
+#7 8.510 Get:41 http://deb.debian.org/debian bookworm/main arm64 libfribidi0 arm64 1.0.8-2.1 [64.9 kB]
+#7 8.515 Get:42 http://deb.debian.org/debian bookworm/main arm64 libgif7 arm64 5.2.1-2.5+deb12u1 [42.6 kB]
+#7 8.516 Get:43 http://deb.debian.org/debian bookworm/main arm64 libglvnd0 arm64 1.6.0-1 [41.4 kB]
+#7 8.519 Get:44 http://deb.debian.org/debian bookworm/main arm64 libglapi-mesa arm64 22.3.6-1+deb12u2 [45.1 kB]
+#7 8.526 Get:45 http://deb.debian.org/debian bookworm/main arm64 libx11-xcb1 arm64 2:1.8.4-2+deb12u2 [192 kB]
+#7 8.537 Get:46 http://deb.debian.org/debian bookworm/main arm64 libxcb-dri2-0 arm64 1.15-1 [107 kB]
+#7 8.543 Get:47 http://deb.debian.org/debian bookworm/main arm64 libxcb-dri3-0 arm64 1.15-1 [107 kB]
+#7 8.548 Get:48 http://deb.debian.org/debian bookworm/main arm64 libxcb-glx0 arm64 1.15-1 [123 kB]
+#7 8.555 Get:49 http://deb.debian.org/debian bookworm/main arm64 libxcb-present0 arm64 1.15-1 [106 kB]
+#7 8.558 Get:50 http://deb.debian.org/debian bookworm/main arm64 libxcb-randr0 arm64 1.15-1 [117 kB]
+#7 8.565 Get:51 http://deb.debian.org/debian bookworm/main arm64 libxcb-sync1 arm64 1.15-1 [109 kB]
+#7 8.569 Get:52 http://deb.debian.org/debian bookworm/main arm64 libxcb-xfixes0 arm64 1.15-1 [110 kB]
+#7 8.574 Get:53 http://deb.debian.org/debian bookworm/main arm64 libxfixes3 arm64 1:6.0.0-2 [22.9 kB]
+#7 8.575 Get:54 http://deb.debian.org/debian bookworm/main arm64 libxshmfence1 arm64 1.3-1 [8712 B]
+#7 8.576 Get:55 http://deb.debian.org/debian bookworm/main arm64 libxxf86vm1 arm64 1:1.1.4-1+b2 [20.1 kB]
+#7 8.581 Get:56 http://deb.debian.org/debian bookworm/main arm64 libz3-4 arm64 4.8.12-3.1 [6282 kB]
+#7 8.919 Get:57 http://deb.debian.org/debian bookworm/main arm64 libllvm15 arm64 1:15.0.6-4+b1 [20.7 MB]
+#7 9.906 Get:58 http://deb.debian.org/debian bookworm/main arm64 libsensors-config all 1:3.6.0-7.1 [14.3 kB]
+#7 9.906 Get:59 http://deb.debian.org/debian bookworm/main arm64 libsensors5 arm64 1:3.6.0-7.1 [33.3 kB]
+#7 9.908 Get:60 http://deb.debian.org/debian bookworm/main arm64 libgl1-mesa-dri arm64 22.3.6-1+deb12u2 [6281 kB]
+#7 10.18 Get:61 http://deb.debian.org/debian bookworm/main arm64 libglx-mesa0 arm64 22.3.6-1+deb12u2 [146 kB]
+#7 10.19 Get:62 http://deb.debian.org/debian bookworm/main arm64 libglx0 arm64 1.6.0-1 [30.8 kB]
+#7 10.19 Get:63 http://deb.debian.org/debian bookworm/main arm64 libgl1 arm64 1.6.0-1 [90.2 kB]
+#7 10.19 Get:64 http://deb.debian.org/debian bookworm/main arm64 libglib2.0-0 arm64 2.74.6-2+deb12u9 [1316 kB]
+#7 10.24 Get:65 http://deb.debian.org/debian bookworm/main arm64 libgomp1 arm64 12.2.0-14+deb12u1 [104 kB]
+#7 10.24 Get:66 http://deb.debian.org/debian bookworm/main arm64 libgraphite2-3 arm64 1.3.14-1+deb12u1 [68.7 kB]
+#7 10.25 Get:67 http://deb.debian.org/debian bookworm/main arm64 libharfbuzz0b arm64 6.0.0+dfsg-3 [1914 kB]
+#7 10.32 Get:68 http://deb.debian.org/debian bookworm/main arm64 libjbig0 arm64 2.1-6.1 [30.0 kB]
+#7 10.32 Get:69 http://deb.debian.org/debian bookworm/main arm64 libjpeg62-turbo arm64 1:2.1.5-2 [171 kB]
+#7 10.33 Get:70 http://deb.debian.org/debian bookworm/main arm64 libopenjp2-7 arm64 2.5.0-2+deb12u3 [176 kB]
+#7 10.35 Get:71 http://deb.debian.org/debian bookworm/main arm64 liblerc4 arm64 4.0.0+ds-2 [138 kB]
+#7 10.43 Get:72 http://deb.debian.org/debian bookworm/main arm64 libwebp7 arm64 1.2.4-0.2+deb12u1 [260 kB]
+#7 10.47 Get:73 http://deb.debian.org/debian bookworm/main arm64 libtiff6 arm64 4.5.0-6+deb12u4 [301 kB]
+#7 10.50 Get:74 http://deb.debian.org/debian bookworm/main arm64 libwebpmux3 arm64 1.2.4-0.2+deb12u1 [109 kB]
+#7 10.52 Get:75 http://deb.debian.org/debian bookworm/main arm64 liblept5 arm64 1.82.0-3+b3 [973 kB]
+#7 10.58 Get:76 http://deb.debian.org/debian bookworm/main arm64 libthai-data all 0.1.29-1 [176 kB]
+#7 10.61 Get:77 http://deb.debian.org/debian bookworm/main arm64 libthai0 arm64 0.1.29-1 [56.2 kB]
+#7 10.61 Get:78 http://deb.debian.org/debian bookworm/main arm64 libpango-1.0-0 arm64 1.50.12+ds-1 [200 kB]
+#7 10.63 Get:79 http://deb.debian.org/debian bookworm/main arm64 libpangoft2-1.0-0 arm64 1.50.12+ds-1 [44.5 kB]
+#7 10.64 Get:80 http://deb.debian.org/debian bookworm/main arm64 libpangocairo-1.0-0 arm64 1.50.12+ds-1 [32.0 kB]
+#7 10.65 Get:81 http://deb.debian.org/debian bookworm/main arm64 libtesseract5 arm64 5.3.0-2 [1123 kB]
+#7 10.69 Get:82 http://deb.debian.org/debian bookworm/main arm64 tesseract-ocr-eng all 1:4.1.0-2 [1594 kB]
+#7 10.76 Get:83 http://deb.debian.org/debian bookworm/main arm64 tesseract-ocr-osd all 1:4.1.0-2 [2992 kB]
+#7 10.89 Get:84 http://deb.debian.org/debian bookworm/main arm64 tesseract-ocr arm64 5.3.0-2 [363 kB]
+#7 11.12 debconf: delaying package configuration, since apt-utils is not installed
+#7 11.16 Fetched 64.3 MB in 3s (20.0 MB/s)
+#7 11.21 Selecting previously unselected package libexpat1:arm64.
+#7 11.21 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6695 files and directories currently installed.)
+#7 11.25 Preparing to unpack .../00-libexpat1_2.5.0-1+deb12u5_arm64.deb ...
+#7 11.25 Unpacking libexpat1:arm64 (2.5.0-1+deb12u5) ...
+#7 11.28 Selecting previously unselected package libbrotli1:arm64.
+#7 11.28 Preparing to unpack .../01-libbrotli1_1.0.9-2+deb12u1_arm64.deb ...
+#7 11.28 Unpacking libbrotli1:arm64 (1.0.9-2+deb12u1) ...
+#7 11.30 Selecting previously unselected package libpng16-16:arm64.
+#7 11.30 Preparing to unpack .../02-libpng16-16_1.6.39-2+deb12u6_arm64.deb ...
+#7 11.31 Unpacking libpng16-16:arm64 (1.6.39-2+deb12u6) ...
+#7 11.33 Selecting previously unselected package libfreetype6:arm64.
+#7 11.33 Preparing to unpack .../03-libfreetype6_2.12.1+dfsg-5+deb12u4_arm64.deb ...
+#7 11.33 Unpacking libfreetype6:arm64 (2.12.1+dfsg-5+deb12u4) ...
+#7 11.36 Selecting previously unselected package fonts-dejavu-core.
+#7 11.36 Preparing to unpack .../04-fonts-dejavu-core_2.37-6_all.deb ...
+#7 11.37 Unpacking fonts-dejavu-core (2.37-6) ...
+#7 11.44 Selecting previously unselected package fontconfig-config.
+#7 11.44 Preparing to unpack .../05-fontconfig-config_2.14.1-4_arm64.deb ...
+#7 11.49 Unpacking fontconfig-config (2.14.1-4) ...
+#7 11.52 Selecting previously unselected package libfontconfig1:arm64.
+#7 11.52 Preparing to unpack .../06-libfontconfig1_2.14.1-4_arm64.deb ...
+#7 11.52 Unpacking libfontconfig1:arm64 (2.14.1-4) ...
+#7 11.54 Selecting previously unselected package fontconfig.
+#7 11.54 Preparing to unpack .../07-fontconfig_2.14.1-4_arm64.deb ...
+#7 11.54 Unpacking fontconfig (2.14.1-4) ...
+#7 11.56 Selecting previously unselected package libicu72:arm64.
+#7 11.56 Preparing to unpack .../08-libicu72_72.1-3+deb12u1_arm64.deb ...
+#7 11.56 Unpacking libicu72:arm64 (72.1-3+deb12u1) ...
+#7 11.95 Selecting previously unselected package libxml2:arm64.
+#7 11.95 Preparing to unpack .../09-libxml2_2.9.14+dfsg-1.3~deb12u6_arm64.deb ...
+#7 11.95 Unpacking libxml2:arm64 (2.9.14+dfsg-1.3~deb12u6) ...
+#7 12.00 Selecting previously unselected package libarchive13:arm64.
+#7 12.00 Preparing to unpack .../10-libarchive13_3.6.2-1+deb12u5_arm64.deb ...
+#7 12.00 Unpacking libarchive13:arm64 (3.6.2-1+deb12u5) ...
+#7 12.03 Selecting previously unselected package libbsd0:arm64.
+#7 12.03 Preparing to unpack .../11-libbsd0_0.11.7-2_arm64.deb ...
+#7 12.03 Unpacking libbsd0:arm64 (0.11.7-2) ...
+#7 12.05 Selecting previously unselected package libpixman-1-0:arm64.
+#7 12.05 Preparing to unpack .../12-libpixman-1-0_0.42.2-1_arm64.deb ...
+#7 12.05 Unpacking libpixman-1-0:arm64 (0.42.2-1) ...
+#7 12.07 Selecting previously unselected package libxau6:arm64.
+#7 12.07 Preparing to unpack .../13-libxau6_1%3a1.0.9-1_arm64.deb ...
+#7 12.07 Unpacking libxau6:arm64 (1:1.0.9-1) ...
+#7 12.09 Selecting previously unselected package libxdmcp6:arm64.
+#7 12.09 Preparing to unpack .../14-libxdmcp6_1%3a1.1.2-3_arm64.deb ...
+#7 12.09 Unpacking libxdmcp6:arm64 (1:1.1.2-3) ...
+#7 12.10 Selecting previously unselected package libxcb1:arm64.
+#7 12.10 Preparing to unpack .../15-libxcb1_1.15-1_arm64.deb ...
+#7 12.10 Unpacking libxcb1:arm64 (1.15-1) ...
+#7 12.11 Selecting previously unselected package libx11-data.
+#7 12.11 Preparing to unpack .../16-libx11-data_2%3a1.8.4-2+deb12u2_all.deb ...
+#7 12.12 Unpacking libx11-data (2:1.8.4-2+deb12u2) ...
+#7 12.19 Selecting previously unselected package libx11-6:arm64.
+#7 12.19 Preparing to unpack .../17-libx11-6_2%3a1.8.4-2+deb12u2_arm64.deb ...
+#7 12.19 Unpacking libx11-6:arm64 (2:1.8.4-2+deb12u2) ...
+#7 12.24 Selecting previously unselected package libxcb-render0:arm64.
+#7 12.25 Preparing to unpack .../18-libxcb-render0_1.15-1_arm64.deb ...
+#7 12.25 Unpacking libxcb-render0:arm64 (1.15-1) ...
+#7 12.26 Selecting previously unselected package libxcb-shm0:arm64.
+#7 12.26 Preparing to unpack .../19-libxcb-shm0_1.15-1_arm64.deb ...
+#7 12.27 Unpacking libxcb-shm0:arm64 (1.15-1) ...
+#7 12.28 Selecting previously unselected package libxext6:arm64.
+#7 12.28 Preparing to unpack .../20-libxext6_2%3a1.3.4-1+b1_arm64.deb ...
+#7 12.28 Unpacking libxext6:arm64 (2:1.3.4-1+b1) ...
+#7 12.30 Selecting previously unselected package libxrender1:arm64.
+#7 12.30 Preparing to unpack .../21-libxrender1_1%3a0.9.10-1.1_arm64.deb ...
+#7 12.30 Unpacking libxrender1:arm64 (1:0.9.10-1.1) ...
+#7 12.32 Selecting previously unselected package libcairo2:arm64.
+#7 12.32 Preparing to unpack .../22-libcairo2_1.16.0-7_arm64.deb ...
+#7 12.32 Unpacking libcairo2:arm64 (1.16.0-7) ...
+#7 12.35 Selecting previously unselected package libsasl2-modules-db:arm64.
+#7 12.35 Preparing to unpack .../23-libsasl2-modules-db_2.1.28+dfsg-10+deb12u1_arm64.deb ...
+#7 12.35 Unpacking libsasl2-modules-db:arm64 (2.1.28+dfsg-10+deb12u1) ...
+#7 12.37 Selecting previously unselected package libsasl2-2:arm64.
+#7 12.37 Preparing to unpack .../24-libsasl2-2_2.1.28+dfsg-10+deb12u1_arm64.deb ...
+#7 12.37 Unpacking libsasl2-2:arm64 (2.1.28+dfsg-10+deb12u1) ...
+#7 12.38 Selecting previously unselected package libldap-2.5-0:arm64.
+#7 12.38 Preparing to unpack .../25-libldap-2.5-0_2.5.13+dfsg-5_arm64.deb ...
+#7 12.38 Unpacking libldap-2.5-0:arm64 (2.5.13+dfsg-5) ...
+#7 12.40 Selecting previously unselected package libnghttp2-14:arm64.
+#7 12.40 Preparing to unpack .../26-libnghttp2-14_1.52.0-1+deb12u3_arm64.deb ...
+#7 12.41 Unpacking libnghttp2-14:arm64 (1.52.0-1+deb12u3) ...
+#7 12.42 Selecting previously unselected package libpsl5:arm64.
+#7 12.42 Preparing to unpack .../27-libpsl5_0.21.2-1_arm64.deb ...
+#7 12.42 Unpacking libpsl5:arm64 (0.21.2-1) ...
+#7 12.44 Selecting previously unselected package librtmp1:arm64.
+#7 12.44 Preparing to unpack .../28-librtmp1_2.4+20151223.gitfa8646d.1-2+b2_arm64.deb ...
+#7 12.44 Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+#7 12.46 Selecting previously unselected package libssh2-1:arm64.
+#7 12.46 Preparing to unpack .../29-libssh2-1_1.10.0-3+deb12u1_arm64.deb ...
+#7 12.46 Unpacking libssh2-1:arm64 (1.10.0-3+deb12u1) ...
+#7 12.47 Selecting previously unselected package libcurl4:arm64.
+#7 12.48 Preparing to unpack .../30-libcurl4_7.88.1-10+deb12u15_arm64.deb ...
+#7 12.48 Unpacking libcurl4:arm64 (7.88.1-10+deb12u15) ...
+#7 12.51 Selecting previously unselected package libdatrie1:arm64.
+#7 12.51 Preparing to unpack .../31-libdatrie1_0.2.13-2+b1_arm64.deb ...
+#7 12.51 Unpacking libdatrie1:arm64 (0.2.13-2+b1) ...
+#7 12.52 Selecting previously unselected package libdeflate0:arm64.
+#7 12.52 Preparing to unpack .../32-libdeflate0_1.14-1_arm64.deb ...
+#7 12.52 Unpacking libdeflate0:arm64 (1.14-1) ...
+#7 12.53 Selecting previously unselected package libdrm-common.
+#7 12.53 Preparing to unpack .../33-libdrm-common_2.4.114-1_all.deb ...
+#7 12.53 Unpacking libdrm-common (2.4.114-1) ...
+#7 12.54 Selecting previously unselected package libdrm2:arm64.
+#7 12.55 Preparing to unpack .../34-libdrm2_2.4.114-1+b1_arm64.deb ...
+#7 12.55 Unpacking libdrm2:arm64 (2.4.114-1+b1) ...
+#7 12.56 Selecting previously unselected package libdrm-amdgpu1:arm64.
+#7 12.56 Preparing to unpack .../35-libdrm-amdgpu1_2.4.114-1+b1_arm64.deb ...
+#7 12.56 Unpacking libdrm-amdgpu1:arm64 (2.4.114-1+b1) ...
+#7 12.58 Selecting previously unselected package libdrm-nouveau2:arm64.
+#7 12.58 Preparing to unpack .../36-libdrm-nouveau2_2.4.114-1+b1_arm64.deb ...
+#7 12.58 Unpacking libdrm-nouveau2:arm64 (2.4.114-1+b1) ...
+#7 12.59 Selecting previously unselected package libdrm-radeon1:arm64.
+#7 12.59 Preparing to unpack .../37-libdrm-radeon1_2.4.114-1+b1_arm64.deb ...
+#7 12.59 Unpacking libdrm-radeon1:arm64 (2.4.114-1+b1) ...
+#7 12.61 Selecting previously unselected package libedit2:arm64.
+#7 12.61 Preparing to unpack .../38-libedit2_3.1-20221030-2_arm64.deb ...
+#7 12.61 Unpacking libedit2:arm64 (3.1-20221030-2) ...
+#7 12.62 Selecting previously unselected package libelf1:arm64.
+#7 12.62 Preparing to unpack .../39-libelf1_0.188-2.1_arm64.deb ...
+#7 12.63 Unpacking libelf1:arm64 (0.188-2.1) ...
+#7 12.64 Selecting previously unselected package libfribidi0:arm64.
+#7 12.65 Preparing to unpack .../40-libfribidi0_1.0.8-2.1_arm64.deb ...
+#7 12.65 Unpacking libfribidi0:arm64 (1.0.8-2.1) ...
+#7 12.66 Selecting previously unselected package libgif7:arm64.
+#7 12.66 Preparing to unpack .../41-libgif7_5.2.1-2.5+deb12u1_arm64.deb ...
+#7 12.66 Unpacking libgif7:arm64 (5.2.1-2.5+deb12u1) ...
+#7 12.68 Selecting previously unselected package libglvnd0:arm64.
+#7 12.68 Preparing to unpack .../42-libglvnd0_1.6.0-1_arm64.deb ...
+#7 12.68 Unpacking libglvnd0:arm64 (1.6.0-1) ...
+#7 12.70 Selecting previously unselected package libglapi-mesa:arm64.
+#7 12.70 Preparing to unpack .../43-libglapi-mesa_22.3.6-1+deb12u2_arm64.deb ...
+#7 12.70 Unpacking libglapi-mesa:arm64 (22.3.6-1+deb12u2) ...
+#7 12.72 Selecting previously unselected package libx11-xcb1:arm64.
+#7 12.72 Preparing to unpack .../44-libx11-xcb1_2%3a1.8.4-2+deb12u2_arm64.deb ...
+#7 12.72 Unpacking libx11-xcb1:arm64 (2:1.8.4-2+deb12u2) ...
+#7 12.73 Selecting previously unselected package libxcb-dri2-0:arm64.
+#7 12.73 Preparing to unpack .../45-libxcb-dri2-0_1.15-1_arm64.deb ...
+#7 12.73 Unpacking libxcb-dri2-0:arm64 (1.15-1) ...
+#7 12.75 Selecting previously unselected package libxcb-dri3-0:arm64.
+#7 12.75 Preparing to unpack .../46-libxcb-dri3-0_1.15-1_arm64.deb ...
+#7 12.75 Unpacking libxcb-dri3-0:arm64 (1.15-1) ...
+#7 12.77 Selecting previously unselected package libxcb-glx0:arm64.
+#7 12.77 Preparing to unpack .../47-libxcb-glx0_1.15-1_arm64.deb ...
+#7 12.77 Unpacking libxcb-glx0:arm64 (1.15-1) ...
+#7 12.79 Selecting previously unselected package libxcb-present0:arm64.
+#7 12.79 Preparing to unpack .../48-libxcb-present0_1.15-1_arm64.deb ...
+#7 12.79 Unpacking libxcb-present0:arm64 (1.15-1) ...
+#7 12.80 Selecting previously unselected package libxcb-randr0:arm64.
+#7 12.80 Preparing to unpack .../49-libxcb-randr0_1.15-1_arm64.deb ...
+#7 12.80 Unpacking libxcb-randr0:arm64 (1.15-1) ...
+#7 12.82 Selecting previously unselected package libxcb-sync1:arm64.
+#7 12.82 Preparing to unpack .../50-libxcb-sync1_1.15-1_arm64.deb ...
+#7 12.82 Unpacking libxcb-sync1:arm64 (1.15-1) ...
+#7 12.84 Selecting previously unselected package libxcb-xfixes0:arm64.
+#7 12.84 Preparing to unpack .../51-libxcb-xfixes0_1.15-1_arm64.deb ...
+#7 12.84 Unpacking libxcb-xfixes0:arm64 (1.15-1) ...
+#7 12.85 Selecting previously unselected package libxfixes3:arm64.
+#7 12.86 Preparing to unpack .../52-libxfixes3_1%3a6.0.0-2_arm64.deb ...
+#7 12.86 Unpacking libxfixes3:arm64 (1:6.0.0-2) ...
+#7 12.87 Selecting previously unselected package libxshmfence1:arm64.
+#7 12.87 Preparing to unpack .../53-libxshmfence1_1.3-1_arm64.deb ...
+#7 12.87 Unpacking libxshmfence1:arm64 (1.3-1) ...
+#7 12.88 Selecting previously unselected package libxxf86vm1:arm64.
+#7 12.88 Preparing to unpack .../54-libxxf86vm1_1%3a1.1.4-1+b2_arm64.deb ...
+#7 12.88 Unpacking libxxf86vm1:arm64 (1:1.1.4-1+b2) ...
+#7 12.89 Selecting previously unselected package libz3-4:arm64.
+#7 12.89 Preparing to unpack .../55-libz3-4_4.8.12-3.1_arm64.deb ...
+#7 12.89 Unpacking libz3-4:arm64 (4.8.12-3.1) ...
+#7 13.22 Selecting previously unselected package libllvm15:arm64.
+#7 13.22 Preparing to unpack .../56-libllvm15_1%3a15.0.6-4+b1_arm64.deb ...
+#7 13.22 Unpacking libllvm15:arm64 (1:15.0.6-4+b1) ...
+#7 13.90 Selecting previously unselected package libsensors-config.
+#7 13.91 Preparing to unpack .../57-libsensors-config_1%3a3.6.0-7.1_all.deb ...
+#7 13.91 Unpacking libsensors-config (1:3.6.0-7.1) ...
+#7 13.92 Selecting previously unselected package libsensors5:arm64.
+#7 13.92 Preparing to unpack .../58-libsensors5_1%3a3.6.0-7.1_arm64.deb ...
+#7 13.93 Unpacking libsensors5:arm64 (1:3.6.0-7.1) ...
+#7 13.94 Selecting previously unselected package libgl1-mesa-dri:arm64.
+#7 13.94 Preparing to unpack .../59-libgl1-mesa-dri_22.3.6-1+deb12u2_arm64.deb ...
+#7 13.95 Unpacking libgl1-mesa-dri:arm64 (22.3.6-1+deb12u2) ...
+#7 14.31 Selecting previously unselected package libglx-mesa0:arm64.
+#7 14.31 Preparing to unpack .../60-libglx-mesa0_22.3.6-1+deb12u2_arm64.deb ...
+#7 14.31 Unpacking libglx-mesa0:arm64 (22.3.6-1+deb12u2) ...
+#7 14.35 Selecting previously unselected package libglx0:arm64.
+#7 14.35 Preparing to unpack .../61-libglx0_1.6.0-1_arm64.deb ...
+#7 14.35 Unpacking libglx0:arm64 (1.6.0-1) ...
+#7 14.40 Selecting previously unselected package libgl1:arm64.
+#7 14.40 Preparing to unpack .../62-libgl1_1.6.0-1_arm64.deb ...
+#7 14.41 Unpacking libgl1:arm64 (1.6.0-1) ...
+#7 14.51 Selecting previously unselected package libglib2.0-0:arm64.
+#7 14.51 Preparing to unpack .../63-libglib2.0-0_2.74.6-2+deb12u9_arm64.deb ...
+#7 14.52 Unpacking libglib2.0-0:arm64 (2.74.6-2+deb12u9) ...
+#7 14.60 Selecting previously unselected package libgomp1:arm64.
+#7 14.60 Preparing to unpack .../64-libgomp1_12.2.0-14+deb12u1_arm64.deb ...
+#7 14.60 Unpacking libgomp1:arm64 (12.2.0-14+deb12u1) ...
+#7 14.62 Selecting previously unselected package libgraphite2-3:arm64.
+#7 14.62 Preparing to unpack .../65-libgraphite2-3_1.3.14-1+deb12u1_arm64.deb ...
+#7 14.62 Unpacking libgraphite2-3:arm64 (1.3.14-1+deb12u1) ...
+#7 14.64 Selecting previously unselected package libharfbuzz0b:arm64.
+#7 14.64 Preparing to unpack .../66-libharfbuzz0b_6.0.0+dfsg-3_arm64.deb ...
+#7 14.64 Unpacking libharfbuzz0b:arm64 (6.0.0+dfsg-3) ...
+#7 14.68 Selecting previously unselected package libjbig0:arm64.
+#7 14.68 Preparing to unpack .../67-libjbig0_2.1-6.1_arm64.deb ...
+#7 14.68 Unpacking libjbig0:arm64 (2.1-6.1) ...
+#7 14.69 Selecting previously unselected package libjpeg62-turbo:arm64.
+#7 14.70 Preparing to unpack .../68-libjpeg62-turbo_1%3a2.1.5-2_arm64.deb ...
+#7 14.70 Unpacking libjpeg62-turbo:arm64 (1:2.1.5-2) ...
+#7 14.72 Selecting previously unselected package libopenjp2-7:arm64.
+#7 14.72 Preparing to unpack .../69-libopenjp2-7_2.5.0-2+deb12u3_arm64.deb ...
+#7 14.72 Unpacking libopenjp2-7:arm64 (2.5.0-2+deb12u3) ...
+#7 14.74 Selecting previously unselected package liblerc4:arm64.
+#7 14.74 Preparing to unpack .../70-liblerc4_4.0.0+ds-2_arm64.deb ...
+#7 14.74 Unpacking liblerc4:arm64 (4.0.0+ds-2) ...
+#7 14.76 Selecting previously unselected package libwebp7:arm64.
+#7 14.76 Preparing to unpack .../71-libwebp7_1.2.4-0.2+deb12u1_arm64.deb ...
+#7 14.76 Unpacking libwebp7:arm64 (1.2.4-0.2+deb12u1) ...
+#7 14.79 Selecting previously unselected package libtiff6:arm64.
+#7 14.79 Preparing to unpack .../72-libtiff6_4.5.0-6+deb12u4_arm64.deb ...
+#7 14.79 Unpacking libtiff6:arm64 (4.5.0-6+deb12u4) ...
+#7 14.81 Selecting previously unselected package libwebpmux3:arm64.
+#7 14.81 Preparing to unpack .../73-libwebpmux3_1.2.4-0.2+deb12u1_arm64.deb ...
+#7 14.81 Unpacking libwebpmux3:arm64 (1.2.4-0.2+deb12u1) ...
+#7 14.83 Selecting previously unselected package liblept5:arm64.
+#7 14.83 Preparing to unpack .../74-liblept5_1.82.0-3+b3_arm64.deb ...
+#7 14.83 Unpacking liblept5:arm64 (1.82.0-3+b3) ...
+#7 14.90 Selecting previously unselected package libthai-data.
+#7 14.90 Preparing to unpack .../75-libthai-data_0.1.29-1_all.deb ...
+#7 14.90 Unpacking libthai-data (0.1.29-1) ...
+#7 14.93 Selecting previously unselected package libthai0:arm64.
+#7 14.93 Preparing to unpack .../76-libthai0_0.1.29-1_arm64.deb ...
+#7 14.93 Unpacking libthai0:arm64 (0.1.29-1) ...
+#7 14.94 Selecting previously unselected package libpango-1.0-0:arm64.
+#7 14.94 Preparing to unpack .../77-libpango-1.0-0_1.50.12+ds-1_arm64.deb ...
+#7 14.94 Unpacking libpango-1.0-0:arm64 (1.50.12+ds-1) ...
+#7 14.97 Selecting previously unselected package libpangoft2-1.0-0:arm64.
+#7 14.97 Preparing to unpack .../78-libpangoft2-1.0-0_1.50.12+ds-1_arm64.deb ...
+#7 14.97 Unpacking libpangoft2-1.0-0:arm64 (1.50.12+ds-1) ...
+#7 14.98 Selecting previously unselected package libpangocairo-1.0-0:arm64.
+#7 14.98 Preparing to unpack .../79-libpangocairo-1.0-0_1.50.12+ds-1_arm64.deb ...
+#7 14.98 Unpacking libpangocairo-1.0-0:arm64 (1.50.12+ds-1) ...
+#7 15.00 Selecting previously unselected package libtesseract5:arm64.
+#7 15.00 Preparing to unpack .../80-libtesseract5_5.3.0-2_arm64.deb ...
+#7 15.00 Unpacking libtesseract5:arm64 (5.3.0-2) ...
+#7 15.09 Selecting previously unselected package tesseract-ocr-eng.
+#7 15.09 Preparing to unpack .../81-tesseract-ocr-eng_1%3a4.1.0-2_all.deb ...
+#7 15.09 Unpacking tesseract-ocr-eng (1:4.1.0-2) ...
+#7 15.21 Selecting previously unselected package tesseract-ocr-osd.
+#7 15.21 Preparing to unpack .../82-tesseract-ocr-osd_1%3a4.1.0-2_all.deb ...
+#7 15.21 Unpacking tesseract-ocr-osd (1:4.1.0-2) ...
+#7 15.48 Selecting previously unselected package tesseract-ocr.
+#7 15.48 Preparing to unpack .../83-tesseract-ocr_5.3.0-2_arm64.deb ...
+#7 15.50 Unpacking tesseract-ocr (5.3.0-2) ...
+#7 15.57 Setting up libexpat1:arm64 (2.5.0-1+deb12u5) ...
+#7 15.57 Setting up libgraphite2-3:arm64 (1.3.14-1+deb12u1) ...
+#7 15.58 Setting up libpixman-1-0:arm64 (0.42.2-1) ...
+#7 15.58 Setting up libxau6:arm64 (1:1.0.9-1) ...
+#7 15.58 Setting up libpsl5:arm64 (0.21.2-1) ...
+#7 15.59 Setting up libicu72:arm64 (72.1-3+deb12u1) ...
+#7 15.59 Setting up liblerc4:arm64 (4.0.0+ds-2) ...
+#7 15.59 Setting up libdatrie1:arm64 (0.2.13-2+b1) ...
+#7 15.60 Setting up libglib2.0-0:arm64 (2.74.6-2+deb12u9) ...
+#7 15.60 No schema files found: doing nothing.
+#7 15.61 Setting up libglvnd0:arm64 (1.6.0-1) ...
+#7 15.61 Setting up libbrotli1:arm64 (1.0.9-2+deb12u1) ...
+#7 15.61 Setting up libsensors-config (1:3.6.0-7.1) ...
+#7 15.62 Setting up libnghttp2-14:arm64 (1.52.0-1+deb12u3) ...
+#7 15.62 Setting up libdeflate0:arm64 (1.14-1) ...
+#7 15.63 Setting up tesseract-ocr-eng (1:4.1.0-2) ...
+#7 15.63 Setting up libgomp1:arm64 (12.2.0-14+deb12u1) ...
+#7 15.63 Setting up libjbig0:arm64 (2.1-6.1) ...
+#7 15.64 Setting up libsasl2-modules-db:arm64 (2.1.28+dfsg-10+deb12u1) ...
+#7 15.64 Setting up libz3-4:arm64 (4.8.12-3.1) ...
+#7 15.64 Setting up libjpeg62-turbo:arm64 (1:2.1.5-2) ...
+#7 15.65 Setting up libx11-data (2:1.8.4-2+deb12u2) ...
+#7 15.65 Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+#7 15.65 Setting up libfribidi0:arm64 (1.0.8-2.1) ...
+#7 15.66 Setting up libpng16-16:arm64 (1.6.39-2+deb12u6) ...
+#7 15.66 Setting up fonts-dejavu-core (2.37-6) ...
+#7 15.67 Setting up libsensors5:arm64 (1:3.6.0-7.1) ...
+#7 15.68 Setting up libglapi-mesa:arm64 (22.3.6-1+deb12u2) ...
+#7 15.68 Setting up libsasl2-2:arm64 (2.1.28+dfsg-10+deb12u1) ...
+#7 15.68 Setting up libwebp7:arm64 (1.2.4-0.2+deb12u1) ...
+#7 15.69 Setting up libgif7:arm64 (5.2.1-2.5+deb12u1) ...
+#7 15.69 Setting up libxshmfence1:arm64 (1.3-1) ...
+#7 15.69 Setting up libtiff6:arm64 (4.5.0-6+deb12u4) ...
+#7 15.69 Setting up libopenjp2-7:arm64 (2.5.0-2+deb12u3) ...
+#7 15.70 Setting up libthai-data (0.1.29-1) ...
+#7 15.70 Setting up libssh2-1:arm64 (1.10.0-3+deb12u1) ...
+#7 15.70 Setting up tesseract-ocr-osd (1:4.1.0-2) ...
+#7 15.71 Setting up libwebpmux3:arm64 (1.2.4-0.2+deb12u1) ...
+#7 15.71 Setting up libbsd0:arm64 (0.11.7-2) ...
+#7 15.71 Setting up libdrm-common (2.4.114-1) ...
+#7 15.71 Setting up libelf1:arm64 (0.188-2.1) ...
+#7 15.72 Setting up libxml2:arm64 (2.9.14+dfsg-1.3~deb12u6) ...
+#7 15.72 Setting up libxdmcp6:arm64 (1:1.1.2-3) ...
+#7 15.72 Setting up libxcb1:arm64 (1.15-1) ...
+#7 15.73 Setting up libxcb-xfixes0:arm64 (1.15-1) ...
+#7 15.73 Setting up libarchive13:arm64 (3.6.2-1+deb12u5) ...
+#7 15.73 Setting up libxcb-render0:arm64 (1.15-1) ...
+#7 15.73 Setting up fontconfig-config (2.14.1-4) ...
+#7 15.78 debconf: unable to initialize frontend: Dialog
+#7 15.78 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#7 15.78 debconf: falling back to frontend: Readline
+#7 15.78 debconf: unable to initialize frontend: Readline
+#7 15.78 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/aarch64-linux-gnu/perl/5.36.0 /usr/local/share/perl/5.36.0 /usr/lib/aarch64-linux-gnu/perl5/5.36 /usr/share/perl5 /usr/lib/aarch64-linux-gnu/perl-base /usr/lib/aarch64-linux-gnu/perl/5.36 /usr/share/perl/5.36 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+#7 15.78 debconf: falling back to frontend: Teletype
+#7 15.85 Setting up libxcb-glx0:arm64 (1.15-1) ...
+#7 15.85 Setting up libedit2:arm64 (3.1-20221030-2) ...
+#7 15.85 Setting up libxcb-shm0:arm64 (1.15-1) ...
+#7 15.86 Setting up libldap-2.5-0:arm64 (2.5.13+dfsg-5) ...
+#7 15.86 Setting up liblept5:arm64 (1.82.0-3+b3) ...
+#7 15.86 Setting up libxcb-present0:arm64 (1.15-1) ...
+#7 15.87 Setting up libthai0:arm64 (0.1.29-1) ...
+#7 15.87 Setting up libfreetype6:arm64 (2.12.1+dfsg-5+deb12u4) ...
+#7 15.87 Setting up libxcb-sync1:arm64 (1.15-1) ...
+#7 15.88 Setting up libxcb-dri2-0:arm64 (1.15-1) ...
+#7 15.88 Setting up libdrm2:arm64 (2.4.114-1+b1) ...
+#7 15.88 Setting up libxcb-randr0:arm64 (1.15-1) ...
+#7 15.88 Setting up libllvm15:arm64 (1:15.0.6-4+b1) ...
+#7 15.89 Setting up libcurl4:arm64 (7.88.1-10+deb12u15) ...
+#7 15.89 Setting up libx11-6:arm64 (2:1.8.4-2+deb12u2) ...
+#7 15.89 Setting up libharfbuzz0b:arm64 (6.0.0+dfsg-3) ...
+#7 15.90 Setting up libfontconfig1:arm64 (2.14.1-4) ...
+#7 15.90 Setting up libdrm-amdgpu1:arm64 (2.4.114-1+b1) ...
+#7 15.90 Setting up libxcb-dri3-0:arm64 (1.15-1) ...
+#7 15.91 Setting up libx11-xcb1:arm64 (2:1.8.4-2+deb12u2) ...
+#7 15.91 Setting up fontconfig (2.14.1-4) ...
+#7 15.91 Regenerating fonts cache... done.
+#7 17.93 Setting up libdrm-nouveau2:arm64 (2.4.114-1+b1) ...
+#7 17.93 Setting up libxrender1:arm64 (1:0.9.10-1.1) ...
+#7 17.94 Setting up libdrm-radeon1:arm64 (2.4.114-1+b1) ...
+#7 17.94 Setting up libpango-1.0-0:arm64 (1.50.12+ds-1) ...
+#7 17.95 Setting up libgl1-mesa-dri:arm64 (22.3.6-1+deb12u2) ...
+#7 17.96 Setting up libxext6:arm64 (2:1.3.4-1+b1) ...
+#7 17.96 Setting up libcairo2:arm64 (1.16.0-7) ...
+#7 17.97 Setting up libxxf86vm1:arm64 (1:1.1.4-1+b2) ...
+#7 17.97 Setting up libxfixes3:arm64 (1:6.0.0-2) ...
+#7 17.98 Setting up libtesseract5:arm64 (5.3.0-2) ...
+#7 17.98 Setting up libpangoft2-1.0-0:arm64 (1.50.12+ds-1) ...
+#7 18.00 Setting up libpangocairo-1.0-0:arm64 (1.50.12+ds-1) ...
+#7 18.00 Setting up libglx-mesa0:arm64 (22.3.6-1+deb12u2) ...
+#7 18.00 Setting up libglx0:arm64 (1.6.0-1) ...
+#7 18.01 Setting up libgl1:arm64 (1.6.0-1) ...
+#7 18.01 Setting up tesseract-ocr (5.3.0-2) ...
+#7 18.02 Processing triggers for libc-bin (2.36-9+deb12u14) ...
+#7 DONE 18.5s
+
+#8 [3/5] WORKDIR /srv/medicompare/backend
+#8 DONE 0.1s
+
+#9 [4/5] COPY backend/pyproject.toml backend/uv.lock ./
+#9 DONE 0.1s
+
+#10 [5/5] RUN uv sync --frozen --no-install-project
+#10 0.321 Using CPython 3.12.16 interpreter at: /usr/local/bin/python3
+#10 0.321 Creating virtual environment at: /opt/venv
+#10 0.501 Downloading pygments (1.2MiB)
+#10 0.568 Downloading cryptography (4.5MiB)
+#10 0.569 Downloading pillow (6.2MiB)
+#10 0.571 Downloading pip (1.9MiB)
+#10 0.640 Downloading pdfminer-six (6.3MiB)
+#10 0.640 Downloading pydantic-core (2.0MiB)
+#10 0.641 Downloading locust (1.4MiB)
+#10 0.641 Downloading numpy (15.0MiB)
+#10 0.642 Downloading ruff (9.6MiB)
+#10 0.643 Downloading fonttools (5.2MiB)
+#10 0.643 Downloading botocore (15.5MiB)
+#10 0.643 Downloading sqlalchemy (4.5MiB)
+#10 0.643 Downloading reportlab (1.9MiB)
+#10 0.644 Downloading gevent (1.8MiB)
+#10 0.644 Downloading pypdfium2 (3.5MiB)
+#10 0.644 Downloading anthropic (2.3MiB)
+#10 0.645 Downloading mypy (13.8MiB)
+#10 0.645 Downloading uvloop (4.2MiB)
+#10 0.645 Downloading lxml (4.8MiB)
+#10 0.646 Downloading matplotlib (10.2MiB)
+#10 0.646 Downloading opencv-python (47.5MiB)
+#10 0.647 Downloading onnxruntime (20.4MiB)
+#10 0.647 Downloading kiwisolver (1.2MiB)
+#10 0.647 Downloading ast-serialize (1.2MiB)
+#10 0.648 Downloading shapely (2.1MiB)
+#10 0.648 Downloading psycopg-binary (6.5MiB)
+#10 0.648 Downloading opencv-python-headless (37.8MiB)
+#10 0.649 Downloading hypothesis (1.1MiB)
+#10 0.650 Downloading rapidocr-onnxruntime (14.2MiB)
+#10 0.650 Downloading brotli (1.3MiB)
+#10 0.650 Downloading rapidfuzz (1.3MiB)
+#10 4.452  Downloaded hypothesis
+#10 4.968  Downloaded pygments
+#10 5.192  Downloaded ast-serialize
+#10 5.352  Downloaded kiwisolver
+#10 5.532  Downloaded brotli
+#10 5.570  Downloaded rapidfuzz
+#10 5.777  Downloaded locust
+#10 6.627  Downloaded gevent
+#10 6.749  Downloaded pip
+#10 7.054  Downloaded reportlab
+#10 7.087  Downloaded pydantic-core
+#10 7.169  Downloaded shapely
+#10 7.512  Downloaded anthropic
+#10 9.391  Downloaded pypdfium2
+#10 10.22  Downloaded uvloop
+#10 10.53  Downloaded sqlalchemy
+#10 10.69  Downloaded cryptography
+#10 11.03  Downloaded lxml
+#10 11.24  Downloaded fonttools
+#10 12.18  Downloaded pillow
+#10 12.29  Downloaded pdfminer-six
+#10 12.38  Downloaded psycopg-binary
+#10 14.52  Downloaded ruff
+#10 14.94  Downloaded matplotlib
+#10 16.81  Downloaded rapidocr-onnxruntime
+#10 17.30  Downloaded numpy
+#10 17.43  Downloaded botocore
+#10 17.43  Downloaded mypy
+#10 18.95  Downloaded onnxruntime
+#10 22.44  Downloaded opencv-python-headless
+#10 23.30  Downloaded opencv-python
+#10 23.30 Prepared 164 packages in 22.96s
+#10 23.73 Installed 164 packages in 428ms
+#10 23.73  + alembic==1.20.1
+#10 23.73  + annotated-doc==0.0.5
+#10 23.73  + annotated-types==0.8.0
+#10 23.73  + anthropic==2.5.0
+#10 23.73  + anyio==4.16.0
+#10 23.73  + argon2-cffi==25.1.0
+#10 23.73  + argon2-cffi-bindings==26.1.0
+#10 23.73  + ast-serialize==0.13.1
+#10 23.73  + attrs==26.1.0
+#10 23.73  + bandit==1.9.4
+#10 23.73  + bidict==0.24.1
+#10 23.73  + blinker==1.9.0
+#10 23.73  + boolean-py==5.0
+#10 23.73  + boto3==1.43.124
+#10 23.73  + boto3-stubs==1.43.124
+#10 23.73  + botocore==1.43.124
+#10 23.73  + botocore-stubs==1.43.124
+#10 23.73  + brotli==1.2.1
+#10 23.73  + cachecontrol==0.14.4
+#10 23.73  + certifi==2026.10.23
+#10 23.73  + cffi==2.1.1
+#10 23.73  + charset-normalizer==3.5.2
+#10 23.73  + click==8.5.0
+#10 23.73  + configargparse==1.9.0
+#10 23.73  + contourpy==1.4.0
+#10 23.73  + coverage==7.17.2
+#10 23.73  + croniter==6.2.4
+#10 23.73  + cryptography==50.0.2
+#10 23.73  + cycler==0.12.1
+#10 23.73  + cyclonedx-python-lib==11.12.0
+#10 23.73  + defusedxml==0.7.1
+#10 23.73  + dnspython==2.9.2
+#10 23.73  + docstring-parser==0.18.0
+#10 23.73  + email-validator==2.3.0
+#10 23.73  + fastapi==0.162.0
+#10 23.73  + filelock==4.2.9
+#10 23.73  + flask==3.1.3
+#10 23.73  + flask-cors==6.0.5
+#10 23.73  + flask-login==0.6.3
+#10 23.73  + flatbuffers==25.12.19
+#10 23.73  + fonttools==4.68.0
+#10 23.73  + gevent==26.9.0
+#10 23.73  + geventhttpclient==2.6.1
+#10 23.73  + greenlet==3.5.6
+#10 23.73  + h11==0.16.0
+#10 23.73  + httpcore==1.0.9
+#10 23.73  + httpcore2==2.16.0
+#10 23.73  + httptools==0.9.0
+#10 23.73  + httpx==0.28.1
+#10 23.73  + httpx2==2.16.0
+#10 23.73  + hypothesis==6.170.14
+#10 23.73  + idna==3.20
+#10 23.73  + iniconfig==2.3.1
+#10 23.73  + itsdangerous==2.2.0
+#10 23.73  + jinja2==3.1.6
+#10 23.73  + jiter==0.18.0
+#10 23.73  + jmespath==1.1.0
+#10 23.73  + jsonschema==4.26.0
+#10 23.73  + jsonschema-path==0.5.0
+#10 23.73  + jsonschema-specifications==2025.9.1
+#10 23.73  + kiwisolver==1.5.1
+#10 23.73  + lazy-object-proxy==1.13.0
+#10 23.73  + librt==0.16.0
+#10 23.73  + license-expression==30.4.4
+#10 23.73  + locust==2.47.0
+#10 23.73  + lxml==6.1.3
+#10 23.73  + mako==1.4.3
+#10 23.73  + markdown-it-py==4.2.0
+#10 23.73  + markupsafe==3.0.4
+#10 23.73  + matplotlib==3.11.2
+#10 23.73  + mdurl==0.1.2
+#10 23.73  + msgpack==1.2.4
+#10 23.73  + mypy==2.4.1
+#10 23.73  + mypy-boto3-s3==1.43.106
+#10 23.73  + mypy-extensions==1.2.0
+#10 23.73  + numpy==2.5.4
+#10 23.73  + onnxruntime==1.31.1
+#10 23.73  + openapi-schema-validator==0.9.0
+#10 23.73  + openapi-spec-validator==0.9.0
+#10 23.73  + opencv-python==5.0.0.93
+#10 23.73  + opencv-python-headless==5.0.0.93
+#10 23.73  + opentelemetry-api==1.45.2
+#10 23.73  + packageurl-python==0.17.6
+#10 23.73  + packaging==26.3
+#10 23.73  + pathable==0.6.0
+#10 23.73  + pathspec==1.1.1
+#10 23.73  + pdfminer-six==20260107
+#10 23.73  + pdfplumber==0.11.10
+#10 23.73  + pillow==13.0.0
+#10 23.73  + pip==26.3
+#10 23.73  + pip-api==0.0.35
+#10 23.73  + pip-audit==2.10.1
+#10 23.73  + pip-requirements-parser==32.0.1
+#10 23.73  + platformdirs==4.14.5
+#10 23.73  + pluggy==1.7.0
+#10 23.73  + protobuf==7.36.2
+#10 23.73  + psutil==7.2.2
+#10 23.73  + psycopg==3.3.8
+#10 23.73  + psycopg-binary==3.3.8
+#10 23.73  + py-serializable==2.1.0
+#10 23.73  + pyclipper==1.4.0
+#10 23.73  + pycparser==3.12
+#10 23.73  + pydantic==2.14.2
+#10 23.73  + pydantic-core==2.50.2
+#10 23.73  + pydantic-settings==2.16.2
+#10 23.73  + pygments==2.21.0
+#10 23.73  + pyparsing==3.3.3
+#10 23.73  + pypdf==6.21.4
+#10 23.73  + pypdfium2==5.14.0
+#10 23.73  + pytesseract==0.3.13
+#10 23.73  + pytest==9.2.0
+#10 23.73  + pytest-cov==7.1.0
+#10 23.73  + python-dateutil==2.9.0.post0
+#10 23.73  + python-dotenv==1.2.4
+#10 23.73  + python-engineio==4.15.1
+#10 23.73  + python-multipart==0.0.33
+#10 23.73  + python-pptx==1.0.2
+#10 23.73  + python-socketio==5.18.1
+#10 23.73  + pyyaml==6.0.3
+#10 23.73  + pyzmq==27.3.0
+#10 23.73  + rapidfuzz==3.14.6
+#10 23.73  + rapidocr-onnxruntime==1.4.4
+#10 23.73  + redis==8.1.0
+#10 23.73  + referencing==0.37.0
+#10 23.73  + reportlab==5.1.0
+#10 23.73  + requests==2.34.2
+#10 23.73  + rfc3339-validator==0.1.4
+#10 23.73  + rich==15.0.0
+#10 23.73  + rpds-py==2026.9.1
+#10 23.73  + rq==3.0.0
+#10 23.73  + ruff==0.17.3
+#10 23.73  + s3transfer==0.19.3
+#10 23.74  + shapely==2.2.0
+#10 23.74  + simple-websocket==1.1.0
+#10 23.74  + six==1.17.0
+#10 23.74  + sniffio==1.3.1
+#10 23.74  + sortedcontainers==2.4.0
+#10 23.74  + sqlalchemy==2.1.8
+#10 23.74  + starlette==1.10.0
+#10 23.74  + stevedore==5.9.1
+#10 23.74  + structlog==26.1.0
+#10 23.74  + tomli==2.5.0
+#10 23.74  + tomli-w==1.2.0
+#10 23.74  + tqdm==4.70.1
+#10 23.74  + truststore==0.10.5
+#10 23.74  + types-cffi==2.1.0.20260827
+#10 23.74  + types-pyopenssl==24.1.0.20240722
+#10 23.74  + types-pyyaml==6.0.12.20261103
+#10 23.74  + types-redis==4.6.0.20241004
+#10 23.74  + types-s3transfer==0.19.3
+#10 23.74  + types-setuptools==84.2.0.20261104
+#10 23.74  + typing-extensions==4.16.0
+#10 23.74  + typing-inspection==0.4.5
+#10 23.74  + urllib3==2.8.0
+#10 23.74  + uvicorn==0.54.0
+#10 23.74  + uvloop==0.23.0
+#10 23.74  + watchfiles==1.3.0
+#10 23.74  + websocket-client==1.9.2
+#10 23.74  + websockets==17.4
+#10 23.74  + werkzeug==3.1.9
+#10 23.74  + wsproto==1.3.2
+#10 23.74  + xlsxwriter==3.3.1
+#10 23.74  + zope-event==6.2
+#10 23.74  + zope-interface==8.7
+#10 DONE 24.4s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 20.7s done
+#11 exporting manifest sha256:79267227e34ccc31864571fb08a4f78c375de26afbe8231a914fe707f117000e 0.0s done
+#11 exporting config sha256:b820ccba5202457a9c3e8633c39b7a25c0c531d829f6e7e438709dfa6bb4f2a0 done
+#11 exporting attestation manifest sha256:4f24ab43c054ad50f1de28e4f43c7dd5ac6dc4d68666f13fe662c7dc0bffb462 done
+#11 exporting manifest list sha256:9d399ebab5676604a6b35eba3b6a95713ce12f32c47f4e99704aead6d86341a9 done
+#11 naming to docker.io/library/medicompare-backend-test:latest done
+#11 unpacking to docker.io/library/medicompare-backend-test:latest
+#11 unpacking to docker.io/library/medicompare-backend-test:latest 11.2s done
+#11 DONE 32.0s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image medicompare-backend-test Built 
  Container medicompare-postgres-1 Waiting 
+ Container medicompare-redis-1 Waiting 
  Container medicompare-redis-1 Healthy 
  Container medicompare-postgres-1 Healthy 
- Container medicompare-backend-test-run-bd7311156eba Creating 
- Container medicompare-backend-test-run-bd7311156eba Created 
+ Container medicompare-backend-test-run-51f658d67b94 Creating 
+ Container medicompare-backend-test-run-51f658d67b94 Created 
 == pip-audit
  Container medicompare-redis-1 Running 
  Container medicompare-minio-1 Running 
@@ -18,9 +791,9 @@ Thu Nov  5 15:32:00 UTC 2026
  Container medicompare-postgres-1 Waiting 
  Container medicompare-redis-1 Healthy 
  Container medicompare-postgres-1 Healthy 
- Container medicompare-backend-test-run-b600e13f018f Creating 
- Container medicompare-backend-test-run-b600e13f018f Created 
-Installed 29 packages in 933ms
+ Container medicompare-backend-test-run-268d07f8712b Creating 
+ Container medicompare-backend-test-run-268d07f8712b Created 
+Installed 29 packages in 905ms
 WARNING:pip_audit._cli:--no-deps is supported, but users are encouraged to fully hash their pinned dependencies
 WARNING:pip_audit._cli:Consider using a tool like `pip-compile`: https://pip-tools.readthedocs.io/en/latest/#using-hashes
 No known vulnerabilities found
@@ -29,218 +802,202 @@ found 0 vulnerabilities
 == gitleaks
 Unable to find image 'zricethezav/gitleaks:v8.28.0' locally
 v8.28.0: Pulling from zricethezav/gitleaks
-07e9a47f0c33: Pulling fs layer
 8b608696b82a: Pulling fs layer
 2bdec7b61b4a: Pulling fs layer
+07e9a47f0c33: Pulling fs layer
 e5e72595f9db: Pulling fs layer
 8b608696b82a: Download complete
+2bdec7b61b4a: Download complete
 07e9a47f0c33: Download complete
 07e9a47f0c33: Pull complete
-e5e72595f9db: Download complete
-e0b7a96b405c: Download complete
-2bdec7b61b4a: Download complete
 2bdec7b61b4a: Pull complete
+e0b7a96b405c: Download complete
+e5e72595f9db: Download complete
 8b608696b82a: Pull complete
 e5e72595f9db: Pull complete
 Digest: sha256:cdbb7c955abce02001a9f6c9f602fb195b7fadc1e812065883f695d1eeaba854
 Status: Downloaded newer image for zricethezav/gitleaks:v8.28.0
-[90m3:32PM[0m [32mINF[0m [1mscanned ~9062002 bytes (9.06 MB) in 983ms[0m
-[90m3:32PM[0m [32mINF[0m [1mno leaks found[0m
-== trivy (fixed high and critical in built images; see .trivyignore for justified items)
+[90m3:54PM[0m [32mINF[0m [1mscanned ~9173665 bytes (9.17 MB) in 982ms[0m
+[90m3:54PM[0m [32mINF[0m [1mno leaks found[0m
+== trivy (fixed high and critical vulnerabilities, and secrets, in built images; see .trivyignore and trivy-secret.yaml)
 -- medicompare-backend
-Unable to find image 'aquasec/trivy:0.67.2' locally
-0.67.2: Pulling from aquasec/trivy
-75f76222683e: Pulling fs layer
-034d533adec7: Pulling fs layer
-6e174226ea69: Pulling fs layer
-7625a4dd223a: Pulling fs layer
-75f76222683e: Download complete
-6e174226ea69: Download complete
-6e174226ea69: Pull complete
-034d533adec7: Download complete
-034d533adec7: Pull complete
-7625a4dd223a: Download complete
-75f76222683e: Pull complete
-7625a4dd223a: Pull complete
-Digest: sha256:e2b22eac59c02003d8749f5b8d9bd073b62e30fefaef5b7c8371204e0a4b0c08
-Status: Downloaded newer image for aquasec/trivy:0.67.2
 
 Report Summary
 
-┌──────────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┐
-│                                      Target                                      │    Type    │ Vulnerabilities │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ medicompare-backend (debian 12.15)                                               │   debian   │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ Python                                                                           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/alembic-1.20.1.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA     │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA   │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/anthropic-2.5.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/anyio-4.16.0.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/argon2_cffi-25.1.0.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/argon2_cffi_bindings-26.1.0.dist-info/MET- │ python-pkg │        0        │
-│ ADATA                                                                            │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/attrs-26.1.0.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/boto3-1.43.124.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/botocore-1.43.124.dist-info/METADATA       │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/certifi-2026.10.23.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/cffi-2.1.1.dist-info/METADATA              │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/charset_normalizer-3.5.2.dist-info/METADA- │ python-pkg │        0        │
-│ TA                                                                               │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA             │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/croniter-6.2.4.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/dnspython-2.9.2.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/docstring_parser-0.18.0.dist-info/METADATA │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/email_validator-2.3.0.dist-info/METADATA   │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/fastapi-0.162.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/flatbuffers-25.12.19.dist-info/METADATA    │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA              │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httpcore-1.0.9.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httpcore2-2.16.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httptools-0.9.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httpx-0.28.1.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httpx2-2.16.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/idna-3.20.dist-info/METADATA               │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/jiter-0.18.0.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/jmespath-1.1.0.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/jsonschema-4.26.0.dist-info/METADATA       │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/jsonschema_specifications-2025.9.1.dist-i- │ python-pkg │        0        │
-│ nfo/METADATA                                                                     │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/mako-1.4.3.dist-info/METADATA              │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/markupsafe-3.0.4.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/numpy-2.5.4.dist-info/METADATA             │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/onnxruntime-1.31.1.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/opencv_python-5.0.0.93.dist-info/METADATA  │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/opencv_python_headless-5.0.0.93.dist-info- │ python-pkg │        0        │
-│ /METADATA                                                                        │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/opentelemetry_api-1.45.2.dist-info/METADA- │ python-pkg │        0        │
-│ TA                                                                               │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pillow-13.0.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/protobuf-7.36.2.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/psycopg-3.3.8.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/psycopg_binary-3.3.8.dist-info/METADATA    │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pyclipper-1.4.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pycparser-3.12.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pydantic-2.14.2.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pydantic_core-2.50.2.dist-info/METADATA    │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pydantic_settings-2.16.2.dist-info/METADA- │ python-pkg │        0        │
-│ TA                                                                               │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pypdf-6.21.4.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pypdfium2-5.14.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pytesseract-0.3.13.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/python_dateutil-2.9.0.post0.dist-info/MET- │ python-pkg │        0        │
-│ ADATA                                                                            │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/python_dotenv-1.2.4.dist-info/METADATA     │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/python_multipart-0.0.33.dist-info/METADATA │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/rapidfuzz-3.14.6.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/rapidocr_onnxruntime-1.4.4.dist-info/META- │ python-pkg │        0        │
-│ DATA                                                                             │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/redis-8.1.0.dist-info/METADATA             │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/referencing-0.37.0.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/reportlab-5.1.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/rpds_py-2026.9.1.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/rq-3.0.0.dist-info/METADATA                │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/s3transfer-0.19.3.dist-info/METADATA       │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/shapely-2.2.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/six-1.17.0.dist-info/METADATA              │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/sniffio-1.3.1.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/sqlalchemy-2.1.8.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/starlette-1.10.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/structlog-26.1.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/tqdm-4.70.1.dist-info/METADATA             │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/truststore-0.10.5.dist-info/METADATA       │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADA- │ python-pkg │        0        │
-│ TA                                                                               │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/typing_inspection-0.4.5.dist-info/METADATA │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/urllib3-2.8.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/uvicorn-0.54.0.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/uvloop-0.23.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/watchfiles-1.3.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/websockets-17.4.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ usr/local/lib/python3.12/site-packages/pip-25.0.1.dist-info/METADATA             │ python-pkg │        0        │
-└──────────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┬─────────┐
+│                                      Target                                      │    Type    │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ medicompare-backend (debian 12.15)                                               │   debian   │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ Python                                                                           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/alembic-1.20.1.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA     │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA   │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/anthropic-2.5.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/anyio-4.16.0.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/argon2_cffi-25.1.0.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/argon2_cffi_bindings-26.1.0.dist-info/MET- │ python-pkg │        0        │    -    │
+│ ADATA                                                                            │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/attrs-26.1.0.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/boto3-1.43.124.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/botocore-1.43.124.dist-info/METADATA       │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/certifi-2026.10.23.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/cffi-2.1.1.dist-info/METADATA              │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/charset_normalizer-3.5.2.dist-info/METADA- │ python-pkg │        0        │    -    │
+│ TA                                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA             │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/croniter-6.2.4.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/dnspython-2.9.2.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/docstring_parser-0.18.0.dist-info/METADATA │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/email_validator-2.3.0.dist-info/METADATA   │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/fastapi-0.162.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/flatbuffers-25.12.19.dist-info/METADATA    │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA              │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httpcore-1.0.9.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httpcore2-2.16.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httptools-0.9.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httpx-0.28.1.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httpx2-2.16.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/idna-3.20.dist-info/METADATA               │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/jiter-0.18.0.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/jmespath-1.1.0.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/jsonschema-4.26.0.dist-info/METADATA       │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/jsonschema_specifications-2025.9.1.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/mako-1.4.3.dist-info/METADATA              │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/markupsafe-3.0.4.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/numpy-2.5.4.dist-info/METADATA             │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/onnxruntime-1.31.1.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/opencv_python-5.0.0.93.dist-info/METADATA  │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/opencv_python_headless-5.0.0.93.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/opentelemetry_api-1.45.2.dist-info/METADA- │ python-pkg │        0        │    -    │
+│ TA                                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pillow-13.0.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/protobuf-7.36.2.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/psycopg-3.3.8.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/psycopg_binary-3.3.8.dist-info/METADATA    │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pyclipper-1.4.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pycparser-3.12.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pydantic-2.14.2.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pydantic_core-2.50.2.dist-info/METADATA    │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pydantic_settings-2.16.2.dist-info/METADA- │ python-pkg │        0        │    -    │
+│ TA                                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pypdf-6.21.4.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pypdfium2-5.14.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pytesseract-0.3.13.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/python_dateutil-2.9.0.post0.dist-info/MET- │ python-pkg │        0        │    -    │
+│ ADATA                                                                            │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/python_dotenv-1.2.4.dist-info/METADATA     │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/python_multipart-0.0.33.dist-info/METADATA │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/rapidfuzz-3.14.6.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/rapidocr_onnxruntime-1.4.4.dist-info/META- │ python-pkg │        0        │    -    │
+│ DATA                                                                             │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/redis-8.1.0.dist-info/METADATA             │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/referencing-0.37.0.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/reportlab-5.1.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/rpds_py-2026.9.1.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/rq-3.0.0.dist-info/METADATA                │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/s3transfer-0.19.3.dist-info/METADATA       │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/shapely-2.2.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/six-1.17.0.dist-info/METADATA              │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/sniffio-1.3.1.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/sqlalchemy-2.1.8.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/starlette-1.10.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/structlog-26.1.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/tqdm-4.70.1.dist-info/METADATA             │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/truststore-0.10.5.dist-info/METADATA       │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADA- │ python-pkg │        0        │    -    │
+│ TA                                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/typing_inspection-0.4.5.dist-info/METADATA │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/urllib3-2.8.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/uvicorn-0.54.0.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/uvloop-0.23.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/watchfiles-1.3.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/websockets-17.4.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.12/site-packages/pip-25.0.1.dist-info/METADATA             │ python-pkg │        0        │    -    │
+└──────────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┴─────────┘
 Legend:
 - '-': Not scanned
 - '0': Clean (no security findings detected)
@@ -249,180 +1006,180 @@ Legend:
 
 Report Summary
 
-┌──────────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┐
-│                                      Target                                      │    Type    │ Vulnerabilities │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ medicompare-worker (debian 12.15)                                                │   debian   │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ Python                                                                           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/alembic-1.20.1.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA     │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA   │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/anthropic-2.5.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/anyio-4.16.0.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/argon2_cffi-25.1.0.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/argon2_cffi_bindings-26.1.0.dist-info/MET- │ python-pkg │        0        │
-│ ADATA                                                                            │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/attrs-26.1.0.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/boto3-1.43.124.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/botocore-1.43.124.dist-info/METADATA       │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/certifi-2026.10.23.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/cffi-2.1.1.dist-info/METADATA              │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/charset_normalizer-3.5.2.dist-info/METADA- │ python-pkg │        0        │
-│ TA                                                                               │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA             │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/croniter-6.2.4.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/dnspython-2.9.2.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/docstring_parser-0.18.0.dist-info/METADATA │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/email_validator-2.3.0.dist-info/METADATA   │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/fastapi-0.162.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/flatbuffers-25.12.19.dist-info/METADATA    │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA              │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httpcore-1.0.9.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httpcore2-2.16.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httptools-0.9.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httpx-0.28.1.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/httpx2-2.16.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/idna-3.20.dist-info/METADATA               │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/jiter-0.18.0.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/jmespath-1.1.0.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/jsonschema-4.26.0.dist-info/METADATA       │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/jsonschema_specifications-2025.9.1.dist-i- │ python-pkg │        0        │
-│ nfo/METADATA                                                                     │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/mako-1.4.3.dist-info/METADATA              │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/markupsafe-3.0.4.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/numpy-2.5.4.dist-info/METADATA             │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/onnxruntime-1.31.1.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/opencv_python-5.0.0.93.dist-info/METADATA  │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/opencv_python_headless-5.0.0.93.dist-info- │ python-pkg │        0        │
-│ /METADATA                                                                        │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/opentelemetry_api-1.45.2.dist-info/METADA- │ python-pkg │        0        │
-│ TA                                                                               │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pillow-13.0.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/protobuf-7.36.2.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/psycopg-3.3.8.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/psycopg_binary-3.3.8.dist-info/METADATA    │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pyclipper-1.4.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pycparser-3.12.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pydantic-2.14.2.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pydantic_core-2.50.2.dist-info/METADATA    │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pydantic_settings-2.16.2.dist-info/METADA- │ python-pkg │        0        │
-│ TA                                                                               │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pypdf-6.21.4.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pypdfium2-5.14.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pytesseract-0.3.13.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/python_dateutil-2.9.0.post0.dist-info/MET- │ python-pkg │        0        │
-│ ADATA                                                                            │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/python_dotenv-1.2.4.dist-info/METADATA     │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/python_multipart-0.0.33.dist-info/METADATA │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA            │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/rapidfuzz-3.14.6.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/rapidocr_onnxruntime-1.4.4.dist-info/META- │ python-pkg │        0        │
-│ DATA                                                                             │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/redis-8.1.0.dist-info/METADATA             │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/referencing-0.37.0.dist-info/METADATA      │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/reportlab-5.1.0.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/rpds_py-2026.9.1.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/rq-3.0.0.dist-info/METADATA                │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/s3transfer-0.19.3.dist-info/METADATA       │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/shapely-2.2.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/six-1.17.0.dist-info/METADATA              │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/sniffio-1.3.1.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/sqlalchemy-2.1.8.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/starlette-1.10.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/structlog-26.1.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/tqdm-4.70.1.dist-info/METADATA             │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/truststore-0.10.5.dist-info/METADATA       │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADA- │ python-pkg │        0        │
-│ TA                                                                               │            │                 │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/typing_inspection-0.4.5.dist-info/METADATA │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/urllib3-2.8.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/uvicorn-0.54.0.dist-info/METADATA          │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/uvloop-0.23.0.dist-info/METADATA           │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/watchfiles-1.3.0.dist-info/METADATA        │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ opt/venv/lib/python3.12/site-packages/websockets-17.4.dist-info/METADATA         │ python-pkg │        0        │
-├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
-│ usr/local/lib/python3.12/site-packages/pip-25.0.1.dist-info/METADATA             │ python-pkg │        0        │
-└──────────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┬─────────┐
+│                                      Target                                      │    Type    │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ medicompare-worker (debian 12.15)                                                │   debian   │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ Python                                                                           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/alembic-1.20.1.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA     │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA   │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/anthropic-2.5.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/anyio-4.16.0.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/argon2_cffi-25.1.0.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/argon2_cffi_bindings-26.1.0.dist-info/MET- │ python-pkg │        0        │    -    │
+│ ADATA                                                                            │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/attrs-26.1.0.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/boto3-1.43.124.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/botocore-1.43.124.dist-info/METADATA       │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/certifi-2026.10.23.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/cffi-2.1.1.dist-info/METADATA              │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/charset_normalizer-3.5.2.dist-info/METADA- │ python-pkg │        0        │    -    │
+│ TA                                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA             │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/croniter-6.2.4.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/dnspython-2.9.2.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/docstring_parser-0.18.0.dist-info/METADATA │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/email_validator-2.3.0.dist-info/METADATA   │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/fastapi-0.162.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/flatbuffers-25.12.19.dist-info/METADATA    │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA              │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httpcore-1.0.9.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httpcore2-2.16.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httptools-0.9.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httpx-0.28.1.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httpx2-2.16.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/idna-3.20.dist-info/METADATA               │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/jiter-0.18.0.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/jmespath-1.1.0.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/jsonschema-4.26.0.dist-info/METADATA       │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/jsonschema_specifications-2025.9.1.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/mako-1.4.3.dist-info/METADATA              │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/markupsafe-3.0.4.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/numpy-2.5.4.dist-info/METADATA             │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/onnxruntime-1.31.1.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/opencv_python-5.0.0.93.dist-info/METADATA  │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/opencv_python_headless-5.0.0.93.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/opentelemetry_api-1.45.2.dist-info/METADA- │ python-pkg │        0        │    -    │
+│ TA                                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pillow-13.0.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/protobuf-7.36.2.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/psycopg-3.3.8.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/psycopg_binary-3.3.8.dist-info/METADATA    │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pyclipper-1.4.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pycparser-3.12.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pydantic-2.14.2.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pydantic_core-2.50.2.dist-info/METADATA    │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pydantic_settings-2.16.2.dist-info/METADA- │ python-pkg │        0        │    -    │
+│ TA                                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pypdf-6.21.4.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pypdfium2-5.14.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pytesseract-0.3.13.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/python_dateutil-2.9.0.post0.dist-info/MET- │ python-pkg │        0        │    -    │
+│ ADATA                                                                            │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/python_dotenv-1.2.4.dist-info/METADATA     │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/python_multipart-0.0.33.dist-info/METADATA │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/rapidfuzz-3.14.6.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/rapidocr_onnxruntime-1.4.4.dist-info/META- │ python-pkg │        0        │    -    │
+│ DATA                                                                             │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/redis-8.1.0.dist-info/METADATA             │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/referencing-0.37.0.dist-info/METADATA      │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/reportlab-5.1.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/rpds_py-2026.9.1.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/rq-3.0.0.dist-info/METADATA                │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/s3transfer-0.19.3.dist-info/METADATA       │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/shapely-2.2.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/six-1.17.0.dist-info/METADATA              │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/sniffio-1.3.1.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/sqlalchemy-2.1.8.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/starlette-1.10.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/structlog-26.1.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/tqdm-4.70.1.dist-info/METADATA             │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/truststore-0.10.5.dist-info/METADATA       │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADA- │ python-pkg │        0        │    -    │
+│ TA                                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/typing_inspection-0.4.5.dist-info/METADATA │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/urllib3-2.8.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/uvicorn-0.54.0.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/uvloop-0.23.0.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/watchfiles-1.3.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/websockets-17.4.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/local/lib/python3.12/site-packages/pip-25.0.1.dist-info/METADATA             │ python-pkg │        0        │    -    │
+└──────────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┴─────────┘
 Legend:
 - '-': Not scanned
 - '0': Clean (no security findings detected)
@@ -431,71 +1188,71 @@ Legend:
 
 Report Summary
 
-┌───────────────────────────────────────────────────────────────────────────┬──────────┬─────────────────┐
-│                                  Target                                   │   Type   │ Vulnerabilities │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ medicompare-frontend (wolfi 20230201)                                     │  wolfi   │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/@emnapi/runtime/package.json                             │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/@img/colour/package.json                                 │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/@img/sharp-libvips-linux-arm64/package.json              │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/@img/sharp-libvips-linuxmusl-arm64/package.json          │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/@img/sharp-linux-arm64/package.json                      │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/@img/sharp-linuxmusl-arm64/package.json                  │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/@img/sharp-wasm32/package.json                           │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/@next/env/package.json                                   │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/@swc/helpers/package.json                                │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/caniuse-lite/package.json                                │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/client-only/package.json                                 │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/detect-libc/package.json                                 │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/nanoid/package.json                                      │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/next/dist/compiled/@edge-runtime/cookies/package.json    │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/next/dist/compiled/@edge-runtime/ponyfill/package.json   │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/next/dist/compiled/@edge-runtime/primitives/package.json │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/next/dist/compiled/react-is/package.json                 │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/next/dist/compiled/react-refresh/package.json            │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/next/dist/compiled/regenerator-runtime/package.json      │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/next/package.json                                        │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/picocolors/package.json                                  │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/postcss/package.json                                     │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/react-dom/package.json                                   │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/react/package.json                                       │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/sharp/node_modules/semver/package.json                   │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/sharp/package.json                                       │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/source-map-js/package.json                               │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/styled-jsx/package.json                                  │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/node_modules/typescript/package.json                                  │ node-pkg │        0        │
-├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ app/package.json                                                          │ node-pkg │        0        │
-└───────────────────────────────────────────────────────────────────────────┴──────────┴─────────────────┘
+┌───────────────────────────────────────────────────────────────────────────┬──────────┬─────────────────┬─────────┐
+│                                  Target                                   │   Type   │ Vulnerabilities │ Secrets │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ medicompare-frontend (wolfi 20230201)                                     │  wolfi   │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/@emnapi/runtime/package.json                             │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/@img/colour/package.json                                 │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/@img/sharp-libvips-linux-arm64/package.json              │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/@img/sharp-libvips-linuxmusl-arm64/package.json          │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/@img/sharp-linux-arm64/package.json                      │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/@img/sharp-linuxmusl-arm64/package.json                  │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/@img/sharp-wasm32/package.json                           │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/@next/env/package.json                                   │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/@swc/helpers/package.json                                │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/caniuse-lite/package.json                                │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/client-only/package.json                                 │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/detect-libc/package.json                                 │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/nanoid/package.json                                      │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/next/dist/compiled/@edge-runtime/cookies/package.json    │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/next/dist/compiled/@edge-runtime/ponyfill/package.json   │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/next/dist/compiled/@edge-runtime/primitives/package.json │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/next/dist/compiled/react-is/package.json                 │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/next/dist/compiled/react-refresh/package.json            │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/next/dist/compiled/regenerator-runtime/package.json      │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/next/package.json                                        │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/picocolors/package.json                                  │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/postcss/package.json                                     │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/react-dom/package.json                                   │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/react/package.json                                       │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/sharp/node_modules/semver/package.json                   │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/sharp/package.json                                       │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/source-map-js/package.json                               │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/styled-jsx/package.json                                  │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/node_modules/typescript/package.json                                  │ node-pkg │        0        │    -    │
+├───────────────────────────────────────────────────────────────────────────┼──────────┼─────────────────┼─────────┤
+│ app/package.json                                                          │ node-pkg │        0        │    -    │
+└───────────────────────────────────────────────────────────────────────────┴──────────┴─────────────────┴─────────┘
 Legend:
 - '-': Not scanned
 - '0': Clean (no security findings detected)
