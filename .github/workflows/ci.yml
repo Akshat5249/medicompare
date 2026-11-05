@@ -1,0 +1,94 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env: {POSTGRES_USER: medicompare, POSTGRES_PASSWORD: devpassword, POSTGRES_DB: medicompare_test}
+        ports: ["5433:5432"]
+        options: >-
+          --health-cmd "pg_isready -U medicompare" --health-interval 5s --health-timeout 3s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ["6380:6379"]
+      minio:
+        image: cgr.dev/chainguard/minio:latest
+        env: {MINIO_ROOT_USER: devminioaccess, MINIO_ROOT_PASSWORD: devminiosecret}
+        ports: ["9010:9000"]
+        options: --entrypoint /usr/bin/minio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: {version: "0.11.21"}
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr libgl1
+      - run: uv sync --frozen
+        working-directory: backend
+      - run: uv run ruff check app tests && uv run ruff format --check app tests
+        working-directory: backend
+      - run: uv run mypy
+        working-directory: backend
+      - run: |
+          PGPASSWORD=devpassword psql -h localhost -p 5433 -U medicompare -d medicompare_test \
+            -c "CREATE EXTENSION IF NOT EXISTS pg_trgm"
+      - run: uv run pytest --cov=app --cov-report=json:coverage.json --cov-report=term --cov-fail-under=85
+        working-directory: backend
+      - run: uv run python ../scripts/check_core_coverage.py coverage.json
+        working-directory: backend
+      - run: uv run pytest -m safety -q
+        working-directory: backend
+      - run: uv run bandit -q -r app -c pyproject.toml -ll
+        working-directory: backend
+      - run: uv export --frozen --no-dev --no-emit-project -o /tmp/req.txt && uvx pip-audit -r /tmp/req.txt --disable-pip --no-deps
+        working-directory: backend
+
+  frontend:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: "22", cache: npm, cache-dependency-path: frontend/package-lock.json}
+      - run: npm ci
+        working-directory: frontend
+      - run: npx eslint src e2e && npx prettier --check src e2e messages && npx tsc --noEmit
+        working-directory: frontend
+      - run: npx vitest run --coverage
+        working-directory: frontend
+      - run: npm audit --omit=dev --audit-level=high
+        working-directory: frontend
+
+  stack:
+    runs-on: ubuntu-24.04
+    needs: [backend, frontend]
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose up -d --build --wait
+      - run: docker compose exec -T backend python -m app.cli seed-demo-users
+      - run: bash scripts/smoke.sh
+      - run: docker compose exec -T backend python -m app.cli quality
+      - uses: actions/setup-node@v4
+        with: {node-version: "22"}
+      - run: npm ci && npx playwright install --with-deps chromium && npx playwright test
+        working-directory: frontend
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: playwright-results, path: frontend/test-results, retention-days: 7}
+      - name: Scan images
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: medicompare-backend
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Secret scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

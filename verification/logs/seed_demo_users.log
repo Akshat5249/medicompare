@@ -1,0 +1,9 @@
+$ docker compose exec -T backend python -m app.cli seed-demo-users
+Thu Nov  5 14:27:32 UTC 2026
+{
+  "demo_users": [
+    "demo.user@example.com",
+    "demo.pharmacist@example.com",
+    "demo.admin@example.com"
+  ]
+}

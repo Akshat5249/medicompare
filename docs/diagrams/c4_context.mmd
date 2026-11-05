@@ -1,0 +1,16 @@
+flowchart LR
+  patient["Patient or caregiver"]
+  pharmacist["Registered pharmacist<br/>(self-declared, admin-approved)"]
+  admin["Data admin"]
+  mc(["MediCompare<br/>Information only. Does not sell or prescribe."])
+  nppa["NPPA ceiling price lists"]
+  pmbi["PMBJP / PMBI<br/>(permission needed)"]
+  cdsco["CDSCO alerts<br/>(terms to confirm)"]
+  llm["External AI model<br/>(optional, off by default)"]
+  patient -->|"search, verify, share"| mc
+  pharmacist -->|"reviews what is shared with them"| mc
+  admin -->|"imports, approves"| mc
+  nppa -.->|"downloaded file"| admin
+  pmbi -.->|"file, after permission"| admin
+  cdsco -.->|"file, after terms check"| admin
+  mc -.->|"filtered text only, if enabled"| llm

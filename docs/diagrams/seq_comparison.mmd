@@ -1,0 +1,24 @@
+sequenceDiagram
+  actor U as User
+  participant A as API
+  participant G as Gate
+  participant E as Equivalence
+  participant D as Database
+  U->>A: GET item options
+  A->>A: Is this the owner's item?
+  A->>G: require_verified(item)
+  alt not verified
+    G-->>A: refuse
+    A-->>U: 409 item_not_verified, no prices
+  else verified
+    G-->>A: medicine id
+    A->>D: Products sharing an ingredient
+    A->>E: compare(reference, other)
+    alt any difference
+      E-->>A: differences
+      A-->>U: Not directly comparable, with reasons
+    else identical
+      E-->>A: equivalent
+      A-->>U: Option with sourced prices, pack differences and savings within one price type
+    end
+  end

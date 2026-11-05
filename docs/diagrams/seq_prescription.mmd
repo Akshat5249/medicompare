@@ -1,0 +1,24 @@
+sequenceDiagram
+  actor U as User
+  participant A as API
+  participant S as Private storage
+  participant Q as Queue
+  participant W as Worker
+  participant D as Database
+  U->>A: Upload with consent and CSRF token
+  A->>A: Check type, size, pages, pixels. Strip metadata
+  A->>S: Store sanitised original
+  A->>D: Prescription, consent, queued job
+  A->>Q: Enqueue identifier
+  A-->>U: 202 received
+  Q->>W: Job
+  W->>S: Read original
+  W->>W: Pre-process and OCR
+  W->>W: Drop instruction and personal lines. Extract fields
+  W->>W: Match candidates. Never select one
+  W->>D: Items with status needs_verification
+  U->>A: Poll status
+  A-->>U: Items, candidates, image route
+  U->>A: Confirm a candidate (or correct, reject, unresolved)
+  A->>A: Candidate? Look-alike acknowledged? Strength agrees?
+  A->>D: status verified plus verification event

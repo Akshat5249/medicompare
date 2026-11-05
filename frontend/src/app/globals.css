@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+:focus-visible {
+  outline: 3px solid #312e81;
+  outline-offset: 2px;
+}
+
+@media print {
+  header,
+  footer,
+  nav {
+    display: none;
+  }
+}

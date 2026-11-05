@@ -1,0 +1,7 @@
+title = "MediCompare gitleaks config"
+[extend]
+useDefault = true
+[allowlist]
+description = "Placeholders and local-only development defaults, documented in docs/SECURITY_PRIVACY.md"
+paths = ['''frontend/\.next/''', '''frontend/node_modules/''', '''backend/\.venv/''', '''evaluation/datasets/''', '''frontend/test-results/''', '''\.env\.example''', '''frontend/package-lock\.json''', '''backend/uv\.lock''']
+regexes = ['''devminiosecret''', '''devminioaccess''', '''dev-only-secret-not-for-production''', '''local-demo-only-password''', '''correct-horse-battery''']

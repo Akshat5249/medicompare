@@ -1,0 +1,18 @@
+meta {
+  name: Manual prescription
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base}}/prescriptions/manual
+  body: json
+}
+
+headers {
+  X-CSRF-Token: {{csrf}}
+}
+
+body:json {
+  {"items":[{"name":"Cetirizine","strength":"10 mg","form":"Tab"}]}
+}

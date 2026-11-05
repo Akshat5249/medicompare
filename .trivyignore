@@ -1,0 +1,13 @@
+# pcre2 10.32 (Red Hat build) bundled inside the opencv-python and psycopg-binary wheels, in
+# opencv_python.libs and psycopg_binary.libs. The Debian system library is patched (10.42-1+deb12u2).
+# Trivy compares the Red Hat build against Debian advisories, so some of these may already be fixed.
+# Accepted risk: exploiting these needs an attacker-controlled regular expression compiled by that
+# copy of the library, and the application passes no user input to it. Python's `re` does not use it.
+# Review on each dependency update. See verification/security/JUSTIFICATIONS.md.
+CVE-2022-1586
+CVE-2022-1587
+CVE-2019-20454
+CVE-2026-103111
+CVE-2026-86145
+CVE-2026-89157
+CVE-2026-89161

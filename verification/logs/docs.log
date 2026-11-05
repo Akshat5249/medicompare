@@ -1,0 +1,14 @@
+$ make -s docs-check
+Thu Nov  5 14:33:20 UTC 2026
+rendered c4_component
+rendered c4_container
+rendered c4_context
+rendered deployment
+rendered er
+rendered seq_comparison
+rendered seq_prescription
+rendered trust_boundaries
+diagrams rendered: 8
+openapi valid: 3.1.0, 57 paths
+openapi matches code
+links checked: 133, broken: 0

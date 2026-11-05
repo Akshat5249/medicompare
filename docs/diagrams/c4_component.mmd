@@ -1,0 +1,24 @@
+flowchart TB
+  routes["app/api<br/>routes and authorization"]
+  core["app/core<br/>auth, CSRF, limits, audit, storage"]
+  cat["app/catalogue<br/>search, options"]
+  rx["app/prescriptions<br/>intake, OCR, extraction, lifecycle"]
+  sum["app/summaries<br/>verified items only"]
+  imp["app/imports<br/>staging, validation, publication"]
+  gate["app/safety<br/>gate, emergency, injection"]
+  match["app/matching<br/>equivalence, matcher"]
+  price["app/pricing<br/>per-unit, stale, savings"]
+  routes --> core
+  routes --> cat
+  routes --> rx
+  routes --> sum
+  routes --> imp
+  routes --> gate
+  rx --> match
+  rx --> gate
+  cat --> match
+  cat --> price
+  sum --> gate
+  sum --> cat
+  price --> match
+  imp --> match

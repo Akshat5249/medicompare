@@ -1,0 +1,29 @@
+$ make -s perf
+Thu Nov  5 14:30:04 UTC 2026
+[2026-11-05 14:30:05,360] docker-desktop/INFO/locust.main: Starting Locust 2.37.0
+[2026-11-05 14:30:05,361] docker-desktop/INFO/locust.main: Run time limit set to 120 seconds
+[2026-11-05 14:30:05,362] docker-desktop/INFO/locust.runners: Ramping to 50 users at a rate of 10.00 per second
+[2026-11-05 14:30:09,372] docker-desktop/INFO/locust.runners: All users spawned: {"Visitor": 50} (50 total users)
+[2026-11-05 14:32:05,137] docker-desktop/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-05 14:32:05,161] docker-desktop/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      comparison                                                                      2738     0(0.00%) |    155      11     608    130 |   22.86        0.00
+GET      prices                                                                           880     0(0.00%) |     66       5     238     53 |    7.35        0.00
+GET      search                                                                          4666     0(0.00%) |     80       9     347     66 |   38.96        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      8284     0(0.00%) |    103       5     608     80 |   69.16        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      comparison                                                                            130    190    240    260    320    360    410    440    530    610    610   2738
+GET      prices                                                                                 53     82     99    110    150    180    200    220    240    240    240    880
+GET      search                                                                                 66     98    120    130    170    190    230    250    320    350    350   4666
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             80    120    150    170    230    290    350    390    490    610    610   8284
+
+comparison     requests=  2730 failures=   0 p50=130ms p95=360ms p99=440ms rps=22.9
+prices         requests=   876 failures=   0 p50=53ms p95=180ms p99=220ms rps=7.3
+search         requests=  4651 failures=   0 p50=66ms p95=200ms p99=250ms rps=39.0
+Aggregated     requests=  8257 failures=   0 p50=80ms p95=290ms p99=390ms rps=69.2

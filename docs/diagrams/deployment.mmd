@@ -1,0 +1,17 @@
+flowchart TB
+  internet(("Internet"))
+  subgraph droplet["Single VM, encrypted volumes (planned, not deployed)"]
+    caddy["Caddy :443"]
+    subgraph net["Private Docker network"]
+      fe["frontend"] --- api["backend"]
+      api --- w["worker"]
+      api --- s["scheduler"]
+      api --- pg[("postgres")]
+      api --- r[("redis")]
+      api --- m[("minio")]
+      api --- c["clamav"]
+    end
+  end
+  backups[("Encrypted database dumps<br/>14 days")]
+  internet --> caddy --> fe
+  pg -.-> backups

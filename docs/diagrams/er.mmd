@@ -1,0 +1,47 @@
+erDiagram
+  data_sources ||--o{ import_batches : has
+  import_batches ||--o{ staged_rows : holds
+  data_sources ||--o{ medicines : provides
+  medicines ||--o{ medicine_ingredients : composed_of
+  ingredients ||--o{ medicine_ingredients : used_in
+  ingredients ||--o{ ingredient_aliases : spelled_as
+  salt_forms |o--o{ medicine_ingredients : optional_salt
+  brands |o--o{ medicines : brands
+  manufacturers |o--o{ brands : makes
+  dosage_forms ||--o{ medicines : form
+  routes ||--o{ medicines : route
+  release_types ||--o{ medicines : release
+  medicines ||--o{ pack_sizes : packs
+  pack_sizes ||--o{ price_observations : priced
+  medicines ||--o{ price_observations : priced
+  medicines ||--o{ regulatory_flags : flagged
+  medicines |o--o{ jan_aushadhi_products : maps_to
+  data_sources ||--o{ jan_aushadhi_kendras : lists
+  users ||--o{ auth_sessions : has
+  users ||--o| pharmacist_profiles : may_have
+  users ||--o{ consents : gives
+  users ||--o{ saved_lists : owns
+  saved_lists ||--o{ saved_list_items : contains
+  users ||--o{ prescriptions : owns
+  prescriptions ||--o{ processing_jobs : runs
+  prescriptions ||--o{ extracted_items : contains
+  extracted_items ||--o{ candidate_matches : proposes
+  extracted_items ||--o{ verification_events : records
+  medicines |o--o{ extracted_items : verified_as
+  prescriptions ||--o{ prescription_shares : shared_by
+  users ||--o{ prescription_shares : reviews
+  prescriptions ||--o{ share_links : linked_by
+  users |o--o{ audit_events : acted
+  medicines { int id PK
+    string display_name
+    string equivalence_key
+    bool is_demo }
+  price_observations { bigint id PK
+    string price_type
+    numeric amount_inr
+    date observed_at
+    bool is_demo }
+  extracted_items { uuid id PK
+    string status
+    int verified_medicine_id FK
+    string verified_by_type }

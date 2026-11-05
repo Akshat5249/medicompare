@@ -1,0 +1,24 @@
+flowchart TB
+  browser["Browser / PWA"]
+  subgraph stack["Docker Compose"]
+    caddy["Caddy<br/>TLS (production)"]
+    fe["Next.js frontend<br/>en, hi, ta"]
+    api["FastAPI backend<br/>/api/v1"]
+    worker["RQ worker<br/>OpenCV + OCR"]
+    sched["Scheduler<br/>retention"]
+    pg[("PostgreSQL 16<br/>pg_trgm")]
+    redis[("Redis<br/>queue, rate limits")]
+    minio[("MinIO<br/>private bucket")]
+    clam["ClamAV<br/>(production)"]
+  end
+  browser --> caddy --> fe
+  fe -->|"same-origin /api/v1"| api
+  api --> pg
+  api --> redis
+  api --> minio
+  api -.-> clam
+  redis --> worker
+  worker --> pg
+  worker --> minio
+  sched --> pg
+  sched --> minio

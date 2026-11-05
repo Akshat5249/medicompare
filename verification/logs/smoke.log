@@ -1,0 +1,13 @@
+$ make -s smoke
+Thu Nov  5 14:29:02 UTC 2026
+ok   frontend en (200)
+ok   frontend hi (200)
+ok   frontend ta (200)
+ok   api ready (200)
+ok   search (200)
+ok   janaushadhi (200)
+ok   private needs auth (401)
+ok   csrf enforced (403)
+ok   gate blocks unverified (409)
+ok   cleanup (204)
+SMOKE PASS: 10 checks

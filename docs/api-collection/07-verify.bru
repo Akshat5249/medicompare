@@ -1,0 +1,18 @@
+meta {
+  name: Verify item
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base}}/prescriptions/{{rx}}/items/{{item}}/verify
+  body: json
+}
+
+headers {
+  X-CSRF-Token: {{csrf}}
+}
+
+body:json {
+  {"medicine_id":1,"lasa_acknowledged":false}
+}

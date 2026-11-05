@@ -1,0 +1,15 @@
+kendra_code,name,address,district,state,pin_code,latitude,longitude,observed_at
+DEMO-K001,Demo Kendra 1 (fictional),"Demo Street 1, Chennai (fictional address)",Chennai,Tamil Nadu,600001,13.09,80.27,2026-10-01
+DEMO-K002,Demo Kendra 2 (fictional),"Demo Street 2, Chennai (fictional address)",Chennai,Tamil Nadu,600017,13.04,80.23,2026-10-01
+DEMO-K003,Demo Kendra 3 (fictional),"Demo Street 3, Coimbatore (fictional address)",Coimbatore,Tamil Nadu,641001,11.0,76.96,2026-10-01
+DEMO-K004,Demo Kendra 4 (fictional),"Demo Street 4, Madurai (fictional address)",Madurai,Tamil Nadu,625001,9.92,78.12,2026-10-01
+DEMO-K005,Demo Kendra 5 (fictional),"Demo Street 5, New Delhi (fictional address)",New Delhi,Delhi,110001,28.63,77.22,2026-10-01
+DEMO-K006,Demo Kendra 6 (fictional),"Demo Street 6, New Delhi (fictional address)",New Delhi,Delhi,110016,28.55,77.2,2026-10-01
+DEMO-K007,Demo Kendra 7 (fictional),"Demo Street 7, Lucknow (fictional address)",Lucknow,Uttar Pradesh,226001,26.85,80.95,2026-10-01
+DEMO-K008,Demo Kendra 8 (fictional),"Demo Street 8, Patna (fictional address)",Patna,Bihar,800001,25.61,85.14,2026-10-01
+DEMO-K009,Demo Kendra 9 (fictional),"Demo Street 9, Mumbai (fictional address)",Mumbai,Maharashtra,400001,18.94,72.84,2026-10-01
+DEMO-K010,Demo Kendra 10 (fictional),"Demo Street 10, Pune (fictional address)",Pune,Maharashtra,411001,18.52,73.86,2026-10-01
+DEMO-K011,Demo Kendra 11 (fictional),"Demo Street 11, Bengaluru (fictional address)",Bengaluru,Karnataka,560001,12.98,77.6,2026-10-01
+DEMO-K012,Demo Kendra 12 (fictional),"Demo Street 12, Hyderabad (fictional address)",Hyderabad,Telangana,500001,17.39,78.47,2026-10-01
+DEMO-K013,Demo Kendra 13 (fictional),"Demo Street 13, Kolkata (fictional address)",Kolkata,West Bengal,700001,22.57,88.35,2026-10-01
+DEMO-K014,Demo Kendra 14 (fictional),"Demo Street 14, Jaipur (fictional address)",Jaipur,Rajasthan,302001,26.92,75.82,2026-10-01

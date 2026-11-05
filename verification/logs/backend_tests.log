@@ -1,0 +1,84 @@
+$ make -s test-backend
+Thu Nov  5 14:27:59 UTC 2026
+ Container medicompare-redis-1 Running 
+ Container medicompare-minio-1 Running 
+ Container medicompare-postgres-1 Running 
+ Container medicompare-postgres-1 Waiting 
+ Container medicompare-redis-1 Waiting 
+ Container medicompare-redis-1 Healthy 
+ Container medicompare-postgres-1 Healthy 
+ Container medicompare-backend-test-run-a94f931248f8 Creating 
+ Container medicompare-backend-test-run-a94f931248f8 Created 
+........................................................................ [ 30%]
+........................................................................ [ 61%]
+........................................................................ [ 91%]
+....................                                                     [100%]
+=============================== warnings summary ===============================
+tests/test_accounts_privacy.py::test_search_needs_no_account
+  /opt/venv/lib/python3.12/site-packages/alembic/config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+tests/test_pipeline.py::test_pdf_metadata_scripts_and_attachments_are_removed
+  /srv/medicompare/backend/tests/test_pipeline.py:133: DeprecationWarning: add_js is deprecated and will be removed in pypdf 7.0.0. Use add_open_action instead.
+    writer.add_js("app.alert('x');")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.16-final-0 _______________
+
+Name                              Stmts   Miss  Cover
+-----------------------------------------------------
+app/__init__.py                       0      0   100%
+app/api/__init__.py                   0      0   100%
+app/api/accounts.py                 161      0   100%
+app/api/admin.py                    126      1    99%
+app/api/prescriptions.py            280      6    98%
+app/api/public.py                   140      2    99%
+app/catalogue/__init__.py             0      0   100%
+app/catalogue/service.py            154      3    98%
+app/config.py                        52      0   100%
+app/core.py                         137      1    99%
+app/db.py                            17      0   100%
+app/imports/__init__.py               0      0   100%
+app/imports/normalize.py            163      0   100%
+app/imports/pipeline.py             194      0   100%
+app/imports/seed.py                  48      0   100%
+app/jobs.py                          21      1    95%
+app/main.py                          51      4    92%
+app/matching/__init__.py              0      0   100%
+app/matching/equivalence.py         112      1    99%
+app/matching/matcher.py             121      7    94%
+app/models.py                       393      0   100%
+app/prescriptions/__init__.py         0      0   100%
+app/prescriptions/confidence.py      26      0   100%
+app/prescriptions/extraction.py     104      4    96%
+app/prescriptions/imaging.py        161     10    94%
+app/prescriptions/llm.py             44      2    95%
+app/prescriptions/ocr.py             75      0   100%
+app/prescriptions/service.py        223      4    98%
+app/pricing/__init__.py               0      0   100%
+app/pricing/comparison.py            51      0   100%
+app/quality.py                       10      0   100%
+app/safety/__init__.py                0      0   100%
+app/safety/emergency.py              15      0   100%
+app/safety/gate.py                   11      0   100%
+app/safety/injection.py               5      0   100%
+app/summaries/__init__.py             0      0   100%
+app/summaries/service.py             72      3    96%
+-----------------------------------------------------
+TOTAL                              2967     49    98%
+Coverage JSON written to file ../verification/coverage-backend.json
+Required test coverage of 85% reached. Total coverage: 98.35%
+236 passed, 2 warnings in 29.34s
+app/matching/__init__.py: 100.0%
+app/matching/equivalence.py: 99.1%
+app/matching/matcher.py: 94.2%
+app/prescriptions/confidence.py: 100.0%
+app/prescriptions/extraction.py: 96.2%
+app/pricing/__init__.py: 100.0%
+app/pricing/comparison.py: 100.0%
+app/safety/__init__.py: 100.0%
+app/safety/emergency.py: 100.0%
+app/safety/gate.py: 100.0%
+app/safety/injection.py: 100.0%
+core modules: 97.3% (433/445)

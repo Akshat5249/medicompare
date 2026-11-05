@@ -1,0 +1,3024 @@
+openapi: 3.1.0
+info:
+  title: MediCompare API
+  summary: Neutral, source-traceable medicine price information for India.
+  description: Information only, not medical advice. MediCompare does not sell, prescribe
+    or dispense medicines. State-changing requests require the session's X-CSRF-Token
+    header. Errors use RFC 9457 problem details.
+  version: 1.0.0
+paths:
+  /api/v1/health/live:
+    get:
+      tags:
+      - health
+      summary: Live
+      operationId: live_api_v1_health_live_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+                title: Response Live Api V1 Health Live Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/health/ready:
+    get:
+      tags:
+      - health
+      summary: Ready
+      operationId: ready_api_v1_health_ready_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+                title: Response Ready Api V1 Health Ready Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/search:
+    get:
+      tags:
+      - catalogue
+      summary: Search
+      operationId: search_api_v1_search_get
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          minLength: 2
+          maxLength: 120
+          description: Brand, generic or ingredient
+          title: Q
+        description: Brand, generic or ingredient
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 50
+          minimum: 1
+          default: 30
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/medicines/{medicine_id}:
+    get:
+      tags:
+      - catalogue
+      summary: Medicine Detail
+      operationId: medicine_detail_api_v1_medicines__medicine_id__get
+      parameters:
+      - name: medicine_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Medicine Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Medicine Detail Api V1 Medicines  Medicine Id  Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/medicines/{medicine_id}/prices:
+    get:
+      tags:
+      - prices
+      summary: Medicine Prices
+      operationId: medicine_prices_api_v1_medicines__medicine_id__prices_get
+      parameters:
+      - name: medicine_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Medicine Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Medicine Prices Api V1 Medicines  Medicine Id  Prices
+                  Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/medicines/{medicine_id}/options:
+    get:
+      tags:
+      - prices
+      summary: Medicine Options
+      operationId: medicine_options_api_v1_medicines__medicine_id__options_get
+      parameters:
+      - name: medicine_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Medicine Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Medicine Options Api V1 Medicines  Medicine Id  Options
+                  Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/safety/check:
+    post:
+      tags:
+      - safety
+      summary: Safety Check
+      operationId: safety_check_api_v1_safety_check_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SafetyCheckIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmergencyOut'
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/jan-aushadhi/products:
+    get:
+      tags:
+      - jan-aushadhi
+      summary: Ja Products
+      operationId: ja_products_api_v1_jan_aushadhi_products_get
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 120
+          - type: 'null'
+          title: Q
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 50
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Ja Products Api V1 Jan Aushadhi Products Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/jan-aushadhi/kendras:
+    get:
+      tags:
+      - jan-aushadhi
+      summary: Ja Kendras
+      description: Coordinates are used for this one calculation only. They are not
+        stored or logged.
+      operationId: ja_kendras_api_v1_jan_aushadhi_kendras_get
+      parameters:
+      - name: pin
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            pattern: ^[1-9]\d{5}$
+          - type: 'null'
+          title: Pin
+      - name: area
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            minLength: 2
+            maxLength: 80
+          - type: 'null'
+          title: Area
+      - name: lat
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            maximum: 90
+            minimum: -90
+          - type: 'null'
+          title: Lat
+      - name: lon
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            maximum: 180
+            minimum: -180
+          - type: 'null'
+          title: Lon
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Ja Kendras Api V1 Jan Aushadhi Kendras Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/shared/{token}:
+    get:
+      tags:
+      - summaries
+      summary: Shared Summary
+      operationId: shared_summary_api_v1_shared__token__get
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Token
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Shared Summary Api V1 Shared  Token  Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/shared/{token}/pdf:
+    get:
+      tags:
+      - summaries
+      summary: Shared Summary Pdf
+      operationId: shared_summary_pdf_api_v1_shared__token__pdf_get
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Token
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/auth/register:
+    post:
+      tags:
+      - accounts
+      summary: Register
+      operationId: register_api_v1_auth_register_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterIn'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Register Api V1 Auth Register Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/auth/register-pharmacist:
+    post:
+      tags:
+      - accounts
+      summary: Register Pharmacist
+      description: 'The number is self-declared. An admin checks it by hand before
+        approval: none is automated.'
+      operationId: register_pharmacist_api_v1_auth_register_pharmacist_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PharmacistRegisterIn'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Register Pharmacist Api V1 Auth Register Pharmacist
+                  Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/auth/login:
+    post:
+      tags:
+      - accounts
+      summary: Login
+      operationId: login_api_v1_auth_login_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Login Api V1 Auth Login Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/auth/guest:
+    post:
+      tags:
+      - accounts
+      summary: Guest
+      description: A throwaway identity, so prescriptions work without an account.
+        Removed by retention.
+      operationId: guest_api_v1_auth_guest_post
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Guest Api V1 Auth Guest Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/auth/me:
+    get:
+      tags:
+      - accounts
+      summary: Me
+      operationId: me_api_v1_auth_me_get
+      parameters:
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Me Api V1 Auth Me Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/auth/logout:
+    post:
+      tags:
+      - accounts
+      summary: Logout
+      operationId: logout_api_v1_auth_logout_post
+      parameters:
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '204':
+          description: Successful Response
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/lists:
+    get:
+      tags:
+      - accounts
+      - lists
+      summary: Lists
+      operationId: lists_api_v1_lists_get
+      parameters:
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Lists Api V1 Lists Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+    post:
+      tags:
+      - accounts
+      - lists
+      summary: Create List
+      operationId: create_list_api_v1_lists_post
+      parameters:
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Create List Api V1 Lists Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/lists/{list_id}/items:
+    post:
+      tags:
+      - accounts
+      - lists
+      summary: Add List Item
+      operationId: add_list_item_api_v1_lists__list_id__items_post
+      parameters:
+      - name: list_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: List Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListItemIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Add List Item Api V1 Lists  List Id  Items Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/lists/{list_id}:
+    delete:
+      tags:
+      - accounts
+      - lists
+      summary: Delete List
+      operationId: delete_list_api_v1_lists__list_id__delete
+      parameters:
+      - name: list_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: List Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '204':
+          description: Successful Response
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/me/export:
+    get:
+      tags:
+      - accounts
+      - privacy
+      summary: Export Data
+      operationId: export_data_api_v1_me_export_get
+      parameters:
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Export Data Api V1 Me Export Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/me:
+    delete:
+      tags:
+      - accounts
+      - privacy
+      summary: Delete Account
+      description: 'Hard delete: objects, prescription rows, and the account. Audit
+        rows lose the actor link.'
+      operationId: delete_account_api_v1_me_delete
+      parameters:
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '204':
+          description: Successful Response
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/consent-notice:
+    get:
+      tags:
+      - prescriptions
+      summary: Consent Notice
+      operationId: consent_notice_api_v1_prescriptions_consent_notice_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Consent Notice Api V1 Prescriptions Consent Notice
+                  Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/upload:
+    post:
+      tags:
+      - prescriptions
+      summary: Upload
+      operationId: upload_api_v1_prescriptions_upload_post
+      parameters:
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_api_v1_prescriptions_upload_post'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Upload Api V1 Prescriptions Upload Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/manual:
+    post:
+      tags:
+      - prescriptions
+      summary: Manual
+      operationId: manual_api_v1_prescriptions_manual_post
+      parameters:
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManualIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Manual Api V1 Prescriptions Manual Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions:
+    get:
+      tags:
+      - prescriptions
+      summary: History
+      operationId: history_api_v1_prescriptions_get
+      parameters:
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response History Api V1 Prescriptions Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}:
+    get:
+      tags:
+      - prescriptions
+      summary: Status
+      operationId: status_api_v1_prescriptions__prescription_id__get
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Status Api V1 Prescriptions  Prescription Id  Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+    delete:
+      tags:
+      - privacy
+      summary: Delete Upload
+      operationId: delete_upload_api_v1_prescriptions__prescription_id__delete
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '204':
+          description: Successful Response
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/pages/{page}:
+    get:
+      tags:
+      - prescriptions
+      summary: Page Image
+      operationId: page_image_api_v1_prescriptions__prescription_id__pages__page__get
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Page
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/items/{item_id}:
+    patch:
+      tags:
+      - verification
+      summary: Correct
+      operationId: correct_api_v1_prescriptions__prescription_id__items__item_id__patch
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Item Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CorrectIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Correct Api V1 Prescriptions  Prescription Id  Items  Item
+                  Id  Patch
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/items/{item_id}/verify:
+    post:
+      tags:
+      - verification
+      summary: Verify
+      operationId: verify_api_v1_prescriptions__prescription_id__items__item_id__verify_post
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Item Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Verify Api V1 Prescriptions  Prescription Id  Items  Item
+                  Id  Verify Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/items/{item_id}/reject:
+    post:
+      tags:
+      - verification
+      summary: Reject
+      operationId: reject_api_v1_prescriptions__prescription_id__items__item_id__reject_post
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Item Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloseIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Reject Api V1 Prescriptions  Prescription Id  Items  Item
+                  Id  Reject Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/items/{item_id}/unresolved:
+    post:
+      tags:
+      - verification
+      summary: Unresolved
+      operationId: unresolved_api_v1_prescriptions__prescription_id__items__item_id__unresolved_post
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Item Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloseIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Unresolved Api V1 Prescriptions  Prescription Id  Items  Item
+                  Id  Unresolved Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/items/{item_id}/prices:
+    get:
+      tags:
+      - verification
+      summary: Item Prices
+      operationId: item_prices_api_v1_prescriptions__prescription_id__items__item_id__prices_get
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Item Id
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Item Prices Api V1 Prescriptions  Prescription Id  Items  Item
+                  Id  Prices Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/items/{item_id}/options:
+    get:
+      tags:
+      - verification
+      summary: Item Options
+      operationId: item_options_api_v1_prescriptions__prescription_id__items__item_id__options_get
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Item Id
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Item Options Api V1 Prescriptions  Prescription Id  Items  Item
+                  Id  Options Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/summary:
+    get:
+      tags:
+      - summaries
+      summary: Summary
+      operationId: summary_api_v1_prescriptions__prescription_id__summary_get
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Summary Api V1 Prescriptions  Prescription Id  Summary
+                  Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/summary.pdf:
+    get:
+      tags:
+      - summaries
+      summary: Summary Pdf
+      operationId: summary_pdf_api_v1_prescriptions__prescription_id__summary_pdf_get
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/share-links:
+    post:
+      tags:
+      - summaries
+      summary: Create Link
+      operationId: create_link_api_v1_prescriptions__prescription_id__share_links_post
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Create Link Api V1 Prescriptions  Prescription Id  Share
+                  Links Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/share-links/{link_id}:
+    delete:
+      tags:
+      - summaries
+      summary: Revoke Link
+      operationId: revoke_link_api_v1_prescriptions__prescription_id__share_links__link_id__delete
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: link_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Link Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '204':
+          description: Successful Response
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/pharmacists:
+    get:
+      tags:
+      - pharmacist
+      summary: Approved Pharmacists
+      operationId: approved_pharmacists_api_v1_pharmacists_get
+      parameters:
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Approved Pharmacists Api V1 Pharmacists Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/shares:
+    post:
+      tags:
+      - pharmacist
+      summary: Share With Pharmacist
+      operationId: share_with_pharmacist_api_v1_prescriptions__prescription_id__shares_post
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Share With Pharmacist Api V1 Prescriptions  Prescription
+                  Id  Shares Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/prescriptions/{prescription_id}/shares/{pharmacist_id}:
+    delete:
+      tags:
+      - pharmacist
+      summary: Revoke Share
+      operationId: revoke_share_api_v1_prescriptions__prescription_id__shares__pharmacist_id__delete
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: pharmacist_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Pharmacist Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '204':
+          description: Successful Response
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/pharmacist/queue:
+    get:
+      tags:
+      - pharmacist
+      summary: Queue
+      operationId: queue_api_v1_pharmacist_queue_get
+      parameters:
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Queue Api V1 Pharmacist Queue Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/pharmacist/prescriptions/{prescription_id}:
+    get:
+      tags:
+      - pharmacist
+      summary: Pharmacist View
+      operationId: pharmacist_view_api_v1_pharmacist_prescriptions__prescription_id__get
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Pharmacist View Api V1 Pharmacist Prescriptions  Prescription
+                  Id  Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/pharmacist/prescriptions/{prescription_id}/pages/{page}:
+    get:
+      tags:
+      - pharmacist
+      summary: Pharmacist Page
+      operationId: pharmacist_page_api_v1_pharmacist_prescriptions__prescription_id__pages__page__get
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Page
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/pharmacist/prescriptions/{prescription_id}/items/{item_id}:
+    patch:
+      tags:
+      - pharmacist
+      summary: Pharmacist Correct
+      operationId: pharmacist_correct_api_v1_pharmacist_prescriptions__prescription_id__items__item_id__patch
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Item Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CorrectIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Pharmacist Correct Api V1 Pharmacist Prescriptions  Prescription
+                  Id  Items  Item Id  Patch
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/pharmacist/prescriptions/{prescription_id}/items/{item_id}/verify:
+    post:
+      tags:
+      - pharmacist
+      summary: Pharmacist Verify
+      operationId: pharmacist_verify_api_v1_pharmacist_prescriptions__prescription_id__items__item_id__verify_post
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Item Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Pharmacist Verify Api V1 Pharmacist Prescriptions  Prescription
+                  Id  Items  Item Id  Verify Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/pharmacist/prescriptions/{prescription_id}/items/{item_id}/unresolved:
+    post:
+      tags:
+      - pharmacist
+      summary: Pharmacist Unresolved
+      operationId: pharmacist_unresolved_api_v1_pharmacist_prescriptions__prescription_id__items__item_id__unresolved_post
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Item Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloseIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Pharmacist Unresolved Api V1 Pharmacist Prescriptions  Prescription
+                  Id  Items  Item Id  Unresolved Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/pharmacist/prescriptions/{prescription_id}/complete:
+    post:
+      tags:
+      - pharmacist
+      summary: Pharmacist Complete
+      operationId: pharmacist_complete_api_v1_pharmacist_prescriptions__prescription_id__complete_post
+      parameters:
+      - name: prescription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Prescription Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewDoneIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Pharmacist Complete Api V1 Pharmacist Prescriptions  Prescription
+                  Id  Complete Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/admin/sources:
+    get:
+      tags:
+      - admin
+      summary: Sources
+      description: Source freshness dashboard data, with a staleness alert per source.
+      operationId: sources_api_v1_admin_sources_get
+      parameters:
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Sources Api V1 Admin Sources Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/admin/imports:
+    get:
+      tags:
+      - admin
+      summary: List Imports
+      operationId: list_imports_api_v1_admin_imports_get
+      parameters:
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response List Imports Api V1 Admin Imports Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+    post:
+      tags:
+      - admin
+      summary: Stage Import
+      operationId: stage_import_api_v1_admin_imports_post
+      parameters:
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_stage_import_api_v1_admin_imports_post'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Stage Import Api V1 Admin Imports Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/admin/imports/{batch_id}/publish:
+    post:
+      tags:
+      - admin
+      summary: Publish Import
+      operationId: publish_import_api_v1_admin_imports__batch_id__publish_post
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Batch Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Publish Import Api V1 Admin Imports  Batch Id  Publish
+                  Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/admin/imports/{batch_id}/reject:
+    post:
+      tags:
+      - admin
+      summary: Reject Import
+      operationId: reject_import_api_v1_admin_imports__batch_id__reject_post
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Batch Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Reject Import Api V1 Admin Imports  Batch Id  Reject
+                  Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/admin/review-queue:
+    get:
+      tags:
+      - admin
+      summary: Review Queue
+      operationId: review_queue_api_v1_admin_review_queue_get
+      parameters:
+      - name: batch_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Batch Id
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Review Queue Api V1 Admin Review Queue Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/admin/review-queue/{row_id}:
+    put:
+      tags:
+      - admin
+      summary: Correct Row
+      operationId: correct_row_api_v1_admin_review_queue__row_id__put
+      parameters:
+      - name: row_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Row Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RowCorrection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Correct Row Api V1 Admin Review Queue  Row Id  Put
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+    delete:
+      tags:
+      - admin
+      summary: Dismiss Row
+      operationId: dismiss_row_api_v1_admin_review_queue__row_id__delete
+      parameters:
+      - name: row_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Row Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '204':
+          description: Successful Response
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/admin/pharmacists:
+    get:
+      tags:
+      - admin
+      summary: Pharmacists
+      operationId: pharmacists_api_v1_admin_pharmacists_get
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Pharmacists Api V1 Admin Pharmacists Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/admin/pharmacists/{user_id}/decision:
+    post:
+      tags:
+      - admin
+      summary: Decide Pharmacist
+      operationId: decide_pharmacist_api_v1_admin_pharmacists__user_id__decision_post
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: User Id
+      - name: x-csrf-token
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Csrf-Token
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PharmacistDecision'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+                title: Response Decide Pharmacist Api V1 Admin Pharmacists  User Id  Decision
+                  Post
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+  /api/v1/admin/audit:
+    get:
+      tags:
+      - admin
+      summary: Audit Log
+      operationId: audit_log_api_v1_admin_audit_get
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 100
+          title: Limit
+      - name: mc_session
+        in: cookie
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mc Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Audit Log Api V1 Admin Audit Get
+        4XX:
+          description: Problem details (RFC 9457)
+          content:
+            application/problem+json:
+              example:
+                type: https://medicompare.invalid/problems/not_found
+                title: Medicine not found
+                status: 404
+                code: not_found
+components:
+  schemas:
+    Body_stage_import_api_v1_admin_imports_post:
+      properties:
+        file:
+          type: string
+          contentMediaType: application/octet-stream
+          title: File
+        source_code:
+          type: string
+          title: Source Code
+        kind:
+          type: string
+          title: Kind
+      type: object
+      required:
+      - file
+      - source_code
+      - kind
+      title: Body_stage_import_api_v1_admin_imports_post
+    Body_upload_api_v1_prescriptions_upload_post:
+      properties:
+        file:
+          type: string
+          contentMediaType: application/octet-stream
+          title: File
+        consent:
+          type: boolean
+          title: Consent
+          default: false
+      type: object
+      required:
+      - file
+      title: Body_upload_api_v1_prescriptions_upload_post
+    CloseIn:
+      properties:
+        note:
+          anyOf:
+          - type: string
+            maxLength: 1000
+          - type: 'null'
+          title: Note
+      type: object
+      title: CloseIn
+    CorrectIn:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            maxLength: 255
+          - type: 'null'
+          title: Name
+        strength:
+          anyOf:
+          - type: string
+            maxLength: 80
+          - type: 'null'
+          title: Strength
+        form:
+          anyOf:
+          - type: string
+            maxLength: 80
+          - type: 'null'
+          title: Form
+        frequency:
+          anyOf:
+          - type: string
+            maxLength: 80
+          - type: 'null'
+          title: Frequency
+        duration:
+          anyOf:
+          - type: string
+            maxLength: 80
+          - type: 'null'
+          title: Duration
+      type: object
+      title: CorrectIn
+    EmergencyOut:
+      properties:
+        detected:
+          type: boolean
+          title: Detected
+        number:
+          type: string
+          title: Number
+        message:
+          type: string
+          title: Message
+      type: object
+      required:
+      - detected
+      - number
+      - message
+      title: EmergencyOut
+    LinkIn:
+      properties:
+        label:
+          anyOf:
+          - type: string
+            maxLength: 120
+          - type: 'null'
+          title: Label
+        days:
+          anyOf:
+          - type: integer
+            maximum: 30.0
+            minimum: 1.0
+          - type: 'null'
+          title: Days
+      type: object
+      title: LinkIn
+    ListIn:
+      properties:
+        name:
+          type: string
+          maxLength: 120
+          minLength: 1
+          title: Name
+      type: object
+      required:
+      - name
+      title: ListIn
+    ListItemIn:
+      properties:
+        medicine_id:
+          type: integer
+          title: Medicine Id
+      type: object
+      required:
+      - medicine_id
+      title: ListItemIn
+    LoginIn:
+      properties:
+        email:
+          type: string
+          format: email
+          title: Email
+        password:
+          type: string
+          maxLength: 200
+          title: Password
+      type: object
+      required:
+      - email
+      - password
+      title: LoginIn
+    ManualIn:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ManualItemIn'
+          type: array
+          maxItems: 30
+          minItems: 1
+          title: Items
+      type: object
+      required:
+      - items
+      title: ManualIn
+    ManualItemIn:
+      properties:
+        name:
+          anyOf:
+          - type: string
+            maxLength: 255
+          - type: 'null'
+          title: Name
+        strength:
+          anyOf:
+          - type: string
+            maxLength: 80
+          - type: 'null'
+          title: Strength
+        form:
+          anyOf:
+          - type: string
+            maxLength: 80
+          - type: 'null'
+          title: Form
+        frequency:
+          anyOf:
+          - type: string
+            maxLength: 80
+          - type: 'null'
+          title: Frequency
+        duration:
+          anyOf:
+          - type: string
+            maxLength: 80
+          - type: 'null'
+          title: Duration
+      type: object
+      title: ManualItemIn
+    MedicineSummary:
+      properties:
+        id:
+          type: integer
+          title: Id
+        display_name:
+          type: string
+          title: Display Name
+        generic_name:
+          type: string
+          title: Generic Name
+        brand:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Brand
+        dosage_form:
+          type: string
+          title: Dosage Form
+        release_type:
+          type: string
+          title: Release Type
+        route:
+          type: string
+          title: Route
+        is_demo:
+          type: boolean
+          title: Is Demo
+      type: object
+      required:
+      - id
+      - display_name
+      - generic_name
+      - brand
+      - dosage_form
+      - release_type
+      - route
+      - is_demo
+      title: MedicineSummary
+    PharmacistDecision:
+      properties:
+        status:
+          type: string
+          pattern: ^(approved|rejected)$
+          title: Status
+      type: object
+      required:
+      - status
+      title: PharmacistDecision
+    PharmacistRegisterIn:
+      properties:
+        email:
+          type: string
+          format: email
+          title: Email
+        password:
+          type: string
+          maxLength: 200
+          minLength: 10
+          title: Password
+        display_name:
+          anyOf:
+          - type: string
+            maxLength: 120
+          - type: 'null'
+          title: Display Name
+        registration_number:
+          type: string
+          maxLength: 64
+          minLength: 3
+          title: Registration Number
+        state_council:
+          type: string
+          maxLength: 120
+          minLength: 2
+          title: State Council
+      type: object
+      required:
+      - email
+      - password
+      - registration_number
+      - state_council
+      title: PharmacistRegisterIn
+    RegisterIn:
+      properties:
+        email:
+          type: string
+          format: email
+          title: Email
+        password:
+          type: string
+          maxLength: 200
+          minLength: 10
+          title: Password
+        display_name:
+          anyOf:
+          - type: string
+            maxLength: 120
+          - type: 'null'
+          title: Display Name
+      type: object
+      required:
+      - email
+      - password
+      title: RegisterIn
+    ReviewDoneIn:
+      properties:
+        note:
+          anyOf:
+          - type: string
+            maxLength: 2000
+          - type: 'null'
+          title: Note
+      type: object
+      title: ReviewDoneIn
+    RowCorrection:
+      properties:
+        raw:
+          additionalProperties: true
+          type: object
+          title: Raw
+      type: object
+      required:
+      - raw
+      title: RowCorrection
+    SafetyCheckIn:
+      properties:
+        text:
+          type: string
+          maxLength: 2000
+          title: Text
+      type: object
+      required:
+      - text
+      title: SafetyCheckIn
+    SearchResponse:
+      properties:
+        query:
+          type: string
+          title: Query
+        emergency:
+          $ref: '#/components/schemas/EmergencyOut'
+        exact_matches:
+          items:
+            $ref: '#/components/schemas/SearchResult'
+          type: array
+          title: Exact Matches
+        possible_matches:
+          items:
+            $ref: '#/components/schemas/SearchResult'
+          type: array
+          title: Possible Matches
+      type: object
+      required:
+      - query
+      - emergency
+      - exact_matches
+      - possible_matches
+      title: SearchResponse
+      example:
+        emergency:
+          detected: false
+          message: '...'
+          number: '112'
+        exact_matches: []
+        possible_matches:
+        - match_type: possible
+          medicine:
+            display_name: Metformin 500mg Tablet
+            dosage_form: Tablet
+            generic_name: Metformin
+            id: 1
+            is_demo: false
+            release_type: Conventional (no release modifier stated)
+            route: Oral
+          reason: Similar spelling to “metformin”. A similar name does not mean the
+            same medicine.
+        query: metformn
+    SearchResult:
+      properties:
+        medicine:
+          $ref: '#/components/schemas/MedicineSummary'
+        match_type:
+          type: string
+          title: Match Type
+        reason:
+          type: string
+          title: Reason
+      type: object
+      required:
+      - medicine
+      - match_type
+      - reason
+      title: SearchResult
+    ShareIn:
+      properties:
+        pharmacist_id:
+          type: string
+          format: uuid
+          title: Pharmacist Id
+      type: object
+      required:
+      - pharmacist_id
+      title: ShareIn
+    VerifyIn:
+      properties:
+        medicine_id:
+          type: integer
+          title: Medicine Id
+        lasa_acknowledged:
+          type: boolean
+          title: Lasa Acknowledged
+          default: false
+        note:
+          anyOf:
+          - type: string
+            maxLength: 1000
+          - type: 'null'
+          title: Note
+      type: object
+      required:
+      - medicine_id
+      title: VerifyIn

@@ -1,0 +1,4 @@
+medicine_display_name,flag_type,description,source_url,source_date
+DemoSalbuBeta (Salbutamol 4 mg),quality_alert,DEMO ONLY: fictional batch DEMO123 used to show how a quality alert is displayed.,,2026-10-01
+DemoIbuprGamma (Ibuprofen 400 mg),prohibited_fdc,DEMO ONLY: fictional notice used to show how a regulatory prohibition is displayed.,,2026-10-01
+DemoAzithAlpha (Azithromycin 500 mg),schedule_h1,DEMO ONLY: fictional example of how a schedule classification is displayed.,,2026-10-01

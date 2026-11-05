@@ -1,0 +1,29 @@
+flowchart LR
+  subgraph untrusted["Untrusted"]
+    b["Browser"]
+    f["Uploaded file content"]
+    i["Import files"]
+  end
+  subgraph edge["Boundary 1: TLS, limits"]
+    p["Reverse proxy"]
+  end
+  subgraph app["Boundary 2: authorised on every request"]
+    fe["Frontend"]
+    a["API"]
+  end
+  subgraph job["Boundary 3-4: identifier only, content is data"]
+    w["Worker"]
+  end
+  subgraph data["Private network"]
+    d[("Database")]
+    s[("Private bucket")]
+    q[("Queue")]
+  end
+  b --> p --> fe --> a
+  f --> a
+  i -->|"Boundary 5: staged, validated"| a
+  a --> d
+  a --> s
+  a --> q --> w
+  w --> d
+  w --> s

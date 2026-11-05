@@ -1,0 +1,15 @@
+$ make -s lint
+Thu Nov  5 14:27:35 UTC 2026
+ Container medicompare-redis-1 Running 
+ Container medicompare-postgres-1 Running 
+ Container medicompare-minio-1 Running 
+ Container medicompare-postgres-1 Waiting 
+ Container medicompare-redis-1 Waiting 
+ Container medicompare-redis-1 Healthy 
+ Container medicompare-postgres-1 Healthy 
+ Container medicompare-backend-test-run-2a9d3facee9d Creating 
+ Container medicompare-backend-test-run-2a9d3facee9d Created 
+All checks passed!
+46 files already formatted
+Checking formatting...
+All matched files use Prettier code style!

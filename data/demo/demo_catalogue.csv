@@ -1,0 +1,127 @@
+display_name,brand,manufacturer,generic_name,ingredients,dosage_form,route,release_type,therapeutic_category,pack_quantity,pack_unit,price_type,price,observed_at
+DemoMetfoAlpha (Metformin 500 mg),DemoMetfoAlpha,Demo Labs One,Metformin 500 mg,Metformin:hydrochloride:500 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,17.28,2026-10-01
+DemoMetfoBeta (Metformin 500 mg),DemoMetfoBeta,Demo Labs Two,Metformin 500 mg,Metformin:hydrochloride:500 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,38.52,2025-06-01
+DemoMetfoGamma (Metformin 500 mg),DemoMetfoGamma,Demo Pharma Three,Metformin 500 mg,Metformin:hydrochloride:500 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,18.54,2026-10-01
+DemoMetfoDelta (Metformin 500 mg),DemoMetfoDelta,Demo Generics Four,Metformin 500 mg,Metformin:hydrochloride:500 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,33.12,2026-10-01
+DemoMetfoAlpha (Metformin 500 mg SR),DemoMetfoAlpha,Demo Labs One,Metformin 500 mg SR,Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,,,
+DemoMetfoBeta (Metformin 500 mg SR),DemoMetfoBeta,Demo Labs Two,Metformin 500 mg SR,Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,30.94,2026-10-01
+DemoMetfoGamma (Metformin 500 mg SR),DemoMetfoGamma,Demo Pharma Three,Metformin 500 mg SR,Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,40.30,2025-06-01
+DemoMetfoDelta (Metformin 500 mg SR),DemoMetfoDelta,Demo Generics Four,Metformin 500 mg SR,Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,60.58,2026-10-01
+DemoMetfoAlpha (Metformin 1000 mg),DemoMetfoAlpha,Demo Labs One,Metformin 1000 mg,Metformin:hydrochloride:1000 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,43.84,2026-10-01
+DemoMetfoBeta (Metformin 1000 mg),DemoMetfoBeta,Demo Labs Two,Metformin 1000 mg,Metformin:hydrochloride:1000 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,75.84,2025-06-01
+DemoMetfoGamma (Metformin 1000 mg),DemoMetfoGamma,Demo Pharma Three,Metformin 1000 mg,Metformin:hydrochloride:1000 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,51.20,2026-10-01
+DemoMetfoDelta (Metformin 1000 mg),DemoMetfoDelta,Demo Generics Four,Metformin 1000 mg,Metformin:hydrochloride:1000 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,48.64,2025-06-01
+DemoGlimeAlpha (Glimepiride 1 mg),DemoGlimeAlpha,Demo Labs One,Glimepiride 1 mg,Glimepiride::1 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,53.40,2026-10-01
+DemoGlimeBeta (Glimepiride 1 mg),DemoGlimeBeta,Demo Labs Two,Glimepiride 1 mg,Glimepiride::1 mg,tablet,oral,conventional,anti-diabetes,10,tablet,,,
+DemoGlimeGamma (Glimepiride 1 mg),DemoGlimeGamma,Demo Pharma Three,Glimepiride 1 mg,Glimepiride::1 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,52.80,2026-10-01
+DemoGlimeDelta (Glimepiride 1 mg),DemoGlimeDelta,Demo Generics Four,Glimepiride 1 mg,Glimepiride::1 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,25.20,2026-10-01
+DemoGlimeAlpha (Glimepiride 1 mg + Metformin 500 mg),DemoGlimeAlpha,Demo Labs One,Glimepiride 1 mg + Metformin 500 mg,Glimepiride::1 mg;Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,41.76,2026-10-01
+DemoGlimeBeta (Glimepiride 1 mg + Metformin 500 mg),DemoGlimeBeta,Demo Labs Two,Glimepiride 1 mg + Metformin 500 mg,Glimepiride::1 mg;Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,39.36,2026-10-01
+DemoGlimeGamma (Glimepiride 1 mg + Metformin 500 mg),DemoGlimeGamma,Demo Pharma Three,Glimepiride 1 mg + Metformin 500 mg,Glimepiride::1 mg;Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,76.80,2026-10-01
+DemoGlimeDelta (Glimepiride 1 mg + Metformin 500 mg),DemoGlimeDelta,Demo Generics Four,Glimepiride 1 mg + Metformin 500 mg,Glimepiride::1 mg;Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,61.92,2026-10-01
+DemoGlimeAlpha (Glimepiride 2 mg + Metformin 500 mg),DemoGlimeAlpha,Demo Labs One,Glimepiride 2 mg + Metformin 500 mg,Glimepiride::2 mg;Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,87.42,2026-10-01
+DemoGlimeBeta (Glimepiride 2 mg + Metformin 500 mg),DemoGlimeBeta,Demo Labs Two,Glimepiride 2 mg + Metformin 500 mg,Glimepiride::2 mg;Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,132.06,2026-10-01
+DemoGlimeGamma (Glimepiride 2 mg + Metformin 500 mg),DemoGlimeGamma,Demo Pharma Three,Glimepiride 2 mg + Metformin 500 mg,Glimepiride::2 mg;Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,53.94,2026-10-01
+DemoGlimeDelta (Glimepiride 2 mg + Metformin 500 mg),DemoGlimeDelta,Demo Generics Four,Glimepiride 2 mg + Metformin 500 mg,Glimepiride::2 mg;Metformin:hydrochloride:500 mg,tablet,oral,sustained,anti-diabetes,10,tablet,mrp,61.38,2026-10-01
+DemoMetopAlpha (Metoprolol Succinate 50 mg ER),DemoMetopAlpha,Demo Labs One,Metoprolol Succinate 50 mg ER,Metoprolol:succinate:50 mg,tablet,oral,extended,cardiovascular,10,tablet,,,
+DemoMetopBeta (Metoprolol Succinate 50 mg ER),DemoMetopBeta,Demo Labs Two,Metoprolol Succinate 50 mg ER,Metoprolol:succinate:50 mg,tablet,oral,extended,cardiovascular,10,tablet,mrp,161.28,2026-10-01
+DemoMetopGamma (Metoprolol Succinate 50 mg ER),DemoMetopGamma,Demo Pharma Three,Metoprolol Succinate 50 mg ER,Metoprolol:succinate:50 mg,tablet,oral,extended,cardiovascular,10,tablet,mrp,55.44,2026-10-01
+DemoMetopDelta (Metoprolol Succinate 50 mg ER),DemoMetopDelta,Demo Generics Four,Metoprolol Succinate 50 mg ER,Metoprolol:succinate:50 mg,tablet,oral,extended,cardiovascular,10,tablet,mrp,112.32,2026-10-01
+DemoMetopAlpha (Metoprolol Tartrate 50 mg),DemoMetopAlpha,Demo Labs One,Metoprolol Tartrate 50 mg,Metoprolol:tartrate:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,37.60,2026-10-01
+DemoMetopBeta (Metoprolol Tartrate 50 mg),DemoMetopBeta,Demo Labs Two,Metoprolol Tartrate 50 mg,Metoprolol:tartrate:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,,,
+DemoMetopGamma (Metoprolol Tartrate 50 mg),DemoMetopGamma,Demo Pharma Three,Metoprolol Tartrate 50 mg,Metoprolol:tartrate:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,38.40,2026-10-01
+DemoMetopDelta (Metoprolol Tartrate 50 mg),DemoMetopDelta,Demo Generics Four,Metoprolol Tartrate 50 mg,Metoprolol:tartrate:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,40.40,2026-10-01
+DemoAmlodAlpha (Amlodipine 5 mg),DemoAmlodAlpha,Demo Labs One,Amlodipine 5 mg,Amlodipine:besilate:5 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,45.98,2026-10-01
+DemoAmlodBeta (Amlodipine 5 mg),DemoAmlodBeta,Demo Labs Two,Amlodipine 5 mg,Amlodipine:besilate:5 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,25.96,2026-10-01
+DemoAmlodGamma (Amlodipine 5 mg),DemoAmlodGamma,Demo Pharma Three,Amlodipine 5 mg,Amlodipine:besilate:5 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,51.26,2026-10-01
+DemoAmlodDelta (Amlodipine 5 mg),DemoAmlodDelta,Demo Generics Four,Amlodipine 5 mg,Amlodipine:besilate:5 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,19.80,2025-06-01
+DemoAmlodAlpha (Amlodipine 10 mg),DemoAmlodAlpha,Demo Labs One,Amlodipine 10 mg,Amlodipine:besilate:10 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,58.00,2026-10-01
+DemoAmlodBeta (Amlodipine 10 mg),DemoAmlodBeta,Demo Labs Two,Amlodipine 10 mg,Amlodipine:besilate:10 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,87.20,2026-10-01
+DemoAmlodGamma (Amlodipine 10 mg),DemoAmlodGamma,Demo Pharma Three,Amlodipine 10 mg,Amlodipine:besilate:10 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,64.40,2026-10-01
+DemoAmlodDelta (Amlodipine 10 mg),DemoAmlodDelta,Demo Generics Four,Amlodipine 10 mg,Amlodipine:besilate:10 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,31.20,2026-10-01
+DemoAmlodAlpha (Amlodipine 5 mg + Atenolol 50 mg),DemoAmlodAlpha,Demo Labs One,Amlodipine 5 mg + Atenolol 50 mg,Amlodipine:besilate:5 mg;Atenolol::50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,85.32,2026-10-01
+DemoAmlodBeta (Amlodipine 5 mg + Atenolol 50 mg),DemoAmlodBeta,Demo Labs Two,Amlodipine 5 mg + Atenolol 50 mg,Amlodipine:besilate:5 mg;Atenolol::50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,70.20,2026-10-01
+DemoAmlodGamma (Amlodipine 5 mg + Atenolol 50 mg),DemoAmlodGamma,Demo Pharma Three,Amlodipine 5 mg + Atenolol 50 mg,Amlodipine:besilate:5 mg;Atenolol::50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,85.68,2026-10-01
+DemoAmlodDelta (Amlodipine 5 mg + Atenolol 50 mg),DemoAmlodDelta,Demo Generics Four,Amlodipine 5 mg + Atenolol 50 mg,Amlodipine:besilate:5 mg;Atenolol::50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,79.20,2026-10-01
+DemoAtorvAlpha (Atorvastatin 10 mg),DemoAtorvAlpha,Demo Labs One,Atorvastatin 10 mg,Atorvastatin:calcium:10 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,97.65,2026-10-01
+DemoAtorvBeta (Atorvastatin 10 mg),DemoAtorvBeta,Demo Labs Two,Atorvastatin 10 mg,Atorvastatin:calcium:10 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,58.50,2026-10-01
+DemoAtorvGamma (Atorvastatin 10 mg),DemoAtorvGamma,Demo Pharma Three,Atorvastatin 10 mg,Atorvastatin:calcium:10 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,51.75,2026-10-01
+DemoAtorvDelta (Atorvastatin 10 mg),DemoAtorvDelta,Demo Generics Four,Atorvastatin 10 mg,Atorvastatin:calcium:10 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,54.00,2026-10-01
+DemoAtorvAlpha (Atorvastatin 20 mg),DemoAtorvAlpha,Demo Labs One,Atorvastatin 20 mg,Atorvastatin:calcium:20 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,109.12,2026-10-01
+DemoAtorvBeta (Atorvastatin 20 mg),DemoAtorvBeta,Demo Labs Two,Atorvastatin 20 mg,Atorvastatin:calcium:20 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,102.96,2026-10-01
+DemoAtorvGamma (Atorvastatin 20 mg),DemoAtorvGamma,Demo Pharma Three,Atorvastatin 20 mg,Atorvastatin:calcium:20 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,171.60,2026-10-01
+DemoAtorvDelta (Atorvastatin 20 mg),DemoAtorvDelta,Demo Generics Four,Atorvastatin 20 mg,Atorvastatin:calcium:20 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,124.96,2025-06-01
+DemoTelmiAlpha (Telmisartan 40 mg),DemoTelmiAlpha,Demo Labs One,Telmisartan 40 mg,Telmisartan::40 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,99.00,2026-10-01
+DemoTelmiBeta (Telmisartan 40 mg),DemoTelmiBeta,Demo Labs Two,Telmisartan 40 mg,Telmisartan::40 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,110.00,2026-10-01
+DemoTelmiGamma (Telmisartan 40 mg),DemoTelmiGamma,Demo Pharma Three,Telmisartan 40 mg,Telmisartan::40 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,80.85,2026-10-01
+DemoTelmiDelta (Telmisartan 40 mg),DemoTelmiDelta,Demo Generics Four,Telmisartan 40 mg,Telmisartan::40 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,77.00,2026-10-01
+DemoTelmiAlpha (Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg),DemoTelmiAlpha,Demo Labs One,Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg,Telmisartan::40 mg;Hydrochlorothiazide::12.5 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,165.68,2026-10-01
+DemoTelmiBeta (Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg),DemoTelmiBeta,Demo Labs Two,Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg,Telmisartan::40 mg;Hydrochlorothiazide::12.5 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,136.80,2026-10-01
+DemoTelmiGamma (Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg),DemoTelmiGamma,Demo Pharma Three,Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg,Telmisartan::40 mg;Hydrochlorothiazide::12.5 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,179.36,2026-10-01
+DemoTelmiDelta (Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg),DemoTelmiDelta,Demo Generics Four,Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg,Telmisartan::40 mg;Hydrochlorothiazide::12.5 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,129.96,2026-10-01
+DemoLosarAlpha (Losartan 50 mg),DemoLosarAlpha,Demo Labs One,Losartan 50 mg,Losartan:potassium:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,67.20,2026-10-01
+DemoLosarBeta (Losartan 50 mg),DemoLosarBeta,Demo Labs Two,Losartan 50 mg,Losartan:potassium:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,82.74,2026-10-01
+DemoLosarGamma (Losartan 50 mg),DemoLosarGamma,Demo Pharma Three,Losartan 50 mg,Losartan:potassium:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,54.18,2026-10-01
+DemoLosarDelta (Losartan 50 mg),DemoLosarDelta,Demo Generics Four,Losartan 50 mg,Losartan:potassium:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,38.64,2026-10-01
+DemoParacAlpha (Paracetamol 500 mg),DemoParacAlpha,Demo Labs One,Paracetamol 500 mg,Paracetamol::500 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,12.60,2025-06-01
+DemoParacBeta (Paracetamol 500 mg),DemoParacBeta,Demo Labs Two,Paracetamol 500 mg,Paracetamol::500 mg,tablet,oral,conventional,pain-fever,15,tablet,,,
+DemoParacGamma (Paracetamol 500 mg),DemoParacGamma,Demo Pharma Three,Paracetamol 500 mg,Paracetamol::500 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,12.15,2026-10-01
+DemoParacDelta (Paracetamol 500 mg),DemoParacDelta,Demo Generics Four,Paracetamol 500 mg,Paracetamol::500 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,15.00,2026-10-01
+DemoParacAlpha (Paracetamol 650 mg),DemoParacAlpha,Demo Labs One,Paracetamol 650 mg,Paracetamol::650 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,26.88,2026-10-01
+DemoParacBeta (Paracetamol 650 mg),DemoParacBeta,Demo Labs Two,Paracetamol 650 mg,Paracetamol::650 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,35.28,2026-10-01
+DemoParacGamma (Paracetamol 650 mg),DemoParacGamma,Demo Pharma Three,Paracetamol 650 mg,Paracetamol::650 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,30.24,2026-10-01
+DemoParacDelta (Paracetamol 650 mg),DemoParacDelta,Demo Generics Four,Paracetamol 650 mg,Paracetamol::650 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,23.24,2026-10-01
+DemoParacAlpha (Paracetamol 250 mg/5 mL Suspension),DemoParacAlpha,Demo Labs One,Paracetamol 250 mg/5 mL Suspension,Paracetamol::250 mg/5 ml,suspension,oral,not_applicable,pain-fever,60,mL,mrp,80.92,2026-10-01
+DemoParacBeta (Paracetamol 250 mg/5 mL Suspension),DemoParacBeta,Demo Labs Two,Paracetamol 250 mg/5 mL Suspension,Paracetamol::250 mg/5 ml,suspension,oral,not_applicable,pain-fever,60,mL,mrp,47.60,2026-10-01
+DemoParacGamma (Paracetamol 250 mg/5 mL Suspension),DemoParacGamma,Demo Pharma Three,Paracetamol 250 mg/5 mL Suspension,Paracetamol::250 mg/5 ml,suspension,oral,not_applicable,pain-fever,60,mL,mrp,37.74,2026-10-01
+DemoParacDelta (Paracetamol 250 mg/5 mL Suspension),DemoParacDelta,Demo Generics Four,Paracetamol 250 mg/5 mL Suspension,Paracetamol::250 mg/5 ml,suspension,oral,not_applicable,pain-fever,60,mL,mrp,33.32,2026-10-01
+DemoAzithAlpha (Azithromycin 500 mg),DemoAzithAlpha,Demo Labs One,Azithromycin 500 mg,Azithromycin:dihydrate:500 mg,tablet,oral,conventional,anti-infective,3,tablet,mrp,64.80,2026-10-01
+DemoAzithBeta (Azithromycin 500 mg),DemoAzithBeta,Demo Labs Two,Azithromycin 500 mg,Azithromycin:dihydrate:500 mg,tablet,oral,conventional,anti-infective,3,tablet,mrp,116.64,2025-06-01
+DemoAzithGamma (Azithromycin 500 mg),DemoAzithGamma,Demo Pharma Three,Azithromycin 500 mg,Azithromycin:dihydrate:500 mg,tablet,oral,conventional,anti-infective,3,tablet,mrp,156.96,2026-10-01
+DemoAzithDelta (Azithromycin 500 mg),DemoAzithDelta,Demo Generics Four,Azithromycin 500 mg,Azithromycin:dihydrate:500 mg,tablet,oral,conventional,anti-infective,3,tablet,mrp,64.80,2026-10-01
+DemoAmoxiAlpha (Amoxicillin 500 mg),DemoAmoxiAlpha,Demo Labs One,Amoxicillin 500 mg,Amoxicillin:trihydrate:500 mg,capsule,oral,conventional,anti-infective,10,capsule,mrp,77.52,2025-06-01
+DemoAmoxiBeta (Amoxicillin 500 mg),DemoAmoxiBeta,Demo Labs Two,Amoxicillin 500 mg,Amoxicillin:trihydrate:500 mg,capsule,oral,conventional,anti-infective,10,capsule,mrp,112.88,2026-10-01
+DemoAmoxiGamma (Amoxicillin 500 mg),DemoAmoxiGamma,Demo Pharma Three,Amoxicillin 500 mg,Amoxicillin:trihydrate:500 mg,capsule,oral,conventional,anti-infective,10,capsule,mrp,148.92,2026-10-01
+DemoAmoxiDelta (Amoxicillin 500 mg),DemoAmoxiDelta,Demo Generics Four,Amoxicillin 500 mg,Amoxicillin:trihydrate:500 mg,capsule,oral,conventional,anti-infective,10,capsule,mrp,106.08,2026-10-01
+DemoAmoxiAlpha (Amoxicillin 500 mg + Clavulanic Acid 125 mg),DemoAmoxiAlpha,Demo Labs One,Amoxicillin 500 mg + Clavulanic Acid 125 mg,Amoxicillin:trihydrate:500 mg;Clavulanic Acid:potassium:125 mg,tablet,oral,conventional,anti-infective,10,tablet,mrp,367.20,2025-06-01
+DemoAmoxiBeta (Amoxicillin 500 mg + Clavulanic Acid 125 mg),DemoAmoxiBeta,Demo Labs Two,Amoxicillin 500 mg + Clavulanic Acid 125 mg,Amoxicillin:trihydrate:500 mg;Clavulanic Acid:potassium:125 mg,tablet,oral,conventional,anti-infective,10,tablet,mrp,232.20,2026-10-01
+DemoAmoxiGamma (Amoxicillin 500 mg + Clavulanic Acid 125 mg),DemoAmoxiGamma,Demo Pharma Three,Amoxicillin 500 mg + Clavulanic Acid 125 mg,Amoxicillin:trihydrate:500 mg;Clavulanic Acid:potassium:125 mg,tablet,oral,conventional,anti-infective,10,tablet,mrp,171.00,2026-10-01
+DemoAmoxiDelta (Amoxicillin 500 mg + Clavulanic Acid 125 mg),DemoAmoxiDelta,Demo Generics Four,Amoxicillin 500 mg + Clavulanic Acid 125 mg,Amoxicillin:trihydrate:500 mg;Clavulanic Acid:potassium:125 mg,tablet,oral,conventional,anti-infective,10,tablet,mrp,253.80,2026-10-01
+DemoPantoAlpha (Pantoprazole 40 mg),DemoPantoAlpha,Demo Labs One,Pantoprazole 40 mg,Pantoprazole:sodium sesquihydrate:40 mg,tablet,oral,enteric_coated,gastro,10,tablet,mrp,74.25,2026-10-01
+DemoPantoBeta (Pantoprazole 40 mg),DemoPantoBeta,Demo Labs Two,Pantoprazole 40 mg,Pantoprazole:sodium sesquihydrate:40 mg,tablet,oral,enteric_coated,gastro,10,tablet,mrp,121.50,2026-10-01
+DemoPantoGamma (Pantoprazole 40 mg),DemoPantoGamma,Demo Pharma Three,Pantoprazole 40 mg,Pantoprazole:sodium sesquihydrate:40 mg,tablet,oral,enteric_coated,gastro,10,tablet,mrp,131.25,2026-10-01
+DemoPantoDelta (Pantoprazole 40 mg),DemoPantoDelta,Demo Generics Four,Pantoprazole 40 mg,Pantoprazole:sodium sesquihydrate:40 mg,tablet,oral,enteric_coated,gastro,10,tablet,mrp,168.00,2025-06-01
+DemoOmeprAlpha (Omeprazole 20 mg),DemoOmeprAlpha,Demo Labs One,Omeprazole 20 mg,Omeprazole::20 mg,capsule,oral,enteric_coated,gastro,15,capsule,mrp,95.40,2026-10-01
+DemoOmeprBeta (Omeprazole 20 mg),DemoOmeprBeta,Demo Labs Two,Omeprazole 20 mg,Omeprazole::20 mg,capsule,oral,enteric_coated,gastro,15,capsule,,,
+DemoOmeprGamma (Omeprazole 20 mg),DemoOmeprGamma,Demo Pharma Three,Omeprazole 20 mg,Omeprazole::20 mg,capsule,oral,enteric_coated,gastro,15,capsule,mrp,58.95,2026-10-01
+DemoOmeprDelta (Omeprazole 20 mg),DemoOmeprDelta,Demo Generics Four,Omeprazole 20 mg,Omeprazole::20 mg,capsule,oral,enteric_coated,gastro,15,capsule,mrp,104.40,2026-10-01
+DemoCetirAlpha (Cetirizine 10 mg),DemoCetirAlpha,Demo Labs One,Cetirizine 10 mg,Cetirizine:dihydrochloride:10 mg,tablet,oral,conventional,allergy,10,tablet,mrp,16.48,2026-10-01
+DemoCetirBeta (Cetirizine 10 mg),DemoCetirBeta,Demo Labs Two,Cetirizine 10 mg,Cetirizine:dihydrochloride:10 mg,tablet,oral,conventional,allergy,10,tablet,mrp,16.00,2026-10-01
+DemoCetirGamma (Cetirizine 10 mg),DemoCetirGamma,Demo Pharma Three,Cetirizine 10 mg,Cetirizine:dihydrochloride:10 mg,tablet,oral,conventional,allergy,10,tablet,mrp,15.36,2026-10-01
+DemoCetirDelta (Cetirizine 10 mg),DemoCetirDelta,Demo Generics Four,Cetirizine 10 mg,Cetirizine:dihydrochloride:10 mg,tablet,oral,conventional,allergy,10,tablet,mrp,31.84,2025-06-01
+DemoLevotAlpha (Levothyroxine 50 mcg),DemoLevotAlpha,Demo Labs One,Levothyroxine 50 mcg,Levothyroxine:sodium:50 mcg,tablet,oral,conventional,thyroid,30,tablet,mrp,82.74,2026-10-01
+DemoLevotBeta (Levothyroxine 50 mcg),DemoLevotBeta,Demo Labs Two,Levothyroxine 50 mcg,Levothyroxine:sodium:50 mcg,tablet,oral,conventional,thyroid,30,tablet,mrp,74.34,2026-10-01
+DemoLevotGamma (Levothyroxine 50 mcg),DemoLevotGamma,Demo Pharma Three,Levothyroxine 50 mcg,Levothyroxine:sodium:50 mcg,tablet,oral,conventional,thyroid,30,tablet,mrp,36.96,2026-10-01
+DemoLevotDelta (Levothyroxine 50 mcg),DemoLevotDelta,Demo Generics Four,Levothyroxine 50 mcg,Levothyroxine:sodium:50 mcg,tablet,oral,conventional,thyroid,30,tablet,mrp,39.90,2026-10-01
+DemoLevotAlpha (Levothyroxine 100 mcg),DemoLevotAlpha,Demo Labs One,Levothyroxine 100 mcg,Levothyroxine:sodium:100 mcg,tablet,oral,conventional,thyroid,30,tablet,mrp,109.62,2026-10-01
+DemoLevotBeta (Levothyroxine 100 mcg),DemoLevotBeta,Demo Labs Two,Levothyroxine 100 mcg,Levothyroxine:sodium:100 mcg,tablet,oral,conventional,thyroid,30,tablet,mrp,45.82,2026-10-01
+DemoLevotGamma (Levothyroxine 100 mcg),DemoLevotGamma,Demo Pharma Three,Levothyroxine 100 mcg,Levothyroxine:sodium:100 mcg,tablet,oral,conventional,thyroid,30,tablet,mrp,104.40,2026-10-01
+DemoLevotDelta (Levothyroxine 100 mcg),DemoLevotDelta,Demo Generics Four,Levothyroxine 100 mcg,Levothyroxine:sodium:100 mcg,tablet,oral,conventional,thyroid,30,tablet,mrp,132.24,2025-06-01
+DemoSalbuAlpha (Salbutamol 4 mg),DemoSalbuAlpha,Demo Labs One,Salbutamol 4 mg,Salbutamol:sulfate:4 mg,tablet,oral,conventional,respiratory,10,tablet,mrp,10.44,2026-10-01
+DemoSalbuBeta (Salbutamol 4 mg),DemoSalbuBeta,Demo Labs Two,Salbutamol 4 mg,Salbutamol:sulfate:4 mg,tablet,oral,conventional,respiratory,10,tablet,mrp,16.08,2026-10-01
+DemoSalbuGamma (Salbutamol 4 mg),DemoSalbuGamma,Demo Pharma Three,Salbutamol 4 mg,Salbutamol:sulfate:4 mg,tablet,oral,conventional,respiratory,10,tablet,mrp,9.84,2026-10-01
+DemoSalbuDelta (Salbutamol 4 mg),DemoSalbuDelta,Demo Generics Four,Salbutamol 4 mg,Salbutamol:sulfate:4 mg,tablet,oral,conventional,respiratory,10,tablet,mrp,28.20,2026-10-01
+DemoSitagAlpha (Sitagliptin 100 mg),DemoSitagAlpha,Demo Labs One,Sitagliptin 100 mg,Sitagliptin:phosphate:100 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,134.40,2026-10-01
+DemoSitagBeta (Sitagliptin 100 mg),DemoSitagBeta,Demo Labs Two,Sitagliptin 100 mg,Sitagliptin:phosphate:100 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,294.40,2026-10-01
+DemoSitagGamma (Sitagliptin 100 mg),DemoSitagGamma,Demo Pharma Three,Sitagliptin 100 mg,Sitagliptin:phosphate:100 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,316.80,2026-10-01
+DemoSitagDelta (Sitagliptin 100 mg),DemoSitagDelta,Demo Generics Four,Sitagliptin 100 mg,Sitagliptin:phosphate:100 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,360.00,2026-10-01
+DemoIbuprAlpha (Ibuprofen 400 mg),DemoIbuprAlpha,Demo Labs One,Ibuprofen 400 mg,Ibuprofen::400 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,41.00,2026-10-01
+DemoIbuprBeta (Ibuprofen 400 mg),DemoIbuprBeta,Demo Labs Two,Ibuprofen 400 mg,Ibuprofen::400 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,30.80,2026-10-01
+DemoIbuprGamma (Ibuprofen 400 mg),DemoIbuprGamma,Demo Pharma Three,Ibuprofen 400 mg,Ibuprofen::400 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,41.00,2026-10-01
+DemoIbuprDelta (Ibuprofen 400 mg),DemoIbuprDelta,Demo Generics Four,Ibuprofen 400 mg,Ibuprofen::400 mg,tablet,oral,conventional,pain-fever,15,tablet,mrp,46.60,2026-10-01
+DemoLosar (Losartan 50 mg),DemoLosar,Demo Labs One,Losartan 50 mg,Losartan:potassium:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,41.00,2026-10-01
+DemoLosec (Omeprazole 20 mg),DemoLosec,Demo Labs One,Omeprazole 20 mg,Omeprazole::20 mg,capsule,oral,enteric_coated,gastro,15,capsule,mrp,47.00,2026-10-01
+DemoMetacin (Metformin 500 mg),DemoMetacin,Demo Labs One,Metformin 500 mg,Metformin:hydrochloride:500 mg,tablet,oral,conventional,anti-diabetes,10,tablet,mrp,25.00,2026-10-01
+DemoMetocin (Metoprolol Tartrate 50 mg),DemoMetocin,Demo Labs One,Metoprolol Tartrate 50 mg,Metoprolol:tartrate:50 mg,tablet,oral,conventional,cardiovascular,10,tablet,mrp,44.00,2026-10-01
+DemoCetril (Cetirizine 10 mg),DemoCetril,Demo Labs One,Cetirizine 10 mg,Cetirizine:dihydrochloride:10 mg,tablet,oral,conventional,allergy,10,tablet,mrp,18.00,2026-10-01
+DemoCitril (Levothyroxine 50 mcg),DemoCitril,Demo Labs One,Levothyroxine 50 mcg,Levothyroxine:sodium:50 mcg,tablet,oral,conventional,thyroid,30,tablet,mrp,40.00,2026-10-01

@@ -1,0 +1,2 @@
+$ docker compose --env-file scripts/prod.env.check -f docker-compose.yml -f docker-compose.prod.yml config --quiet
+Thu Nov  5 14:33:19 UTC 2026

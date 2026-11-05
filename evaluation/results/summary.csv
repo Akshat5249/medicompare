@@ -1,0 +1,7 @@
+engine,split,cer,wer,f1,top1,latency_p50_ms
+tesseract,train,0.2956,0.4671,0.3102,0.345,1399
+tesseract,validation,0.2588,0.4518,0.325,0.357,946
+tesseract,test,0.2943,0.4845,0.304,0.3605,1038
+rapidocr,train,0.2353,0.3664,0.4046,0.522,2874
+rapidocr,validation,0.1759,0.3074,0.4367,0.5564,2822
+rapidocr,test,0.2072,0.347,0.4206,0.5447,2627

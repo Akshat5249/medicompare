@@ -1,0 +1,24 @@
+# Keeps images small and keeps local secrets and data out of them.
+.env
+.env.*
+!.env.example
+.git
+**/.venv
+**/node_modules
+**/.next
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/.hypothesis
+**/.coverage
+backend/tests
+backend/Dockerfile.test
+docs
+evaluation
+frontend
+portfolio
+verification
+data/downloads
+medicompare.zip
+**/*.egg-info
