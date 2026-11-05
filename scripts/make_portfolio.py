@@ -410,7 +410,7 @@ def build_report(m: dict) -> None:
         "Hindi and Tamil text is AI-written and awaits native-speaker review.",
         "No user research, pharmacist testing, screen-reader user testing, or low-end device testing has been done.",
         "No legal review has been done. Whether this is medical device software is an open question.",
-        "The system is not deployed, and its CI workflow has not run on GitHub.",
+        "The system is not deployed.",
     ])
 
     head("8. Conclusion and future work")

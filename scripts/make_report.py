@@ -35,7 +35,6 @@ GATES = {
     "docs": "Mermaid renders, OpenAPI validates and matches code, links resolve",
 }
 NOT_RUNNABLE = {
-    "GitHub Actions": ("The repository has not been pushed to GitHub.", "Push, then read the Actions tab."),
     "Production deployment": ("No server, domain or hosting account is available.", "Follow docs/DEPLOYMENT.md."),
     "HTTPS through Caddy": ("Needs a public domain.", "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d"),
     "ClamAV in the running stack": (

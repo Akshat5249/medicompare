@@ -76,7 +76,7 @@ This runs every gate and writes [VERIFICATION_REPORT.md](VERIFICATION_REPORT.md)
 - **The look-alike check is a string-similarity screen,** not a clinical list.
 - **Hindi and Tamil were AI-written** and need native review, particularly the emergency and consent text.
 - **Not tested** with real users, a real pharmacist, a screen-reader user or a low-end Android phone.
-- **Not deployed,** and CI has not run on GitHub.
+- **Not deployed.** CI runs on GitHub, on Linux, on every push to `main` and feature branches.
 
 ## Documentation
 [Product](docs/PRODUCT.md) · [Architecture](docs/ARCHITECTURE.md) · [Database](docs/DATABASE.md) · [API](docs/API.md) · [OCR design](docs/AI_OCR_DESIGN.md) · [Evaluation](docs/EVALUATION.md) · [Security and privacy](docs/SECURITY_PRIVACY.md) · [Threat model](docs/THREAT_MODEL.md) · [Compliance notes](docs/COMPLIANCE_NOTES.md) · [Data sources](docs/DATA_SOURCES.md) · [Test plan](docs/TEST_PLAN.md) · [Deployment](docs/DEPLOYMENT.md) · [Operations](docs/OPERATIONS.md) · [UX](docs/UX.md) · [Decisions](docs/DECISIONS.md) · [Open items](docs/OPEN_ITEMS.md)

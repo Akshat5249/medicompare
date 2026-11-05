@@ -17,7 +17,7 @@ Everything here needs someone outside this build. Ordered by what most limits th
 | 11 | **More NPPA data** | Only 5 ceiling categories and 4 sets of minutes are loaded. 23 older minutes are scans | Parse the current consolidated list. Enter the scanned minutes by hand with a second check, or ask NPPA for text versions |
 | 11a | **NPPA retail review queue** | 25 real rows are unpublished, including combination kits | Review them on the admin page with a pharmacist. Check published rows against Gazette notifications |
 | 12 | **Live deployment** | Nothing is deployed and there is no live URL | Follow [DEPLOYMENT.md](DEPLOYMENT.md). Needs a domain and a hosting account |
-| 13 | **GitHub Actions run** | `ci.yml` has never run on GitHub | Push to a repository, check the run, then add the status badge to the README |
+| 13 | **CI maintenance** | CI passes on GitHub ([first passing run](https://github.com/Akshat5249/medicompare/actions/runs/42059697418)). Its actions still target Node.js 20, which GitHub has deprecated | Update `actions/checkout`, `setup-node`, `upload-artifact` and `setup-uv` to releases that target a newer Node.js, then add a status badge to the README |
 | 14 | **TrOCR evaluation** | A handwriting-specific model may beat both tested engines | Add an `OcrEngine` adapter and rerun `make evaluate` on a machine with enough memory |
 | 15 | **Optional LLM adapter** | Tested only with a fake client, never against the live API, and not wired into the pipeline | Set `LLM_API_KEY`, test on synthetic data, and evaluate before enabling |
 | 16 | **Translated server text** | Match reasons, difference reasons and error titles from the API are in English on all locales | Return codes from the API and translate them in the UI |

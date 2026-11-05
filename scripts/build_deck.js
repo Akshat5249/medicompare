@@ -173,7 +173,7 @@ slide = content("What is not done yet matters most", "State these without being 
 card(slide, 0.6, 1.7, 5.9, 2.3, "Data", "Shop prices are fictional. Real data is NPPA's legal maximums for part of the market. Jan Aushadhi data needs PMBI's permission.", AMBER_TINT);
 card(slide, 6.83, 1.7, 5.9, 2.3, "Evidence", "No real handwriting evaluation. No users, no user research and no measured savings.", AMBER_TINT);
 card(slide, 0.6, 4.25, 5.9, 2.3, "Review", "No legal review, including whether this is medical device software. Hindi and Tamil need native review.", AMBER_TINT);
-card(slide, 6.83, 4.25, 5.9, 2.3, "Operations", "Not deployed. CI has not run on GitHub. No penetration test, and no test on a real low-end phone.", AMBER_TINT);
+card(slide, 6.83, 4.25, 5.9, 2.3, "Operations", "Not deployed. No penetration test, and no test on a real low-end phone.", AMBER_TINT);
 
 // 12
 slide = pres.addSlide({ masterName: "DARK" });
