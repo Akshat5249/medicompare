@@ -1,25 +1,26 @@
 $ make -s test-safety
-Thu Nov  5 14:28:46 UTC 2026
- Container medicompare-postgres-1 Running 
- Container medicompare-redis-1 Running 
+Thu Nov  5 15:28:21 UTC 2026
  Container medicompare-minio-1 Running 
+ Container medicompare-redis-1 Running 
+ Container medicompare-postgres-1 Running 
  Container medicompare-postgres-1 Waiting 
  Container medicompare-redis-1 Waiting 
  Container medicompare-redis-1 Healthy 
  Container medicompare-postgres-1 Healthy 
- Container medicompare-backend-test-run-1dfb6010ee23 Creating 
- Container medicompare-backend-test-run-1dfb6010ee23 Created 
+ Container medicompare-backend-test-run-3d4569f6745b Creating 
+ Container medicompare-backend-test-run-3d4569f6745b Created 
 ============================= test session starts ==============================
-collected 236 items / 140 deselected / 96 selected
+collected 295 items / 196 deselected / 99 selected
 
-tests/test_properties.py ....................                            [ 20%]
-tests/test_safety_invariants.py ........................................ [ 62%]
+tests/test_nppa_retail.py ...                                            [  3%]
+tests/test_properties.py ....................                            [ 23%]
+tests/test_safety_invariants.py ........................................ [ 63%]
 ....................................                                     [100%]
 
 =============================== warnings summary ===============================
-tests/test_properties.py::test_compare_is_symmetric
+tests/test_nppa_retail.py::test_strength_as_salt_and_as_base_are_not_equivalent
   /opt/venv/lib/python3.12/site-packages/alembic/config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
     util.warn_deprecated(
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-================ 96 passed, 140 deselected, 1 warning in 5.52s =================
+================ 99 passed, 196 deselected, 1 warning in 6.36s =================

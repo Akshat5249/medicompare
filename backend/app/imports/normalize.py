@@ -10,6 +10,7 @@ from collections.abc import Callable
 from decimal import Decimal, InvalidOperation
 from typing import Any
 
+from app.imports.composition import CompositionError, parse_composition, release_code
 from app.matching.equivalence import StrengthParseError, parse_strength
 
 PRICE_MIN = Decimal("0.01")
@@ -54,8 +55,20 @@ FORM_LABELS = {
     "oral_liquid": "Oral liquid",
     "granules": "Granules",
     "suspension": "Suspension",
+    "orodispersible_tablet": "Mouth-dissolving tablet",
+    "dispersible_tablet": "Dispersible tablet",
+    "eye_drops": "Eye drops",
+    "gel": "Gel",
+    "cream": "Cream",
+    "ointment": "Ointment",
 }
-ROUTE_LABELS = {"oral": "Oral", "parenteral": "Injection", "sublingual": "Under the tongue"}
+ROUTE_LABELS = {
+    "oral": "Oral",
+    "parenteral": "Injection",
+    "sublingual": "Under the tongue",
+    "ophthalmic": "In the eye",
+    "topical": "On the skin",
+}
 RELEASE_LABELS = {
     "conventional": "Conventional (no release modifier stated)",
     "modified": "Modified release",
@@ -346,14 +359,142 @@ def normalize_flag_row(raw: dict[str, Any]) -> tuple[dict[str, Any] | None, list
     )
 
 
+_RETAIL_FORMS = [
+    (r"ophthalmic|eye\s*drops?", "eye_drops", "ophthalmic", "not_applicable"),
+    (r"injection|infusion", "injection", "parenteral", "not_applicable"),
+    (r"\bgel\b", "gel", "topical", "not_applicable"),
+    (r"\bcream\b", "cream", "topical", "not_applicable"),
+    (r"\bointment\b", "ointment", "topical", "not_applicable"),
+    (r"suspension", "suspension", "oral", "not_applicable"),
+    (r"\bdrops?\b|oral solution|syrup|oral liquid", "oral_liquid", "oral", "not_applicable"),
+    (r"mouth\s*dissolving|orodispersible", "orodispersible_tablet", "oral", "conventional"),
+    (r"dispersible", "dispersible_tablet", "oral", "conventional"),
+    (r"capsule", "capsule", "oral", "conventional"),
+    (r"tablet", "tablet", "oral", "conventional"),
+]
+_RETAIL_PACK = re.compile(r"^1\s*(tablet|capsule|ml|vial|strip|gm|gram)s?$", re.I)
+_RETAIL_PACK_UNITS = {"ml": "mL", "gm": "g", "gram": "g"}
+_RETAIL_PRICE = re.compile(r"^(\d[\d,]*(?:\.\d+)?)(?:\s*\(\s*Note\s*-?\s*\d+\s*\))?$", re.I)
+
+
+def _company_names(text: str) -> tuple[str | None, str | None]:
+    """Return (manufacturer, marketing company) from "M/s A / M/s B"."""
+    text = re.sub(r"[;,\s]*(?:\band\b)?[;,\s]*$", "", text, flags=re.I)
+    parts = [p.strip(" ./") for p in re.split(r"\s*/\s*(?=M\s*/\s*s)", text) if p.strip()]
+    names = [re.sub(r"^M\s*/\s*s\.?\s*", "", p).strip() for p in parts]
+    if len(names) == 1 and names[0]:
+        return names[0], names[0]
+    if len(names) == 2 and all(names):
+        return names[0], names[1]
+    return None, None
+
+
+def normalize_nppa_retail_row(raw: dict[str, Any]) -> tuple[dict[str, Any] | None, list[str]]:
+    """A row from NPPA Authority minutes. A retail price is a legal maximum, not a shop price."""
+    errors: list[str] = []
+    formulation = re.sub(r"\s+", " ", str(raw.get("formulation") or "")).strip()
+    composition = str(raw.get("composition") or "")
+    if not formulation:
+        errors.append("formulation: required")
+    form = next(
+        (
+            entry[1:]
+            for entry in _RETAIL_FORMS
+            if re.search(entry[0], f"{formulation} {composition[:60]}", re.I)
+        ),
+        None,
+    )
+    if form is None:
+        errors.append(f"dosage_form: cannot tell from {formulation!r}")
+    ingredients = []
+    try:
+        ingredients = parse_composition(composition)
+    except CompositionError as exc:
+        errors.append(f"composition: {exc}")
+    release = None
+    if ingredients and form:
+        try:
+            release = release_code(ingredients, formulation, form[2])
+        except CompositionError as exc:
+            errors.append(f"release_type: {exc}")
+    pack = _RETAIL_PACK.match(re.sub(r"\s+", " ", str(raw.get("unit") or "")).strip())
+    if not pack:
+        errors.append(f"unit: cannot parse {raw.get('unit')!r}")
+    price_match = _RETAIL_PRICE.match(str(raw.get("price") or "").strip())
+    price = check_price(price_match[1], errors) if price_match else None
+    if not price_match:
+        errors.append(f"price: cannot read {raw.get('price')!r}")
+    manufacturer, marketer = _company_names(str(raw.get("company") or ""))
+    if not marketer:
+        errors.append(f"company: cannot read {raw.get('company')!r}")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(raw.get("meeting_date") or "")):
+        errors.append("meeting_date: expected YYYY-MM-DD")
+    if errors or form is None or release is None or pack is None or price is None or not marketer:
+        return None, errors
+    unit = _RETAIL_PACK_UNITS.get(pack[1].lower(), pack[1].lower())
+    specs: list[dict[str, Any]] = []
+    for position, item in enumerate(ingredients):
+        parsed = parse_strength(item.strength_text)
+        specs.append(
+            {
+                "name": item.name,
+                "salt_form": item.salt_form,
+                "strength_value": str(parsed.value),
+                "strength_unit": parsed.unit,
+                "per_value": str(parsed.per_value) if parsed.per_value is not None else None,
+                "per_unit": parsed.per_unit,
+                "strength_text": item.strength_text,
+                "position": position,
+            }
+        )
+    generic = " + ".join(spec["name"] for spec in specs)
+    summary = " + ".join(spec["strength_text"] for spec in specs)
+    marketed_by = (
+        marketer if manufacturer == marketer else f"{marketer} (manufactured by {manufacturer})"
+    )
+    note = str(raw.get("note") or "").strip()
+    source_text = (
+        f"{formulation} | {composition} | {raw.get('unit')} | {raw.get('company')} | {raw.get('price')} | "
+        f"Authority meeting {raw.get('meeting')}, {raw.get('meeting_date')}"
+    )
+    return (
+        {
+            "display_name": f"{formulation} {summary} ({marketer})"[:400],
+            "generic_name": generic[:400],
+            "brand": None,
+            "manufacturer": None,
+            "marketed_by": marketed_by[:400],
+            "ingredients": specs,
+            "dosage_form": form[0],
+            "route": form[1],
+            "release_type": release,
+            "therapeutic_category": None,
+            "pack_quantity": "1",
+            "pack_unit": unit,
+            "price_type": "notified_retail",
+            "price": price,
+            "observed_at": raw["meeting_date"],
+            "source_text": f"{source_text} | {note}" if note else source_text,
+        },
+        [],
+    )
+
+
 NORMALIZERS = {
     "nppa_ceiling": normalize_nppa_row,
+    "nppa_retail": normalize_nppa_retail_row,
     "catalogue": normalize_catalogue_row,
     "ja_products": normalize_ja_product_row,
     "ja_kendras": normalize_ja_kendra_row,
     "regulatory_flags": normalize_flag_row,
 }
 DUPLICATE_KEYS: dict[str, Callable[[dict[str, Any]], tuple[Any, ...]]] = {
+    "nppa_retail": lambda n: (
+        n["display_name"],
+        n["pack_quantity"],
+        n["pack_unit"],
+        n["observed_at"],
+    ),
     "nppa_ceiling": lambda n: (
         n["display_name"],
         n["release_type"],

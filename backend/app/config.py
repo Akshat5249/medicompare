@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     signed_url_seconds: int = 300
     retention_days: int = 7
     ocr_engine: str = "tesseract"
+    include_demo_data: bool = True
     llm_extraction_enabled: bool = False
     llm_api_key: str = ""
     llm_model: str = ""

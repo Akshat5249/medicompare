@@ -17,6 +17,7 @@ os.environ["S3_BUCKET"] = "medicompare-test"
 os.environ["JOBS_SYNCHRONOUS"] = "true"
 os.environ["RATE_LIMIT_ENABLED"] = "false"
 os.environ["APP_ENV"] = "test"
+os.environ["INCLUDE_DEMO_DATA"] = "true"
 os.environ.setdefault("OCR_ENGINE", "rapidocr")
 os.environ["DATA_DIR"] = str(Path(__file__).resolve().parents[2] / "data")
 

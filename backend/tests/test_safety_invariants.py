@@ -526,7 +526,13 @@ def test_every_price_carries_type_source_and_date(anon, db):
     checked = 0
     for medicine in rows:
         for price in anon.get(f"/api/v1/medicines/{medicine}/prices").json()["prices"]:
-            assert price["price_type"] in {"ceiling", "catalogue", "mrp", "indicative"}
+            assert price["price_type"] in {
+                "ceiling",
+                "notified_retail",
+                "catalogue",
+                "mrp",
+                "indicative",
+            }
             assert price["price_type_label"]
             assert price["source"]["name"]
             assert price["last_updated"]

@@ -16,6 +16,7 @@ Versioned at `/api/v1`. The OpenAPI 3.1 spec is generated from code and committe
 | Method and path | Access | Purpose |
 |---|---|---|
 | `GET /health/live`, `/health/ready` | Public | Liveness; readiness checks the database, Redis and storage |
+| `GET /meta` | Public | Whether demo data is loaded |
 | `GET /search?q=` | Public | Exact and possible matches with reasons; emergency interrupt |
 | `GET /medicines/{id}` | Public | Composition, source, flags |
 | `GET /medicines/{id}/prices` | Public | Prices with type, source, date, staleness |

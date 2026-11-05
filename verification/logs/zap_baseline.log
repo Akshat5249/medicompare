@@ -1,5 +1,69 @@
 $ bash scripts/zap_baseline.sh
-Thu Nov  5 14:32:25 UTC 2026
+Thu Nov  5 15:33:09 UTC 2026
+Unable to find image 'ghcr.io/zaproxy/zaproxy:stable' locally
+stable: Pulling from zaproxy/zaproxy
+a1ce51c70f2c: Pulling fs layer
+f791e47cf52a: Pulling fs layer
+0f7456291a01: Pulling fs layer
+fb661dedb31b: Pulling fs layer
+41737c9a08d0: Pulling fs layer
+1fbf1629111b: Pulling fs layer
+032c6dae27d7: Pulling fs layer
+a0900011f95b: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+2b5dffef37fb: Pulling fs layer
+6173fb42a391: Pulling fs layer
+dee331ead96d: Pulling fs layer
+5ea75c5c7143: Pulling fs layer
+af3152b6af93: Pulling fs layer
+41b28138a536: Pulling fs layer
+f63a8bdddb02: Pulling fs layer
+7829b3d60f05: Pulling fs layer
+e5ca1437e0c7: Pulling fs layer
+39623f43dfaa: Pulling fs layer
+a0e51e32c042: Pulling fs layer
+4f4fb700ef54: Already exists
+41737c9a08d0: Download complete
+fb661dedb31b: Download complete
+1fbf1629111b: Download complete
+032c6dae27d7: Download complete
+f791e47cf52a: Download complete
+a0900011f95b: Download complete
+af3152b6af93: Download complete
+a0e51e32c042: Download complete
+2b5dffef37fb: Download complete
+41b28138a536: Download complete
+f63a8bdddb02: Download complete
+f791e47cf52a: Pull complete
+dee331ead96d: Download complete
+7829b3d60f05: Download complete
+5ea75c5c7143: Download complete
+e5ca1437e0c7: Download complete
+39623f43dfaa: Download complete
+a1ce51c70f2c: Download complete
+0f7456291a01: Download complete
+6173fb42a391: Download complete
+0f7456291a01: Pull complete
+fb661dedb31b: Pull complete
+1fbf1629111b: Pull complete
+032c6dae27d7: Pull complete
+a0900011f95b: Pull complete
+4f4fb700ef54: Pull complete
+2b5dffef37fb: Pull complete
+6173fb42a391: Pull complete
+41737c9a08d0: Pull complete
+af3152b6af93: Pull complete
+a0e51e32c042: Pull complete
+41b28138a536: Pull complete
+f63a8bdddb02: Pull complete
+dee331ead96d: Pull complete
+7829b3d60f05: Pull complete
+5ea75c5c7143: Pull complete
+e5ca1437e0c7: Pull complete
+39623f43dfaa: Pull complete
+a1ce51c70f2c: Pull complete
+Digest: sha256:9624669db72f54d86c4b46a7064518bd9bf79d8c61a4c31befa9923489f328af
+Status: Downloaded newer image for ghcr.io/zaproxy/zaproxy:stable
 Using the Automation Framework
 Total of 87 URLs
 PASS: Vulnerable JS Library (Powered by Retire.js) [10003]
@@ -12,7 +76,6 @@ PASS: X-Content-Type-Options Header Missing [10021]
 PASS: Information Disclosure - Debug Error Messages [10023]
 PASS: Information Disclosure - Sensitive Information in URL [10024]
 PASS: Information Disclosure - Sensitive Information in HTTP Referrer Header [10025]
-PASS: HTTP Parameter Override [10026]
 PASS: Information Disclosure - Suspicious Comments [10027]
 PASS: Off-site Redirect [10028]
 PASS: Cookie Poisoning [10029]
@@ -37,14 +100,11 @@ PASS: X-Debug-Token Information Leak [10056]
 PASS: Username Hash Found [10057]
 PASS: X-AspNet-Version Response Header [10061]
 PASS: PII Disclosure [10062]
-PASS: Permissions Policy Header Not Set [10063]
 PASS: Timestamp Disclosure [10096]
 PASS: Hash Disclosure [10097]
 PASS: Cross-Domain Misconfiguration [10098]
-PASS: Source Code Disclosure [10099]
 PASS: Weak Authentication Method [10105]
 PASS: Reverse Tabnabbing [10108]
-PASS: Dangerous JS Functions [10110]
 PASS: Authentication Request Identified [10111]
 PASS: Session Management Response Identified [10112]
 PASS: Verification Request Identified [10113]
@@ -63,23 +123,17 @@ PASS: Charset Mismatch [90011]
 PASS: Application Error Disclosure [90022]
 PASS: WSDL File Detection [90030]
 PASS: Loosely Scoped Cookie [90033]
-IGNORE: Non-Storable Content [10049] x 7 
-	http://host.docker.internal:3000/ (307 Temporary Redirect)
-	http://host.docker.internal:3000/en (200 OK)
-	http://host.docker.internal:3000/robots.txt (404 Not Found)
-	http://host.docker.internal:3000/sitemap.xml (404 Not Found)
-	http://host.docker.internal:3000/ta (200 OK)
 WARN-NEW: Cookie No HttpOnly Flag [10010] x 5 
 	http://host.docker.internal:3000/ (307 Temporary Redirect)
 	http://host.docker.internal:3000/en (200 OK)
-	http://host.docker.internal:3000/en/search (200 OK)
+	http://host.docker.internal:3000/en/login (200 OK)
 	http://host.docker.internal:3000/hi (200 OK)
 	http://host.docker.internal:3000/ta (200 OK)
 WARN-NEW: Content-Type Header Missing [10019] x 5 
 	http://host.docker.internal:3000/ (307 Temporary Redirect)
 	http://host.docker.internal:3000/jan-aushadhi (307 Temporary Redirect)
 	http://host.docker.internal:3000/login (307 Temporary Redirect)
-	http://host.docker.internal:3000/prescriptions (307 Temporary Redirect)
+	http://host.docker.internal:3000/prescriptions/new (307 Temporary Redirect)
 	http://host.docker.internal:3000/search (307 Temporary Redirect)
 WARN-NEW: Content Security Policy (CSP) Header Not Set [10038] x 2 
 	http://host.docker.internal:3000/robots.txt (404 Not Found)
@@ -88,15 +142,9 @@ WARN-NEW: CSP: style-src unsafe-inline [10055] x 5
 	http://host.docker.internal:3000/ (200 OK)
 	http://host.docker.internal:3000/en (200 OK)
 	http://host.docker.internal:3000/en (200 OK)
+	http://host.docker.internal:3000/en/search (200 OK)
 	http://host.docker.internal:3000/hi (200 OK)
-	http://host.docker.internal:3000/ta (200 OK)
 WARN-NEW: Modern Web Application [10109] x 2 
 	http://host.docker.internal:3000/robots.txt (404 Not Found)
 	http://host.docker.internal:3000/sitemap.xml (404 Not Found)
-WARN-NEW: Cross-Origin-Embedder-Policy Header Missing or Invalid [90004] x 13 
-	http://host.docker.internal:3000/ (200 OK)
-	http://host.docker.internal:3000/en (200 OK)
-	http://host.docker.internal:3000/hi (200 OK)
-	http://host.docker.internal:3000/ta (200 OK)
-	http://host.docker.internal:3000/ (200 OK)
-FAIL-NEW: 0	FAIL-INPROG: 0	WARN-NEW: 6	WARN-INPROG: 0	INFO: 0	IGNORE: 1	PASS: 61
+FAIL-NEW: 0	FAIL-INPROG: 0	WARN-NEW: 5	WARN-INPROG: 0	INFO: 0	IGNORE: 0	PASS: 57

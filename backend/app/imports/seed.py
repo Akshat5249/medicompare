@@ -24,6 +24,16 @@ SOURCES = [
         "is_demo": False,
     },
     {
+        "code": "nppa_retail",
+        "name": "NPPA Authority minutes: retail prices of new drugs",
+        "owner": "National Pharmaceutical Pricing Authority, Government of India",
+        "url": "https://nppa.gov.in/en/year2026-2027",
+        "licence_note": "Reproduction permitted free of charge when accurate and acknowledged "
+        "(NPPA copyright policy, verified 2026-11-05). The Gazette notification is the official version.",
+        "update_cadence_days": 365,
+        "is_demo": False,
+    },
+    {
         "code": "demo_catalogue",
         "name": "Demo data: fictional brands and prices",
         "owner": "MediCompare demo dataset (fictional)",
@@ -53,6 +63,7 @@ SOURCES = [
 ]
 SEED_FILES = [
     ("nppa_ceiling", "nppa_ceiling", "sources/nppa_ceiling_prices.csv"),
+    ("nppa_retail", "nppa_retail", "sources/nppa_retail_raw.csv"),
     ("demo_catalogue", "catalogue", "demo/demo_catalogue.csv"),
     ("demo_jan_aushadhi", "ja_products", "demo/demo_ja_products.csv"),
     ("demo_jan_aushadhi", "ja_kendras", "demo/demo_ja_kendras.csv"),
@@ -63,6 +74,8 @@ SEED_FILES = [
 def ensure_sources(session: Session) -> dict[str, DataSource]:
     result: dict[str, DataSource] = {}
     for spec in SOURCES:
+        if spec["is_demo"] and not get_settings().include_demo_data:
+            continue
         source = session.scalar(select(DataSource).where(DataSource.code == spec["code"]))
         if source is None:
             source = DataSource(**spec)
@@ -106,6 +119,8 @@ def seed(session: Session, data_dir: Path | None = None) -> dict[str, dict[str, 
     from app.models import ImportBatch
 
     for source_code, kind, relative in SEED_FILES:
+        if source_code not in sources:
+            continue  # demo sources are skipped when INCLUDE_DEMO_DATA is false
         path = directory / relative
         already = session.scalar(
             select(ImportBatch).where(

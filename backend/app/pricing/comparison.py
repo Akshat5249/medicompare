@@ -18,6 +18,7 @@ from app.matching.equivalence import MedicineAttributes, compare
 
 PRICE_TYPE_LABELS = {
     "ceiling": "Government ceiling price (legal maximum, not a shop price)",
+    "notified_retail": "NPPA notified retail price (legal maximum for this product, not a shop price)",
     "catalogue": "Catalogue price (listed price, not confirmed at any store)",
     "mrp": "MRP (printed maximum retail price)",
     "indicative": "Indicative price (approximate)",
@@ -101,6 +102,7 @@ def compute_savings(
 
 PRICE_TYPE_NAMES = {
     "ceiling": "ceiling price",
+    "notified_retail": "NPPA notified retail price",
     "catalogue": "catalogue price",
     "mrp": "MRP",
     "indicative": "indicative price",

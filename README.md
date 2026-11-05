@@ -5,7 +5,8 @@ A neutral, multilingual, mobile-first web app that helps people in India underst
 **Information only, not medical advice.** MediCompare does not sell, prescribe or dispense medicines. In an emergency, call 112.
 
 **Read this first:**
-- Government ceiling prices are real, from NPPA. **Brand products, shop prices, Jan Aushadhi entries and regulatory notices in this build are fictional demo data,** labelled "Demo data" everywhere. See [data sources](docs/DATA_SOURCES.md).
+- **Real data, from NPPA:** government ceiling prices, and notified retail prices naming real companies. Both are legal maximums, not shop prices.
+- **Fictional demo data, labelled "Demo data" everywhere:** "Demo" brands and their shop prices, all Jan Aushadhi entries and all regulatory notices. See [data sources](docs/DATA_SOURCES.md). `make up-real` runs with real data only.
 - OCR results are from **synthetic handwriting** and do not show real-world accuracy. See [evaluation](docs/EVALUATION.md).
 - Not deployed. No user research has been done. No compliance is claimed.
 
@@ -61,7 +62,7 @@ Open http://localhost:3000.
 | Pharmacist | `demo.pharmacist@example.com` |
 | Admin | `demo.admin@example.com` |
 
-Try searching `metformn`, then `DemoAtorvAlpha`. Type `I took too many tablets` to see the emergency interrupt. Add a prescription with `DemoMetacin`, strength `500 mg`, to see the look-alike check.
+Try searching `metformn`, then `Telmisartan and Chlorthalidone` to compare real companies' NPPA prices, then `DemoAtorvAlpha` for a demo comparison. Type `I took too many tablets` to see the emergency interrupt. Add a prescription with `DemoMetacin`, strength `500 mg`, to see the look-alike check.
 
 ## Tests
 ```bash
@@ -70,7 +71,7 @@ make verify
 This runs every gate and writes [VERIFICATION_REPORT.md](VERIFICATION_REPORT.md), with logs in `verification/logs/`. Run `make help` for individual gates. Frontend tools need `npm ci` in `frontend/`; `make verify` handles that.
 
 ## Limitations
-- **The data that makes comparison useful does not exist here yet.** Real data covers five NPPA categories with no brands and no salt forms, so real ceiling prices rarely compare per unit. Getting that data is [the first open item](docs/OPEN_ITEMS.md).
+- **No real shop prices.** Real data is NPPA's legal maximums, which cover five ceiling-price categories and recent new-drug approvals, not the whole market. Prices NPPA fixes also vary little between companies, so real savings look smaller than they might in shops. Actual MRPs are [the first open item](docs/OPEN_ITEMS.md).
 - **OCR suggests little at safe thresholds,** and synthetic results flatter it.
 - **The look-alike check is a string-similarity screen,** not a clinical list.
 - **Hindi and Tamil were AI-written** and need native review, particularly the emergency and consent text.

@@ -23,7 +23,7 @@ from app.core import (
     redis_client,
 )
 from app.db import get_db
-from app.models import JanAushadhiKendra, JanAushadhiProduct, Prescription, ShareLink
+from app.models import JanAushadhiKendra, JanAushadhiProduct, Medicine, Prescription, ShareLink
 from app.safety.emergency import detect_emergency
 from app.summaries.service import build_summary, render_pdf
 
@@ -104,6 +104,15 @@ def ready(db: Db) -> dict[str, str]:
     redis_client().ping()
     get_storage().ensure_bucket()
     return {"status": "ready"}
+
+
+@router.get("/meta", tags=["health"])
+def meta(db: Db) -> dict[str, bool]:
+    """Lets the UI explain what kind of data it is showing."""
+    demo = (
+        db.scalar(select(func.count()).select_from(Medicine).where(Medicine.is_demo.is_(True))) or 0
+    )
+    return {"demo_data_loaded": demo > 0}
 
 
 @router.get("/search", response_model=SearchResponse, tags=["catalogue"], dependencies=[Limited])

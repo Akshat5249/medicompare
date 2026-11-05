@@ -1,12 +1,12 @@
 $ make -s types
-Thu Nov  5 14:27:40 UTC 2026
- Container medicompare-redis-1 Running 
+Thu Nov  5 15:26:58 UTC 2026
  Container medicompare-postgres-1 Running 
  Container medicompare-minio-1 Running 
- Container medicompare-redis-1 Waiting 
+ Container medicompare-redis-1 Running 
  Container medicompare-postgres-1 Waiting 
+ Container medicompare-redis-1 Waiting 
  Container medicompare-redis-1 Healthy 
  Container medicompare-postgres-1 Healthy 
- Container medicompare-backend-test-run-c61ee497a15a Creating 
- Container medicompare-backend-test-run-c61ee497a15a Created 
-Success: no issues found in 38 source files
+ Container medicompare-backend-test-run-88e0aa44ee5f Creating 
+ Container medicompare-backend-test-run-88e0aa44ee5f Created 
+Success: no issues found in 39 source files

@@ -103,3 +103,23 @@ Each entry records the context, the options, the choice and why. Dates are 2026-
 - **Choice:** a root `.dockerignore`, `COPY --chown` instead of a recursive `chown`, no `uv` or `setuptools` at runtime, and `cgr.dev/chainguard/node` for the frontend runtime (no shell, npm or root user).
 - **Effect (measured):** backend image 3.33 GB to 1.45 GB as Docker reports it; contents 1.6 GB to 913 MB.
 - **Trade-offs:** the build uses Node 22 and the runtime is Chainguard's current Node, since the free tag is `latest` only. E2E tests run against this pairing. Pin a digest in production. `gcr.io/distroless/nodejs22-debian12` was tried and rejected: its OpenSSL was unpatched when scanned.
+
+## D22. Scanned NPPA minutes are not read by OCR
+- **Context:** 23 of the 29 downloaded minutes are scanned images, and hold most of the available retail prices.
+- **Options:** OCR them, enter them by hand, or skip them.
+- **Choice:** skip for now.
+- **Why:** OCR can misread a digit, and a wrong figure would appear as an official government price. That is worse than a smaller catalogue.
+
+## D23. Strength basis is part of identity
+- **Context:** "Metformin Hydrochloride 500 mg" and "Metformin Hydrochloride eq. to Metformin 500 mg" read alike but contain different amounts.
+- **Choice:** "eq. to" is recorded in the salt form ("hydrochloride; strength as metformin"), so equivalence treats them as different. An ingredient printed with no salt is recorded as "none named", which is stated by the source, unlike a missing value.
+- **Trade-off:** some products that are truly the same will show as not directly comparable. That is the safe direction.
+
+## D24. Release type names its ingredient
+- **Context:** in a combination, one ingredient may be extended release.
+- **Choice:** codes such as `extended:metformin`, so "A extended + B" is not equal to "A + B extended". If a release type cannot be tied to one ingredient, the row goes to review.
+
+## D25. Tablet coating is not part of identity
+- **Context:** sources describe tablets as film coated, uncoated or bilayered, and NPPA's ceiling lists do not distinguish them.
+- **Choice:** these are all `tablet`, with the wording kept in the source text. Mouth-dissolving and dispersible tablets, and gastro-resistant release, stay distinct.
+- **Needs:** pharmacist review. This is the most debatable equivalence decision in the import.

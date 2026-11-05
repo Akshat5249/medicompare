@@ -14,7 +14,8 @@ The interesting problem was not "OCR plus price lookup". It was: **how do you bu
 ## Key decisions
 - **The gate takes no confidence score as input.** A score can change a label, never access. A database constraint backs this up.
 - **Equivalence ignores names.** Look-alike names cannot produce a match, because names are not inputs.
-- **An unstated salt form proves nothing.** NPPA does not state salts, so real ceiling prices rarely compare per unit. This makes the demo less impressive, and it is correct.
+- **An unstated salt form proves nothing.** NPPA's ceiling lists do not state salts, so those rows rarely compare per unit. This makes the demo less impressive, and it is correct.
+- **No OCR on official prices.** Most NPPA minutes are scans. Reading them with OCR could turn a misread digit into an "official" price, so they were left out.
 - **No savings across price types.** A ceiling price is a legal maximum, so a "saving" against it would be invented.
 - **Respecting data terms.** The Jan Aushadhi portal requires permission to reproduce its data, so that data is not bundled, even though it was technically reachable.
 
@@ -25,12 +26,12 @@ A modular monolith: Next.js, FastAPI, PostgreSQL, Redis and RQ, private object s
 | Measure | Result |
 |---|---|
 | Verification gates passing | 17 of 17 |
-| Backend tests and coverage | 236, 98.3% (core modules 97.3%) |
-| Safety invariant tests | 96 |
-| Frontend tests and coverage | 62, 97.89% |
+| Backend tests and coverage | 295, 98.3% (core modules 97.3%) |
+| Safety invariant tests | 99 |
+| Frontend tests and coverage | 65, 97.91% |
 | End-to-end runs with accessibility checks | 40 |
-| Search latency, local load test | p50 66 ms, p95 200 ms, p99 250 ms |
-| Catalogue | 253 real NPPA rows, 126 fictional demo rows |
+| Search latency, local load test | p50 150 ms, p95 530 ms, p99 1100 ms |
+| Catalogue | 352 real NPPA rows (253 ceiling, 99 notified retail), 126 fictional demo rows |
 
 ### OCR, synthetic data only
 | Test split | tesseract (selected) | rapidocr |
@@ -51,9 +52,10 @@ A modular monolith: Next.js, FastAPI, PostgreSQL, Redis and RQ, private object s
 - Rate limits would have treated all users as one address behind the proxy.
 - `.venv` was being copied into images, more than doubling their size.
 - A misconfigured Trivy command was silently scanning nothing.
+- Reading real NPPA data, a preservative's note silently dropped moxifloxacin from an eye drop's composition.
 
 ## Limitations
-No real brand or retail price data, so the core comparison runs on fictional data. No real handwriting evaluation, user research, pharmacist testing, native-language review or legal review. Not deployed. See `docs/OPEN_ITEMS.md`.
+No real shop prices: real data is NPPA's legal maximums for part of the market. No real handwriting evaluation, user research, pharmacist testing, native-language review or legal review. Not deployed. See `docs/OPEN_ITEMS.md`.
 
 ## What's next
 1. Get brand data, or permission to use it. 2. Seek legal review, starting with medical device classification. 3. Run the consented real-data evaluation. 4. Test with pharmacists and patients.

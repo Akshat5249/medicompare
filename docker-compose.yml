@@ -11,6 +11,7 @@ x-backend-env: &backend-env
   S3_SECRET_KEY: ${S3_SECRET_KEY:-devminiosecret}
   S3_BUCKET: ${S3_BUCKET:-medicompare-prescriptions}
   OCR_ENGINE: ${OCR_ENGINE:-tesseract}
+  INCLUDE_DEMO_DATA: ${INCLUDE_DEMO_DATA:-true}
   RETENTION_DAYS: ${RETENTION_DAYS:-7}
   COOKIE_SECURE: ${COOKIE_SECURE:-false}
   CLAMAV_ADDRESS: ${CLAMAV_ADDRESS:-}

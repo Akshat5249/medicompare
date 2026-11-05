@@ -1,7 +1,7 @@
 $ make -s test-frontend
-Thu Nov  5 14:28:57 UTC 2026
+Thu Nov  5 15:28:33 UTC 2026
 
- RUN  v3.2.7 /private/tmp/claude-501/-Users-akshat-Library-Application-Support-Claude-scratch-workspaces-3300dc96-d560-411e-a13f-8eda0ded79b9-8dacdcd3-76f3-4a6b-beb8-b06bab6e1da4-scratch-2026-11-05-29f2bd/9495598c-4f2f-40db-b096-a71969194300/scratchpad/unzipped/medicompare/frontend
+ RUN  v3.2.7 /Users/akshat/Desktop/CODING/Projects/medicompare/frontend
       Coverage enabled with v8
 
 stderr | src/test/components.test.tsx > shared UI > the shell always shows the medical notice
@@ -28,18 +28,18 @@ act(() => {
 
 This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
 
- ✓ src/test/components.test.tsx (62 tests) 1834ms
+ ✓ src/test/components.test.tsx (65 tests) 1756ms
 
  Test Files  1 passed (1)
-      Tests  62 passed (62)
-   Start at  19:58:58
-   Duration  3.41s (transform 172ms, setup 128ms, collect 239ms, tests 1.83s, environment 329ms, prepare 60ms)
+      Tests  65 passed (65)
+   Start at  20:58:34
+   Duration  2.77s (transform 157ms, setup 117ms, collect 225ms, tests 1.76s, environment 345ms, prepare 68ms)
 
  % Coverage report from v8
 
 =============================== Coverage summary ===============================
-Statements   : 97.89% ( 2327/2377 )
-Branches     : 86.83% ( 508/585 )
+Statements   : 97.91% ( 2345/2395 )
+Branches     : 86.91% ( 518/596 )
 Functions    : 90.9% ( 130/143 )
-Lines        : 97.89% ( 2327/2377 )
+Lines        : 97.91% ( 2345/2395 )
 ================================================================================

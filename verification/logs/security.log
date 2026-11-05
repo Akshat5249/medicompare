@@ -1,36 +1,69 @@
 $ make -s security
-Thu Nov  5 14:32:07 UTC 2026
+Thu Nov  5 15:32:00 UTC 2026
 == bandit (medium and above)
- Container medicompare-minio-1 Running 
- Container medicompare-postgres-1 Running 
  Container medicompare-redis-1 Running 
- Container medicompare-postgres-1 Waiting 
+ Container medicompare-postgres-1 Running 
+ Container medicompare-minio-1 Running 
  Container medicompare-redis-1 Waiting 
+ Container medicompare-postgres-1 Waiting 
  Container medicompare-redis-1 Healthy 
  Container medicompare-postgres-1 Healthy 
- Container medicompare-backend-test-run-4fe1e6b4eb18 Creating 
- Container medicompare-backend-test-run-4fe1e6b4eb18 Created 
+ Container medicompare-backend-test-run-bd7311156eba Creating 
+ Container medicompare-backend-test-run-bd7311156eba Created 
 == pip-audit
- Container medicompare-postgres-1 Running 
- Container medicompare-minio-1 Running 
  Container medicompare-redis-1 Running 
- Container medicompare-postgres-1 Waiting 
+ Container medicompare-minio-1 Running 
+ Container medicompare-postgres-1 Running 
  Container medicompare-redis-1 Waiting 
+ Container medicompare-postgres-1 Waiting 
  Container medicompare-redis-1 Healthy 
  Container medicompare-postgres-1 Healthy 
- Container medicompare-backend-test-run-2e844cdbeef2 Creating 
- Container medicompare-backend-test-run-2e844cdbeef2 Created 
-Installed 29 packages in 936ms
+ Container medicompare-backend-test-run-b600e13f018f Creating 
+ Container medicompare-backend-test-run-b600e13f018f Created 
+Installed 29 packages in 933ms
 WARNING:pip_audit._cli:--no-deps is supported, but users are encouraged to fully hash their pinned dependencies
 WARNING:pip_audit._cli:Consider using a tool like `pip-compile`: https://pip-tools.readthedocs.io/en/latest/#using-hashes
 No known vulnerabilities found
 == npm audit (runtime dependencies, high and above)
 found 0 vulnerabilities
 == gitleaks
-[90m2:32PM[0m [32mINF[0m [1mscanned ~4136177 bytes (4.14 MB) in 482ms[0m
-[90m2:32PM[0m [32mINF[0m [1mno leaks found[0m
+Unable to find image 'zricethezav/gitleaks:v8.28.0' locally
+v8.28.0: Pulling from zricethezav/gitleaks
+07e9a47f0c33: Pulling fs layer
+8b608696b82a: Pulling fs layer
+2bdec7b61b4a: Pulling fs layer
+e5e72595f9db: Pulling fs layer
+8b608696b82a: Download complete
+07e9a47f0c33: Download complete
+07e9a47f0c33: Pull complete
+e5e72595f9db: Download complete
+e0b7a96b405c: Download complete
+2bdec7b61b4a: Download complete
+2bdec7b61b4a: Pull complete
+8b608696b82a: Pull complete
+e5e72595f9db: Pull complete
+Digest: sha256:cdbb7c955abce02001a9f6c9f602fb195b7fadc1e812065883f695d1eeaba854
+Status: Downloaded newer image for zricethezav/gitleaks:v8.28.0
+[90m3:32PM[0m [32mINF[0m [1mscanned ~9062002 bytes (9.06 MB) in 983ms[0m
+[90m3:32PM[0m [32mINF[0m [1mno leaks found[0m
 == trivy (fixed high and critical in built images; see .trivyignore for justified items)
 -- medicompare-backend
+Unable to find image 'aquasec/trivy:0.67.2' locally
+0.67.2: Pulling from aquasec/trivy
+75f76222683e: Pulling fs layer
+034d533adec7: Pulling fs layer
+6e174226ea69: Pulling fs layer
+7625a4dd223a: Pulling fs layer
+75f76222683e: Download complete
+6e174226ea69: Download complete
+6e174226ea69: Pull complete
+034d533adec7: Download complete
+034d533adec7: Pull complete
+7625a4dd223a: Download complete
+75f76222683e: Pull complete
+7625a4dd223a: Pull complete
+Digest: sha256:e2b22eac59c02003d8749f5b8d9bd073b62e30fefaef5b7c8371204e0a4b0c08
+Status: Downloaded newer image for aquasec/trivy:0.67.2
 
 Report Summary
 

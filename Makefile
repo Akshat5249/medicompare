@@ -4,7 +4,7 @@ COMPOSE := docker compose
 TEST_RUN := $(COMPOSE) --profile test run --rm -T backend-test
 TOOLS_NET := medicompare_default
 
-.PHONY: help up down seed-demo-users lint types test-backend test-safety test-frontend e2e security perf smoke data-check docs-check verify evaluate backup-test package
+.PHONY: help up up-real down seed-demo-users lint types test-backend test-safety test-frontend e2e security perf smoke data-check docs-check verify evaluate backup-test package
 
 help: ## Show targets
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN{FS=":.*?## "}{printf "%-18s %s\n",$$1,$$2}'
@@ -12,6 +12,10 @@ help: ## Show targets
 up: ## Build and start the full stack, then add local demo accounts
 	$(COMPOSE) up -d --build --wait
 	$(COMPOSE) exec -T backend python -m app.cli seed-demo-users
+
+up-real: ## Fresh database with real NPPA data only, and no demo data
+	$(COMPOSE) down -v
+	INCLUDE_DEMO_DATA=false $(COMPOSE) up -d --build --wait
 
 down: ## Stop the stack
 	$(COMPOSE) down

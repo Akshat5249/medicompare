@@ -8,6 +8,7 @@ import hi from "../../messages/hi.json";
 import ta from "../../messages/ta.json";
 import { AccountPage, AdminPage, LoginForm, RegisterForm, SaveToList } from "@/components/account";
 import {
+  DemoNotice,
   JanAushadhiPage,
   MedicinePage,
   OptionsView,
@@ -1125,5 +1126,38 @@ describe("admin", () => {
     mockFetch({ "/admin/sources": { status: 403, body: { code: "forbidden", title: "x" } } });
     renderWithIntl(<AdminPage />);
     expect(await screen.findByRole("alert")).toBeInTheDocument();
+  });
+});
+
+describe("real data", () => {
+  it("explains a notified retail price, and hides the ceiling text", () => {
+    renderWithIntl(
+      <PriceRow
+        price={price({
+          price_type: "notified_retail",
+          price_type_label: "NPPA notified retail price",
+        })}
+      />,
+    );
+    expect(screen.getByText(/It is not a shop price/)).toBeInTheDocument();
+    expect(screen.queryByText(/ceiling price is the legal maximum/)).not.toBeInTheDocument();
+  });
+
+  it("shows the demo notice only while demo data is loaded", async () => {
+    mockFetch({ "/meta": { body: { demo_data_loaded: true } } });
+    const shown = renderWithIntl(<DemoNotice />);
+    expect(await screen.findByText(/Anything marked Demo data is fictional/)).toBeInTheDocument();
+    shown.unmount();
+    mockFetch({ "/meta": { body: { demo_data_loaded: false } } });
+    const { container } = renderWithIntl(<DemoNotice />);
+    await waitFor(() => expect(fetch).toHaveBeenCalled());
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  it("says Jan Aushadhi data is not loaded, instead of calling an empty list demo data", async () => {
+    mockFetch({ "/jan-aushadhi/products": { body: { products: [] } } });
+    renderWithIntl(<JanAushadhiPage />);
+    expect(await screen.findByText(/No listings or Kendras can be shown/)).toBeInTheDocument();
+    expect(screen.queryByText(/Everything on this page is Demo data/)).not.toBeInTheDocument();
   });
 });

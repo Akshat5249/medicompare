@@ -16,6 +16,7 @@ from rapidfuzz.distance import JaroWinkler
 from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
+from app.imports.composition import release_label
 from app.imports.normalize import (
     DUPLICATE_KEYS,
     FORM_LABELS,
@@ -163,7 +164,12 @@ class _Vocabulary:
         return cast(Route, self._get(Route, "code", code, label=ROUTE_LABELS[code]))
 
     def release(self, code: str) -> ReleaseType:
-        return cast(ReleaseType, self._get(ReleaseType, "code", code, label=RELEASE_LABELS[code]))
+        return cast(
+            ReleaseType,
+            self._get(
+                ReleaseType, "code", code, label=RELEASE_LABELS.get(code) or release_label(code)
+            ),
+        )
 
     def manufacturer(self, name: str, is_demo: bool) -> Manufacturer:
         return cast(Manufacturer, self._get(Manufacturer, "name", name, is_demo=is_demo))
@@ -229,8 +235,12 @@ def _publish_medicine(
             equivalence_key=equivalence_key(attrs),
             ingredient_key=ingredient_key(doses),
             search_text=build_search_text(
-                n["generic_name"], n["display_name"], n.get("brand"), aliases
+                n["generic_name"],
+                n["display_name"],
+                n.get("brand"),
+                [*aliases, n.get("marketed_by") or ""],
             ),
+            marketed_by=n.get("marketed_by"),
             source_id=source.id,
             batch_id=batch.id,
             source_row=row.row_number,
@@ -301,7 +311,7 @@ def publish(session: Session, batch: ImportBatch) -> dict[str, int]:
     for row in rows:
         n = row.normalized
         assert n is not None
-        if batch.kind in {"nppa_ceiling", "catalogue"}:
+        if batch.kind in {"nppa_ceiling", "nppa_retail", "catalogue"}:
             _publish_medicine(session, vocab, batch, row, source)
             if n.get("observed_at"):
                 observed = max(filter(None, [observed, date.fromisoformat(n["observed_at"])]))

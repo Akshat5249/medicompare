@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [main]
+    branches: [main, "feat/**", "fix/**"]
   pull_request:
 
 permissions:
@@ -20,13 +20,19 @@ jobs:
       redis:
         image: redis:7-alpine
         ports: ["6380:6379"]
-      minio:
-        image: cgr.dev/chainguard/minio:latest
-        env: {MINIO_ROOT_USER: devminioaccess, MINIO_ROOT_PASSWORD: devminiosecret}
-        ports: ["9010:9000"]
-        options: --entrypoint /usr/bin/minio
     steps:
       - uses: actions/checkout@v4
+      # Service containers cannot be given a command, and MinIO needs "server /data".
+      - name: Start MinIO
+        run: |
+          docker run -d --name minio -p 9010:9000 -e MINIO_ROOT_USER=devminioaccess \
+            -e MINIO_ROOT_PASSWORD=devminiosecret cgr.dev/chainguard/minio:latest server /data
+          for attempt in $(seq 1 30); do
+            curl -sf http://localhost:9010/minio/health/live && exit 0
+            sleep 2
+          done
+          docker logs minio
+          exit 1
       - uses: astral-sh/setup-uv@v6
         with: {version: "0.11.21"}
       - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr libgl1
@@ -68,8 +74,14 @@ jobs:
   stack:
     runs-on: ubuntu-24.04
     needs: [backend, frontend]
+    env:
+      # All E2E traffic comes from one address. test_rate_limit_* proves the limits work.
+      RATE_LIMIT_PUBLIC_PER_MINUTE: "100000"
+      RATE_LIMIT_AUTH_PER_MINUTE: "10000"
+      RATE_LIMIT_UPLOAD_PER_HOUR: "10000"
     steps:
       - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
       - run: docker compose up -d --build --wait
       - run: docker compose exec -T backend python -m app.cli seed-demo-users
       - run: bash scripts/smoke.sh
@@ -87,6 +99,7 @@ jobs:
           image-ref: medicompare-backend
           severity: HIGH,CRITICAL
           ignore-unfixed: true
+          trivyignores: .trivyignore
           exit-code: "1"
       - name: Secret scan
         uses: gitleaks/gitleaks-action@v2

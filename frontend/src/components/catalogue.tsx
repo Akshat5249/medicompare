@@ -31,6 +31,14 @@ import {
   buttonClass,
 } from "./ui";
 
+/** Says what kind of data is loaded. Hidden when only real data is present. */
+export function DemoNotice() {
+  const t = useTranslations("home");
+  const state = useApi<{ demo_data_loaded: boolean }>("/meta");
+  if (!state.data?.demo_data_loaded) return null;
+  return <Warning>{t("demoNotice")}</Warning>;
+}
+
 export function SearchBox({ initial = "" }: { initial?: string }) {
   const t = useTranslations("home");
   const router = useRouter();
@@ -350,12 +358,15 @@ export function JanAushadhiPage() {
       { maximumAge: 0, timeout: 10000 },
     );
   };
-  const allDemo = products.data?.products.every((product) => product.is_demo) ?? false;
+  const rows = products.data?.products;
+  const allDemo = Boolean(rows?.length) && (rows?.every((product) => product.is_demo) ?? false);
+  const notLoaded = rows?.length === 0 && !productPath.includes("?q=");
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">{t("title")}</h1>
       <p>{t("intro")}</p>
       {allDemo ? <Warning>{t("demoWarning")}</Warning> : null}
+      {notLoaded ? <Warning>{t("notLoaded")}</Warning> : null}
       <section aria-labelledby="kendra-heading" className="space-y-3">
         <h2 id="kendra-heading" className="text-xl font-semibold">
           {t("kendraTitle")}

@@ -19,10 +19,10 @@ Not through the app or API for a prescription item. The server checks the status
 Yes, and that's the main remaining risk. I added friction, but I haven't measured whether it works with real users.
 
 **Is this real data?**
-Ceiling prices are real, from NPPA, covering five therapeutic categories and dated March 2026. All brands, shop prices, Jan Aushadhi entries and regulatory notices are fictional and labelled.
+Partly. 352 rows are real NPPA legal maximums: 253 ceiling prices and 99 notified retail prices naming real companies. Demo brands and shop prices, Jan Aushadhi entries and regulatory notices are fictional and labelled.
 
 **So does it save anyone money?**
-There's no evidence yet. It has no users, and no real retail price data.
+There's no evidence yet. It has no users and no real shop prices, and NPPA's prices vary little between companies.
 
 **Why not use the Jan Aushadhi data, or scrape pharmacy sites?**
 The Jan Aushadhi portal's terms ask for permission first, so I need to request it. Scraping against terms isn't acceptable, and retail prices without provenance would break the product's promise.

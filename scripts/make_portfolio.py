@@ -44,7 +44,26 @@ def last(pattern: str, text: str) -> str:
     return re.findall(pattern, text)[-1]
 
 
+def published_counts() -> tuple[int, int, int]:
+    """Published rows and review-queue size, from the same validators the import uses."""
+    import sys
+
+    sys.path.insert(0, str(ROOT / "backend"))
+    from app.imports.normalize import normalize_nppa_retail_row, normalize_nppa_row
+
+    def run(name: str, normalize) -> tuple[int, int]:
+        with open(ROOT / "data/sources" / name, encoding="utf-8") as handle:
+            rows = list(csv.DictReader(handle))
+        seen = {normalize(row)[0]["display_name"] + str(normalize(row)[0]["observed_at"]) + normalize(row)[0]["release_type"] for row in rows if normalize(row)[0]}
+        return len(seen), len(rows) - len(seen)
+
+    ceiling, ceiling_queue = run("nppa_ceiling_prices.csv", normalize_nppa_row)
+    retail, retail_queue = run("nppa_retail_raw.csv", normalize_nppa_retail_row)
+    return ceiling, retail, ceiling_queue + retail_queue
+
+
 def metrics() -> dict:
+    ceiling_ok, retail_ok, queue = published_counts()
     evaluation = json.loads((ROOT / "evaluation/results/results.json").read_text())
     chosen = evaluation["selected_engine"]
     other = next(e for e in evaluation["engines"] if e != chosen)
@@ -67,9 +86,11 @@ def metrics() -> dict:
         "perf_requests": int(perf["Aggregated"]["Request Count"]),
         "perf_failures": int(perf["Aggregated"]["Failure Count"]),
         "perf_rps": round(float(perf["Aggregated"]["Requests/s"]), 1),
-        "catalogue_real": 253,
+        "catalogue_real": ceiling_ok + retail_ok,
+        "catalogue_ceiling": ceiling_ok,
+        "catalogue_retail": retail_ok,
         "catalogue_demo": 126,
-        "review_queue": 13,
+        "review_queue": queue,
         "images": 600,
         "selected_engine": chosen,
         "other_engine": other,
@@ -104,7 +125,7 @@ All numbers come from `VERIFICATION_REPORT.md` and `docs/EVALUATION.md`. Keep th
 - Built MediCompare, a full-stack medicine price information app for India (FastAPI, PostgreSQL, Next.js, Docker), with a server-enforced gate that blocks price comparison until a person confirms each medicine, proven by {m['safety_tests']} safety tests including direct API bypass attempts.
 - Designed a deterministic medicine equivalence engine across ingredient, salt form, strength, dosage form, route and release type, and used property-based tests to show that unlike products are never compared per unit.
 - Built an OCR pipeline with a pluggable engine interface and evaluated Tesseract against RapidOCR on {m['images']} synthetic prescriptions {caveat}. Thresholds calibrated on validation data cut the false-match rate from {s['unfiltered_fmr']}% to {s['fmr']}% on the test split ({s['false_matches']} of {s['suggested']} suggestions, 95% upper bound {s['fmr_upper']}%), at {s['coverage']}% coverage.
-- Parsed official NPPA ceiling price PDFs into a staged import pipeline with row-level provenance: {m['catalogue_real']} rows published and {m['review_queue']} sent to manual review rather than guessed.
+- Parsed official NPPA ceiling price lists and Authority minutes into a staged import pipeline with row-level provenance, including exact composition parsing: {m['catalogue_real']} real rows published and {m['review_queue']} sent to manual review rather than guessed.
 - Automated {m['gates_total']} quality gates behind one command, including {m['backend_tests']} backend tests ({m['backend_coverage']}% line coverage), {m['frontend_tests']} frontend tests ({m['frontend_coverage']}%), {m['e2e_tests']} Playwright runs on two viewports with axe, and Trivy, Gitleaks and ZAP scans.
 - Delivered English, Hindi and Tamil interfaces with search p95 of {m['search_p95']} ms at {m['perf_rps']} requests/s and 0 errors in a local load test on the seeded {m['catalogue_real'] + m['catalogue_demo']}-medicine catalogue.
 """)
@@ -124,7 +145,8 @@ The interesting problem was not "OCR plus price lookup". It was: **how do you bu
 ## Key decisions
 - **The gate takes no confidence score as input.** A score can change a label, never access. A database constraint backs this up.
 - **Equivalence ignores names.** Look-alike names cannot produce a match, because names are not inputs.
-- **An unstated salt form proves nothing.** NPPA does not state salts, so real ceiling prices rarely compare per unit. This makes the demo less impressive, and it is correct.
+- **An unstated salt form proves nothing.** NPPA's ceiling lists do not state salts, so those rows rarely compare per unit. This makes the demo less impressive, and it is correct.
+- **No OCR on official prices.** Most NPPA minutes are scans. Reading them with OCR could turn a misread digit into an "official" price, so they were left out.
 - **No savings across price types.** A ceiling price is a legal maximum, so a "saving" against it would be invented.
 - **Respecting data terms.** The Jan Aushadhi portal requires permission to reproduce its data, so that data is not bundled, even though it was technically reachable.
 
@@ -140,7 +162,7 @@ A modular monolith: Next.js, FastAPI, PostgreSQL, Redis and RQ, private object s
 | Frontend tests and coverage | {m['frontend_tests']}, {m['frontend_coverage']}% |
 | End-to-end runs with accessibility checks | {m['e2e_tests']} |
 | Search latency, local load test | p50 {m['search_p50']} ms, p95 {m['search_p95']} ms, p99 {m['search_p99']} ms |
-| Catalogue | {m['catalogue_real']} real NPPA rows, {m['catalogue_demo']} fictional demo rows |
+| Catalogue | {m['catalogue_real']} real NPPA rows ({m['catalogue_ceiling']} ceiling, {m['catalogue_retail']} notified retail), {m['catalogue_demo']} fictional demo rows |
 
 ### OCR, synthetic data only
 | Test split | {m['selected_engine']} (selected) | {m['other_engine']} |
@@ -161,9 +183,10 @@ A modular monolith: Next.js, FastAPI, PostgreSQL, Redis and RQ, private object s
 - Rate limits would have treated all users as one address behind the proxy.
 - `.venv` was being copied into images, more than doubling their size.
 - A misconfigured Trivy command was silently scanning nothing.
+- Reading real NPPA data, a preservative's note silently dropped moxifloxacin from an eye drop's composition.
 
 ## Limitations
-No real brand or retail price data, so the core comparison runs on fictional data. No real handwriting evaluation, user research, pharmacist testing, native-language review or legal review. Not deployed. See `docs/OPEN_ITEMS.md`.
+No real shop prices: real data is NPPA's legal maximums for part of the market. No real handwriting evaluation, user research, pharmacist testing, native-language review or legal review. Not deployed. See `docs/OPEN_ITEMS.md`.
 
 ## What's next
 1. Get brand data, or permission to use it. 2. Seek legal review, starting with medical device classification. 3. Run the consented real-data evaluation. 4. Test with pharmacists and patients.
@@ -173,7 +196,7 @@ No real brand or retail price data, so the core comparison runs on fictional dat
 Setup: `make up`, then open http://localhost:3000. Say early that brands and shop prices are fictional demo data.
 
 ## 60-second pitch
-The same medicine can cost very different amounts by brand in India, but a wrong "cheaper equivalent" could hurt someone. MediCompare is a neutral price information tool built around that risk. It reads a prescription, but a person must confirm every medicine before the server will show a single price. It only compares products proven identical on ingredient, salt, strength, form, route and release type, and every price shows its type, source and date. Real government ceiling prices are loaded, and retail brand data is the main gap. It is a working, tested prototype with {m['safety_tests']} safety tests, not yet a live service.
+The same medicine can cost very different amounts by brand in India, but a wrong "cheaper equivalent" could hurt someone. MediCompare is a neutral price information tool built around that risk. It reads a prescription, but a person must confirm every medicine before the server will show a single price. It only compares products proven identical on ingredient, salt, strength, form, route and release type, and every price shows its type, source and date. Real government price limits are loaded, naming real companies, and actual shop prices are the main gap. It is a working, tested prototype with {m['safety_tests']} safety tests, not yet a live service.
 
 ## 3-minute walkthrough
 | Time | Do | Say |
@@ -182,7 +205,7 @@ The same medicine can cost very different amounts by brand in India, but a wrong
 | 0:20 | Search `metformn` | "Typo tolerated, but these are only possible matches, and it says why" |
 | 0:40 | Open `Metformin 500mg Tablet` | "Real NPPA data. It's labelled as a legal maximum, not a shop price, and flagged as possibly out of date, because it is" |
 | 1:00 | Scroll to "Not directly comparable" | "Salt form isn't stated by the source, so we refuse to compare. That honesty costs us features" |
-| 1:15 | Search `DemoAtorvAlpha` | "Demo data, labelled. Here's a real comparison: it states exactly what's compared" |
+| 1:15 | Search `Telmisartan and Chlorthalidone` | "Real NPPA retail prices from real companies, compared only when identical, and it states exactly what's compared" |
 | 1:35 | Add prescription, type `DemoMetacin`, `500 mg` | "Typing is equal to uploading. This name looks like another medicine, so confirm stays locked until you check" |
 | 2:00 | Open the item's prices URL before confirming | "Even a direct request gets refused by the server" |
 | 2:15 | Confirm, then show the summary | "Confirmed items only, addressed to your doctor or pharmacist. The link expires" |
@@ -212,10 +235,10 @@ Not through the app or API for a prescription item. The server checks the status
 Yes, and that's the main remaining risk. I added friction, but I haven't measured whether it works with real users.
 
 **Is this real data?**
-Ceiling prices are real, from NPPA, covering five therapeutic categories and dated March 2026. All brands, shop prices, Jan Aushadhi entries and regulatory notices are fictional and labelled.
+Partly. {m['catalogue_real']} rows are real NPPA legal maximums: {m['catalogue_ceiling']} ceiling prices and {m['catalogue_retail']} notified retail prices naming real companies. Demo brands and shop prices, Jan Aushadhi entries and regulatory notices are fictional and labelled.
 
 **So does it save anyone money?**
-There's no evidence yet. It has no users, and no real retail price data.
+There's no evidence yet. It has no users and no real shop prices, and NPPA's prices vary little between companies.
 
 **Why not use the Jan Aushadhi data, or scrape pharmacy sites?**
 The Jan Aushadhi portal's terms ask for permission first, so I need to request it. Scraping against terms isn't acceptable, and retail prices without provenance would break the product's promise.
@@ -254,7 +277,7 @@ So I built a prototype, MediCompare, around one rule: software proposes, a perso
 
 What I measured: {m['safety_tests']} safety tests, {m['backend_tests']} backend tests at {m['backend_coverage']}% coverage, and an OCR evaluation on {m['images']} synthetic prescriptions, where about one in five unfiltered top matches was wrong. That result is why a person has to confirm.
 
-What it isn't yet: it isn't live, it has no users, and brand prices are fictional demo data. Real ceiling prices come from NPPA. Synthetic handwriting is easier than the real thing.
+What it isn't yet: it isn't live, it has no users, and it has no real shop prices. Real data is NPPA's legal price limits, not shop prices. Synthetic handwriting is easier than the real thing.
 
 Built with substantial help from Claude Code. Feedback from pharmacists and doctors is very welcome.
 """)
@@ -303,11 +326,11 @@ def build_report(m: dict) -> None:
     story += [Spacer(1, 70), Paragraph("MediCompare", title), Spacer(1, 10)]
     story.append(Paragraph("A neutral, source-traceable medicine price information system for India, with human-verified prescription reading", centre))
     story += [Spacer(1, 30), Paragraph("Project report", centre), Paragraph("November 2026", centre), Spacer(1, 30)]
-    story.append(Paragraph("<b>Information only, not medical advice.</b> This is a prototype. It is not deployed, has not been tested with users, and no regulatory compliance is claimed. Brand products and retail prices in this build are fictional demo data.", centre))
+    story.append(Paragraph("<b>Information only, not medical advice.</b> This is a prototype. It is not deployed, has not been tested with users, and no regulatory compliance is claimed. Real prices are NPPA legal maximums. Shop prices in this build are fictional demo data.", centre))
     story.append(PageBreak())
 
     head("Abstract")
-    p(f"Medicine prices in India vary widely across brands, yet choosing a cheaper product wrongly can cause harm. This project designs and builds MediCompare, a prototype that treats this risk as the central requirement. Optical character recognition (OCR) only proposes candidates: a person must confirm each medicine, and the server refuses price comparison until they do. Products are compared only when a deterministic rule proves them identical on ingredient, salt form, strength, dosage form, route and release type. {m['catalogue_real']} official NPPA ceiling price rows were imported with row-level provenance. Two OCR engines were evaluated on {m['images']} synthetic prescriptions. At thresholds calibrated on validation data, the selected engine made {s['false_matches']} false match(es) in {s['suggested']} suggestions on the test split (95% upper bound {s['fmr_upper']}%), at {s['coverage']}% coverage. The system passes {m['gates_passed']} of {m['gates_total']} automated gates, including {m['safety_tests']} safety tests. The main limitations are that results come from synthetic handwriting, that no real retail price data was available, and that no user testing has taken place.")
+    p(f"Medicine prices in India vary widely across brands, yet choosing a cheaper product wrongly can cause harm. This project designs and builds MediCompare, a prototype that treats this risk as the central requirement. Optical character recognition (OCR) only proposes candidates: a person must confirm each medicine, and the server refuses price comparison until they do. Products are compared only when a deterministic rule proves them identical on ingredient, salt form, strength, dosage form, route and release type. {m['catalogue_real']} official NPPA price rows were imported with row-level provenance. Two OCR engines were evaluated on {m['images']} synthetic prescriptions. At thresholds calibrated on validation data, the selected engine made {s['false_matches']} false match(es) in {s['suggested']} suggestions on the test split (95% upper bound {s['fmr_upper']}%), at {s['coverage']}% coverage. The system passes {m['gates_passed']} of {m['gates_total']} automated gates, including {m['safety_tests']} safety tests. The main limitations are that results come from synthetic handwriting, that no real shop prices were available, and that no user testing has taken place.")
 
     head("1. Introduction")
     p("The same molecule can be sold at very different prices under different brands. Patients and caregivers also struggle to read handwritten prescriptions, distinguish brand from generic names, assess whether a price is trustworthy, and find Jan Aushadhi options. Tools that automate these tasks carry a specific danger: a confident, wrong identification may lead someone to the wrong medicine.")
@@ -331,14 +354,14 @@ def build_report(m: dict) -> None:
     head("4. System design")
     figure(ROOT / "docs/diagrams/c4_container.png", "Figure 1. Container view.", 120)
     sub("4.1 Equivalence")
-    p("One pure function compares two products attribute by attribute and returns every difference. Names are not an input, so look-alike names cannot produce a match. Strengths are converted to canonical units, so 250 mg/5 mL equals 50 mg/mL. An unstated salt form cannot prove a match. This has a real cost: NPPA does not state salts, so its rows rarely compare per unit with other products.")
+    p("One pure function compares two products attribute by attribute and returns every difference. Names are not an input, so look-alike names cannot produce a match. Strengths are converted to canonical units, so 250 mg/5 mL equals 50 mg/mL. An unstated salt form cannot prove a match. This has a real cost: NPPA's ceiling lists do not state salts, so those rows rarely compare per unit with other products.")
     sub("4.2 Prescription pipeline")
     p("Uploads are validated by magic bytes and limits, and re-encoded from pixels to remove metadata. Images are deskewed and enhanced with OpenCV. An OCR engine produces text with boxes and quality. Deterministic extraction drops instruction-like text and personal details, then records each field as visible, unclear or unknown. Matching returns explained candidates, and never selects one.")
     figure(ROOT / "docs/diagrams/seq_comparison.png", "Figure 2. Comparison through the verification gate.", 135)
     sub("4.3 The gate")
     p("Price and option routes for a prescription item require status verified, a confirmed medicine and a verifier type. A database constraint rejects a verified row without these. The gate takes no confidence score, so a score can change a label but never access.")
     sub("4.4 Data")
-    p(f"NPPA's copyright policy permits reproduction with accuracy and acknowledgement, so its therapeutic-category lists were parsed from PDF. Imports pass through staging and validation: {m['catalogue_real']} rows were published and {m['review_queue']} wait in a review queue with stated reasons. The Jan Aushadhi portal requires permission to reproduce its data, so that data was not bundled, and demo data stands in. Demo brands all start with \"Demo\", and a data-quality check enforces this.")
+    p(f"NPPA's copyright policy permits reproduction with accuracy and acknowledgement, so its therapeutic-category lists and text-based Authority minutes were parsed from PDF. Scanned minutes were deliberately not read by OCR, since a misread digit would appear as an official price. Imports pass through staging and validation: {m['catalogue_real']} rows were published and {m['review_queue']} wait in a review queue with stated reasons. The Jan Aushadhi portal requires permission to reproduce its data, so that data was not bundled, and demo data stands in. Demo brands all start with \"Demo\", and a data-quality check enforces this.")
     sub("4.5 Privacy and security")
     p("Controls include Argon2id, httpOnly cookies, CSRF tokens, rate limits, lockout, a nonce-based Content Security Policy, private object storage, 7-day retention, data export and hard deletion. A STRIDE threat model is in docs/THREAT_MODEL.md. Known gaps include a single database role, encryption at rest left to the host, and no penetration test.")
 
@@ -380,8 +403,8 @@ def build_report(m: dict) -> None:
 
     head("7. Limitations")
     bullets([
-        "No real brand or retail price data exists in this build, so the main comparison runs on fictional data.",
-        "Real data covers five NPPA therapeutic categories, dated March 2026, without salt forms.",
+        "No real shop prices exist in this build. Real prices are NPPA legal maximums, which vary little between companies.",
+        "Real data covers five ceiling-price categories, dated March 2026 and without salt forms, and new drugs from four sets of minutes.",
         "OCR results are from synthetic data only. No real prescriptions were used.",
         "The look-alike check is a string-similarity screen, not a clinical list.",
         "Hindi and Tamil text is AI-written and awaits native-speaker review.",
@@ -393,7 +416,7 @@ def build_report(m: dict) -> None:
     head("8. Conclusion and future work")
     p("MediCompare shows that a medicine price tool can be designed so that safety rules are enforced by the system, and that those rules can be tested. The evaluation supports mandatory human verification, even on favourable data. It does not show that the product helps anyone yet, because that needs real data and real users.")
     bullets([
-        "Obtain brand data and PMBI permission.",
+        "Obtain real shop prices and PMBI permission.",
         "Obtain legal review, beginning with medical device classification.",
         "Run a consented, ethics-approved evaluation on real prescriptions (protocol in docs/EVALUATION.md).",
         "Test with pharmacists and patients, measuring whether people catch wrong suggestions.",

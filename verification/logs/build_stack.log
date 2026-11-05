@@ -1,311 +1,331 @@
 $ docker compose up -d --build --wait
-Thu Nov  5 14:26:38 UTC 2026
- Image medicompare-migrate Building 
- Image medicompare-worker Building 
+Thu Nov  5 15:24:06 UTC 2026
  Image medicompare-scheduler Building 
- Image medicompare-frontend Building 
+ Image medicompare-worker Building 
  Image medicompare-backend Building 
+ Image medicompare-frontend Building 
+ Image medicompare-migrate Building 
 #1 [internal] load local bake definitions
-#1 reading from stdin 4.70kB done
+#1 reading from stdin 2.59kB done
 #1 DONE 0.0s
 
-#2 [frontend internal] load build definition from Dockerfile
-#2 transferring dockerfile: 657B 0.0s done
+#2 [worker internal] load build definition from Dockerfile
+#2 transferring dockerfile: 781B 0.0s done
 #2 DONE 0.0s
 
-#3 [migrate internal] load build definition from Dockerfile
-#3 transferring dockerfile: 929B 0.0s done
+#3 [frontend internal] load build definition from Dockerfile
+#3 transferring dockerfile: 657B done
 #3 DONE 0.0s
 
-#4 [worker internal] load build definition from Dockerfile
-#4 transferring dockerfile: 781B 0.0s done
+#4 [backend internal] load build definition from Dockerfile
+#4 transferring dockerfile: 929B 0.0s done
 #4 DONE 0.0s
 
-#5 [frontend internal] load metadata for docker.io/library/node:22-bookworm-slim
-#5 DONE 0.1s
+#5 [migrate internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#5 ...
 
-#6 [worker internal] load metadata for docker.io/library/python:3.12-slim-bookworm
-#6 DONE 0.1s
+#6 [frontend internal] load metadata for cgr.dev/chainguard/node:latest
+#6 DONE 1.3s
 
-#7 [frontend internal] load metadata for cgr.dev/chainguard/node:latest
-#7 DONE 0.1s
+#7 [frontend internal] load metadata for docker.io/library/node:22-bookworm-slim
+#7 DONE 1.5s
 
-#8 [frontend internal] load .dockerignore
-#8 transferring context: 99B done
+#5 [worker internal] load metadata for docker.io/library/python:3.12-slim-bookworm
+#5 DONE 1.5s
+
+#8 [scheduler internal] load .dockerignore
+#8 transferring context: 395B done
 #8 DONE 0.0s
 
-#9 [worker internal] load .dockerignore
-#9 transferring context: 395B done
+#9 [frontend internal] load .dockerignore
+#9 transferring context: 99B done
 #9 DONE 0.0s
 
-#10 [migrate 1/8] FROM docker.io/library/python:3.12-slim-bookworm@sha256:da54eb86849fe19be7584d8b3f291fcf0c53c196760ab3d70dc6382f681ef9c0
-#10 resolve docker.io/library/python:3.12-slim-bookworm@sha256:da54eb86849fe19be7584d8b3f291fcf0c53c196760ab3d70dc6382f681ef9c0 0.0s done
+#10 [migrate internal] load build context
+#10 transferring context: 176.13kB 0.0s done
 #10 DONE 0.0s
 
-#11 [scheduler internal] load build context
-#11 transferring context: 703.28kB 0.0s done
+#11 [worker 1/8] FROM docker.io/library/python:3.12-slim-bookworm@sha256:da54eb86849fe19be7584d8b3f291fcf0c53c196760ab3d70dc6382f681ef9c0
+#11 resolve docker.io/library/python:3.12-slim-bookworm@sha256:da54eb86849fe19be7584d8b3f291fcf0c53c196760ab3d70dc6382f681ef9c0 0.0s done
 #11 DONE 0.0s
 
-#12 [frontend stage-1 1/5] FROM cgr.dev/chainguard/node:latest@sha256:4ad7301975908b87d321af8b9ed41630dc69015976269965ee459c27541df252
-#12 resolve cgr.dev/chainguard/node:latest@sha256:4ad7301975908b87d321af8b9ed41630dc69015976269965ee459c27541df252 0.0s done
+#12 [frontend build 1/6] FROM docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d
+#12 resolve docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d 0.0s done
 #12 DONE 0.0s
 
-#13 [frontend build 1/6] FROM docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d
-#13 resolve docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d 0.0s done
-#13 DONE 0.0s
+#13 [worker internal] load build context
+#13 transferring context: 178.03kB 0.0s done
+#13 DONE 0.1s
 
-#14 [migrate internal] load build context
-#14 transferring context: 701.38kB 0.0s done
-#14 DONE 0.0s
+#14 [migrate 3/8] WORKDIR /srv/backend
+#14 CACHED
 
-#15 [migrate 4/8] COPY backend/pyproject.toml backend/uv.lock ./
+#15 [migrate 5/8] RUN uv sync --frozen --no-dev --no-install-project
 #15 CACHED
 
-#16 [migrate 7/8] COPY --chown=10001 backend/ ./
+#16 [migrate 2/8] RUN pip install --no-cache-dir uv==0.11.21 && apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends tesseract-ocr libgl1 libglib2.0-0 && useradd --create-home --uid 10001 app
 #16 CACHED
 
-#17 [migrate 3/8] WORKDIR /srv/backend
+#17 [migrate 4/8] COPY backend/pyproject.toml backend/uv.lock ./
 #17 CACHED
 
-#18 [migrate 5/8] RUN uv sync --frozen --no-dev --no-install-project
+#18 [migrate 6/8] RUN pip uninstall -y uv setuptools
 #18 CACHED
 
-#19 [migrate 2/8] RUN pip install --no-cache-dir uv==0.11.21 && apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends tesseract-ocr libgl1 libglib2.0-0 && useradd --create-home --uid 10001 app
+#19 [worker 4/9] COPY backend/pyproject.toml backend/uv.lock ./
 #19 CACHED
 
-#20 [migrate 6/8] RUN pip uninstall -y uv setuptools
+#20 [worker 3/9] WORKDIR /srv/backend
 #20 CACHED
 
-#21 [backend 8/8] COPY --chown=10001 data/ /srv/data/
+#21 [worker 2/9] RUN pip install --no-cache-dir uv==0.11.21 && apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends tesseract-ocr libgl1 libglib2.0-0 && useradd --create-home --uid 10001 app
 #21 CACHED
 
-#22 [backend] exporting to image
-#22 ...
+#22 [worker 5/9] RUN uv sync --frozen --no-dev --no-install-project
+#22 CACHED
 
-#23 [worker 5/9] RUN uv sync --frozen --no-dev --no-install-project
+#23 [worker 6/9] RUN pip uninstall -y uv setuptools
 #23 CACHED
 
-#24 [worker 2/9] RUN pip install --no-cache-dir uv==0.11.21 && apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends tesseract-ocr libgl1 libglib2.0-0 && useradd --create-home --uid 10001 app
-#24 CACHED
+#24 [worker 7/9] COPY --chown=10001 backend/ ./
+#24 ...
 
-#25 [worker 3/9] WORKDIR /srv/backend
-#25 CACHED
+#21 [scheduler 2/9] RUN pip install --no-cache-dir uv==0.11.21 && apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends tesseract-ocr libgl1 libglib2.0-0 && useradd --create-home --uid 10001 app
+#21 CACHED
 
-#26 [worker 6/9] RUN pip uninstall -y uv setuptools
-#26 CACHED
+#22 [scheduler 5/9] RUN uv sync --frozen --no-dev --no-install-project
+#22 CACHED
 
-#27 [worker 7/9] COPY --chown=10001 backend/ ./
+#20 [scheduler 3/9] WORKDIR /srv/backend
+#20 CACHED
+
+#19 [scheduler 4/9] COPY backend/pyproject.toml backend/uv.lock ./
+#19 CACHED
+
+#23 [scheduler 6/9] RUN pip uninstall -y uv setuptools
+#23 CACHED
+
+#25 [frontend stage-1 1/5] FROM cgr.dev/chainguard/node:latest@sha256:4ad7301975908b87d321af8b9ed41630dc69015976269965ee459c27541df252
+#25 resolve cgr.dev/chainguard/node:latest@sha256:4ad7301975908b87d321af8b9ed41630dc69015976269965ee459c27541df252 0.1s done
+#25 DONE 0.1s
+
+#26 [frontend internal] load build context
+#26 transferring context: 339.33kB 0.0s done
+#26 DONE 0.1s
+
+#27 [frontend build 2/6] WORKDIR /app
 #27 CACHED
 
-#28 [worker 4/9] COPY backend/pyproject.toml backend/uv.lock ./
+#28 [frontend build 3/6] COPY package.json package-lock.json ./
 #28 CACHED
 
-#29 [worker 8/9] COPY --chown=10001 worker/ /srv/worker/
+#29 [frontend build 4/6] RUN npm ci
 #29 CACHED
 
-#30 [worker 9/9] COPY --chown=10001 data/ /srv/data/
-#30 CACHED
+#24 [worker 7/9] COPY --chown=10001 backend/ ./
+#24 DONE 0.1s
 
-#31 [frontend internal] load build context
-#31 transferring context: 698.61kB 0.0s done
-#31 DONE 0.0s
+#30 [backend 7/8] COPY --chown=10001 backend/ ./
+#30 DONE 0.1s
 
-#32 [frontend build 2/6] WORKDIR /app
-#32 CACHED
+#31 [frontend build 5/6] COPY . .
+#31 DONE 0.1s
 
-#33 [frontend build 3/6] COPY package.json package-lock.json ./
-#33 CACHED
+#32 [scheduler 8/9] COPY --chown=10001 worker/ /srv/worker/
+#32 DONE 0.0s
 
-#34 [frontend build 4/6] RUN npm ci
-#34 CACHED
+#33 [migrate 8/8] COPY --chown=10001 data/ /srv/data/
+#33 DONE 0.1s
 
-#22 [backend] exporting to image
-#22 exporting layers 0.0s done
-#22 exporting manifest sha256:8d4d29c6c1b0176ef4d2be9082a25cafa14ad6acd7a9cb49814e0e5f8f876c12 done
-#22 exporting config sha256:013ed783958a9bb90ba00b5aeab063909fcd5972b16627f09c1974018fa83bcb done
-#22 exporting attestation manifest sha256:1200a6ac6a7d361bb29be7fd0170d7d7a4ade9ec6c26599560d07747aee4a9c0
-#22 ...
+#34 [migrate] exporting to image
+#34 exporting layers
+#34 ...
 
-#35 [frontend build 5/6] COPY . .
-#35 DONE 0.1s
+#35 [scheduler 9/9] COPY --chown=10001 data/ /srv/data/
+#35 DONE 0.0s
 
-#36 [worker] exporting to image
-#36 exporting layers done
-#36 exporting manifest sha256:7533b19fff9102f18d72b35492ea0e158847c8df41e57222c5968d7258694f60 done
-#36 exporting config sha256:537ce15e358859f91798fe5fc197ff1bb43f2dde9840adde9436a63a4304a36c done
-#36 exporting attestation manifest sha256:422c2c8b5a5779f08977ac6e916e947f841377a97b1a891f411d054c796ca926 0.0s done
-#36 exporting manifest list sha256:0f0552a861d896e8903c5f50a377013f9f718da196051a4fa2e0eaf09b83315f 0.0s done
-#36 naming to docker.io/library/medicompare-worker:latest 0.0s done
-#36 unpacking to docker.io/library/medicompare-worker:latest done
-#36 DONE 0.2s
+#34 [migrate] exporting to image
+#34 exporting layers 0.2s done
+#34 exporting manifest sha256:3c73a62f30bd734197e49de185e066f9fadf6ed639e792fe8fc0b608c7724313 0.1s done
+#34 exporting config sha256:68c8fdd28219dde348dc832480df04252459383b2f4520b919b3d8532e1b8a33 0.0s done
+#34 exporting attestation manifest sha256:4291bc5807380f3dd4b7f1ea4aaa9ef30169b2a095a0521c12f92d3497604319 0.0s done
+#34 exporting manifest list sha256:9cfa2ff78fde84c5b244f04326c1ee5c897d93028ca415cb7f75586a11fd5297 0.0s done
+#34 naming to docker.io/library/medicompare-migrate:latest
+#34 naming to docker.io/library/medicompare-migrate:latest 0.0s done
+#34 unpacking to docker.io/library/medicompare-migrate:latest
+#34 ...
 
-#37 [migrate] exporting to image
-#37 exporting layers 0.0s done
-#37 exporting manifest sha256:ade1189692a0d4003788c9170d0156f8800ea890410bc57ac423b3b702832a59 done
-#37 exporting config sha256:54463610d4de74c266b1a5c53bae9061480f158bcbb4000e60c07f9422869d85 done
-#37 exporting attestation manifest sha256:836f89ab0a1f77f4e8d62b8e88dd9a319cf47f66bd2215bc16aa20e93400c937 0.0s done
-#37 exporting manifest list sha256:5fe2d40d9123e8e5612eb1e2e3efa4923f8f1174e0b510d73246f5a9f88b7428 0.0s done
-#37 naming to docker.io/library/medicompare-migrate:latest 0.0s done
-#37 unpacking to docker.io/library/medicompare-migrate:latest done
-#37 DONE 0.2s
+#36 [backend] exporting to image
+#36 exporting layers 0.2s done
+#36 exporting manifest sha256:a2781d5288d3aa693583c3e24cf7085073eacb82b2fd9bd40bca68d8ab44eab6 0.0s done
+#36 exporting config sha256:3eacf75284c7232d7ffb0164e24e02ce2d418b88c7a85ab3c6be46d05aa09042 0.0s done
+#36 exporting attestation manifest sha256:ed60019d6b83fb6d54c61d1131e74864810da34c3201f509a714418292f604f6 0.0s done
+#36 exporting manifest list sha256:7a9f68d006e666c20ffc8b2c4d2f1a14f6acd1b83a8e797216c368f7f83a0f2b 0.0s done
+#36 naming to docker.io/library/medicompare-backend:latest 0.0s done
+#36 unpacking to docker.io/library/medicompare-backend:latest 0.1s done
+#36 DONE 0.5s
+
+#34 [migrate] exporting to image
+#34 unpacking to docker.io/library/medicompare-migrate:latest 0.1s done
+#34 DONE 0.6s
+
+#37 [worker] exporting to image
+#37 exporting layers 0.3s done
+#37 exporting manifest sha256:aad05c5c21d1eb4db16c26549655343a714f8796275487e1f8f5b6953fbcfcd8 0.0s done
+#37 exporting config sha256:6cc3b14e1cc532c9f625baf73a8fe327f8b0941c8082621997eb6012145dab01 0.0s done
+#37 exporting attestation manifest sha256:e154ec4e2a8ec4e75bfa5fb8d5f4b1040401d98dacbaf7831504e86cb0802609 0.0s done
+#37 exporting manifest list sha256:91b2d545082f3e3ca6f21ecdcee10b7a3f455cb9d94f3e60f939e1aa176f3637 0.0s done
+#37 naming to docker.io/library/medicompare-worker:latest done
+#37 unpacking to docker.io/library/medicompare-worker:latest 0.1s done
+#37 DONE 0.6s
 
 #38 [scheduler] exporting to image
-#38 exporting layers done
-#38 exporting manifest sha256:864b6620efca6d0e4744f1d042917362508e7db4a31861764f8c814d25972523 done
-#38 exporting config sha256:18356fe84772a37970132cc9f922196fda207ea36b9641a3efae201c38e47e63 done
-#38 exporting attestation manifest sha256:7721993f87cab38ce70b73277f77e58195ca3d62c8c8d3ab8daf86b5b3158538 0.0s done
-#38 exporting manifest list sha256:8453999d906a6acc464a10ce1c0c64c857fd40ae4dbb7273ac553ed8edef916d 0.1s done
+#38 exporting layers 0.3s done
+#38 exporting manifest sha256:771474aaa0b7dfb0336c796a78664c6a3402b13aad48a1dde57eca32d809d1a1 0.0s done
+#38 exporting config sha256:c700a09efad06e4231510ffbea792c1d07d93bbd1ed5d0fe21e45be42cb827a5 0.0s done
+#38 exporting attestation manifest sha256:d4bdcd6148213b7033fb34558c88c20c698c3eb156aad0c55cb2e4737b0c0924 0.0s done
+#38 exporting manifest list sha256:a05673a97036f9feed2a4fd2d424c6051e34c5a88d0a1776cadd4896fcab042b 0.0s done
 #38 naming to docker.io/library/medicompare-scheduler:latest done
-#38 unpacking to docker.io/library/medicompare-scheduler:latest done
-#38 DONE 0.2s
+#38 unpacking to docker.io/library/medicompare-scheduler:latest 0.1s done
+#38 DONE 0.6s
 
-#22 [backend] exporting to image
-#22 exporting attestation manifest sha256:1200a6ac6a7d361bb29be7fd0170d7d7a4ade9ec6c26599560d07747aee4a9c0 0.0s done
-#22 exporting manifest list sha256:f756fc72e66b3e783ce108d313b00fca0697f008971ce112e714d2a63c45573c 0.0s done
-#22 naming to docker.io/library/medicompare-backend:latest 0.0s done
-#22 unpacking to docker.io/library/medicompare-backend:latest done
-#22 DONE 0.2s
+#39 [backend] resolving provenance for metadata file
+#39 DONE 0.1s
 
-#39 [frontend build 6/6] RUN npm run build
-#39 ...
+#40 [migrate] resolving provenance for metadata file
+#40 DONE 0.1s
 
-#40 [scheduler] resolving provenance for metadata file
-#40 DONE 0.0s
-
-#41 [backend] resolving provenance for metadata file
+#41 [scheduler] resolving provenance for metadata file
 #41 DONE 0.0s
 
 #42 [worker] resolving provenance for metadata file
-#42 DONE 0.1s
+#42 DONE 0.0s
 
-#43 [migrate] resolving provenance for metadata file
-#43 DONE 0.1s
-
-#39 [frontend build 6/6] RUN npm run build
-#39 1.449 
-#39 1.449 > medicompare-frontend@1.0.0 build
-#39 1.449 > next build
-#39 1.449 
-#39 2.622    ▲ Next.js 15.5.29
-#39 2.623 
-#39 2.643    Creating an optimized production build ...
-#39 7.573  ✓ Compiled successfully in 4.8s
-#39 7.577    Linting and checking validity of types ...
-#39 11.62    Collecting page data ...
-#39 12.57    Generating static pages (0/3) ...
-#39 12.82  ✓ Generating static pages (3/3)
-#39 13.29    Finalizing page optimization ...
-#39 13.29    Collecting build traces ...
-#39 24.12 
-#39 24.13 Route (app)                                         Size  First Load JS
-#39 24.13 ┌ ○ /_not-found                                    991 B         104 kB
-#39 24.13 ├ ƒ /[locale]                                      302 B         132 kB
-#39 24.13 ├ ƒ /[locale]/about                                276 B         115 kB
-#39 24.13 ├ ƒ /[locale]/account                              167 B         129 kB
-#39 24.13 ├ ƒ /[locale]/admin                                166 B         129 kB
-#39 24.13 ├ ƒ /[locale]/jan-aushadhi                         169 B         132 kB
-#39 24.13 ├ ƒ /[locale]/login                                166 B         129 kB
-#39 24.13 ├ ƒ /[locale]/medicines/[id]                       170 B         132 kB
-#39 24.13 ├ ƒ /[locale]/pharmacist                           173 B         138 kB
-#39 24.13 ├ ƒ /[locale]/pharmacist/[id]                      172 B         138 kB
-#39 24.13 ├ ƒ /[locale]/pharmacist/register                  170 B         129 kB
-#39 24.13 ├ ƒ /[locale]/prescriptions                        173 B         138 kB
-#39 24.13 ├ ƒ /[locale]/prescriptions/[id]                   173 B         138 kB
-#39 24.13 ├ ƒ /[locale]/prescriptions/[id]/items/[itemId]    172 B         138 kB
-#39 24.13 ├ ƒ /[locale]/prescriptions/[id]/summary           173 B         138 kB
-#39 24.13 ├ ƒ /[locale]/prescriptions/new                    173 B         138 kB
-#39 24.13 ├ ƒ /[locale]/privacy                              276 B         115 kB
-#39 24.13 ├ ƒ /[locale]/register                             170 B         129 kB
-#39 24.13 ├ ƒ /[locale]/search                               290 B         132 kB
-#39 24.13 └ ƒ /[locale]/shared/[token]                       173 B         138 kB
-#39 24.13 + First Load JS shared by all                     103 kB
-#39 24.13   ├ chunks/255-73938ce8a8eac1ad.js               46.6 kB
-#39 24.13   ├ chunks/4bd1b696-c023c6e3521b1417.js          54.2 kB
-#39 24.13   └ other shared chunks (total)                   1.9 kB
-#39 24.13 
-#39 24.13 
-#39 24.13 ƒ Middleware                                     46.7 kB
-#39 24.13 
-#39 24.13 ○  (Static)   prerendered as static content
-#39 24.13 ƒ  (Dynamic)  server-rendered on demand
-#39 24.13 
-#39 DONE 24.4s
+#43 [frontend build 6/6] RUN npm run build
+#43 1.688 
+#43 1.688 > medicompare-frontend@1.0.0 build
+#43 1.688 > next build
+#43 1.688 
+#43 4.969    ▲ Next.js 15.5.29
+#43 4.969 
+#43 4.997    Creating an optimized production build ...
+#43 12.01  ✓ Compiled successfully in 6.7s
+#43 12.02    Linting and checking validity of types ...
+#43 18.68    Collecting page data ...
+#43 19.85    Generating static pages (0/3) ...
+#43 20.11  ✓ Generating static pages (3/3)
+#43 20.52    Finalizing page optimization ...
+#43 20.52    Collecting build traces ...
+#43 31.86 
+#43 31.87 Route (app)                                         Size  First Load JS
+#43 31.87 ┌ ○ /_not-found                                    991 B         104 kB
+#43 31.87 ├ ƒ /[locale]                                      302 B         132 kB
+#43 31.87 ├ ƒ /[locale]/about                                276 B         115 kB
+#43 31.87 ├ ƒ /[locale]/account                              167 B         129 kB
+#43 31.87 ├ ƒ /[locale]/admin                                166 B         129 kB
+#43 31.87 ├ ƒ /[locale]/jan-aushadhi                         169 B         132 kB
+#43 31.87 ├ ƒ /[locale]/login                                166 B         129 kB
+#43 31.87 ├ ƒ /[locale]/medicines/[id]                       170 B         132 kB
+#43 31.87 ├ ƒ /[locale]/pharmacist                           173 B         138 kB
+#43 31.87 ├ ƒ /[locale]/pharmacist/[id]                      172 B         138 kB
+#43 31.87 ├ ƒ /[locale]/pharmacist/register                  170 B         129 kB
+#43 31.87 ├ ƒ /[locale]/prescriptions                        173 B         138 kB
+#43 31.87 ├ ƒ /[locale]/prescriptions/[id]                   173 B         138 kB
+#43 31.87 ├ ƒ /[locale]/prescriptions/[id]/items/[itemId]    172 B         138 kB
+#43 31.87 ├ ƒ /[locale]/prescriptions/[id]/summary           173 B         138 kB
+#43 31.87 ├ ƒ /[locale]/prescriptions/new                    173 B         138 kB
+#43 31.87 ├ ƒ /[locale]/privacy                              276 B         115 kB
+#43 31.87 ├ ƒ /[locale]/register                             170 B         129 kB
+#43 31.87 ├ ƒ /[locale]/search                               290 B         132 kB
+#43 31.87 └ ƒ /[locale]/shared/[token]                       173 B         138 kB
+#43 31.87 + First Load JS shared by all                     103 kB
+#43 31.87   ├ chunks/255-73938ce8a8eac1ad.js               46.6 kB
+#43 31.87   ├ chunks/4bd1b696-c023c6e3521b1417.js          54.2 kB
+#43 31.87   └ other shared chunks (total)                   1.9 kB
+#43 31.87 
+#43 31.87 
+#43 31.87 ƒ Middleware                                     46.7 kB
+#43 31.87 
+#43 31.87 ○  (Static)   prerendered as static content
+#43 31.87 ƒ  (Dynamic)  server-rendered on demand
+#43 31.87 
+#43 DONE 32.1s
 
 #44 [frontend stage-1 2/5] WORKDIR /app
 #44 CACHED
 
 #45 [frontend stage-1 3/5] COPY --from=build /app/.next/standalone ./
-#45 DONE 0.5s
+#45 DONE 0.9s
 
 #46 [frontend stage-1 4/5] COPY --from=build /app/.next/static ./.next/static
-#46 DONE 0.0s
+#46 DONE 0.1s
 
 #47 [frontend stage-1 5/5] COPY --from=build /app/public ./public
-#47 DONE 0.0s
+#47 DONE 0.1s
 
 #48 [frontend] exporting to image
 #48 exporting layers
 #48 exporting layers 1.8s done
-#48 exporting manifest sha256:fd675a20940a09c1ce33b56c544efd16dad37adba4344e44ef1ea4acf9048ed8 done
-#48 exporting config sha256:93fe9fc055bf101e4d7cd416606d2519cdfbdd8bf927f800d1af6fe1c53ed86c done
-#48 exporting attestation manifest sha256:dbd6e1043f00248caec62da2fcbdc4abb70a92487afc84af213191fb68ee469d done
-#48 exporting manifest list sha256:ec978acef090f62b3bfd462bb6b5f0e99a52f16b4e7f0b5a9cfee8f819a2d084 done
+#48 exporting manifest sha256:44995bd9e0f4883380043bf9a0e2c49f5b36900b46ca48da717bd386b3ecac29 done
+#48 exporting config sha256:4673042cfbe3cffe3651cb914283209d4d0fb10d4fe06fd77608169928ee4127 done
+#48 exporting attestation manifest sha256:e8941c5009f63fa06be86c52462ecb61d50401b92e1d35ab1cab2061a7e04f2c done
+#48 exporting manifest list sha256:807ad5131307a33b9719d4ad974a3994e1d78e805f5b567f3a808f6a7c7ccf75 done
 #48 naming to docker.io/library/medicompare-frontend:latest done
 #48 unpacking to docker.io/library/medicompare-frontend:latest
-#48 unpacking to docker.io/library/medicompare-frontend:latest 0.4s done
-#48 DONE 2.2s
+#48 unpacking to docker.io/library/medicompare-frontend:latest 0.6s done
+#48 DONE 2.5s
 
 #49 [frontend] resolving provenance for metadata file
 #49 DONE 0.0s
+ Image medicompare-migrate Built 
+ Image medicompare-worker Built 
  Image medicompare-backend Built 
  Image medicompare-frontend Built 
  Image medicompare-scheduler Built 
- Image medicompare-migrate Built 
- Image medicompare-worker Built 
- Volume medicompare_pgdata Creating 
- Volume medicompare_miniodata Creating 
  Network medicompare_default Creating 
  Volume medicompare_miniodata Creating 
- Network medicompare_default Creating 
  Volume medicompare_pgdata Creating 
- Volume medicompare_miniodata Created 
- Volume medicompare_miniodata Created 
+ Volume medicompare_miniodata Creating 
+ Volume medicompare_pgdata Creating 
+ Network medicompare_default Creating 
  Volume medicompare_pgdata Created 
  Volume medicompare_pgdata Created 
+ Volume medicompare_miniodata Created 
+ Volume medicompare_miniodata Created 
  Network medicompare_default Created 
  Network medicompare_default Created 
  Container medicompare-minio-1 Creating 
  Container medicompare-redis-1 Creating 
  Container medicompare-postgres-1 Creating 
  Container medicompare-redis-1 Created 
- Container medicompare-minio-1 Created 
  Container medicompare-postgres-1 Created 
+ Container medicompare-minio-1 Created 
  Container medicompare-migrate-1 Creating 
  Container medicompare-migrate-1 Created 
  Container medicompare-worker-1 Creating 
  Container medicompare-scheduler-1 Creating 
  Container medicompare-backend-1 Creating 
  Container medicompare-scheduler-1 Created 
- Container medicompare-worker-1 Created 
  Container medicompare-backend-1 Created 
  Container medicompare-frontend-1 Creating 
+ Container medicompare-worker-1 Created 
  Container medicompare-frontend-1 Created 
- Container medicompare-postgres-1 Starting 
  Container medicompare-redis-1 Starting 
  Container medicompare-minio-1 Starting 
- Container medicompare-postgres-1 Started 
+ Container medicompare-postgres-1 Starting 
  Container medicompare-redis-1 Started 
  Container medicompare-minio-1 Started 
+ Container medicompare-postgres-1 Started 
  Container medicompare-postgres-1 Waiting 
  Container medicompare-postgres-1 Healthy 
  Container medicompare-migrate-1 Starting 
  Container medicompare-migrate-1 Started 
  Container medicompare-redis-1 Waiting 
  Container medicompare-migrate-1 Waiting 
- Container medicompare-migrate-1 Waiting 
  Container medicompare-redis-1 Waiting 
  Container medicompare-migrate-1 Waiting 
  Container medicompare-redis-1 Waiting 
+ Container medicompare-migrate-1 Waiting 
  Container medicompare-redis-1 Healthy 
  Container medicompare-redis-1 Healthy 
  Container medicompare-redis-1 Healthy 
@@ -322,19 +342,19 @@ Thu Nov  5 14:26:38 UTC 2026
  Container medicompare-backend-1 Healthy 
  Container medicompare-frontend-1 Starting 
  Container medicompare-frontend-1 Started 
- Container medicompare-postgres-1 Waiting 
  Container medicompare-frontend-1 Waiting 
- Container medicompare-backend-1 Waiting 
- Container medicompare-scheduler-1 Waiting 
- Container medicompare-migrate-1 Waiting 
  Container medicompare-worker-1 Waiting 
+ Container medicompare-postgres-1 Waiting 
+ Container medicompare-backend-1 Waiting 
+ Container medicompare-migrate-1 Waiting 
+ Container medicompare-scheduler-1 Waiting 
  Container medicompare-redis-1 Waiting 
  Container medicompare-minio-1 Waiting 
- Container medicompare-scheduler-1 Healthy 
- Container medicompare-redis-1 Healthy 
- Container medicompare-postgres-1 Healthy 
+ Container medicompare-worker-1 Healthy 
  Container medicompare-minio-1 Healthy 
  Container medicompare-migrate-1 Exited 
+ Container medicompare-scheduler-1 Healthy 
+ Container medicompare-redis-1 Healthy 
  Container medicompare-backend-1 Healthy 
- Container medicompare-worker-1 Healthy 
+ Container medicompare-postgres-1 Healthy 
  Container medicompare-frontend-1 Healthy 

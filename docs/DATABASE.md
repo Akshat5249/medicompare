@@ -18,7 +18,7 @@ Source: [diagrams/er.mmd](diagrams/er.mmd).
 | `medicine_ingredients` | Composition | Salt may be NULL, meaning unstated. `strength_value > 0` |
 | `brands`, `manufacturers` | Brand data | Demo only in this build |
 | `pack_sizes` | Quantity and unit | Quantity must be positive |
-| `price_observations` | Append-only prices | `price_type` constrained, `amount_inr > 0`, `observed_at`, `valid_from`, `valid_to`, `is_demo`, batch and row provenance |
+| `price_observations` | Append-only prices | `price_type` (`ceiling`, `notified_retail`, `catalogue`, `mrp`, `indicative`) constrained, `amount_inr > 0`, `observed_at`, `valid_from`, `valid_to`, `is_demo`, batch and row provenance |
 | `regulatory_flags` | Notices with source and date | Constrained `flag_type` |
 | `lasa_pairs` | Look-alike names | `origin` says computed or clinical |
 | `jan_aushadhi_products`, `jan_aushadhi_kendras` | PMBJP data | No stock column exists. PIN checked by constraint |

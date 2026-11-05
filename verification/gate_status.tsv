@@ -1,17 +1,17 @@
-build_stack	PASS	54	docker compose up -d --build --wait
+build_stack	PASS	66	docker compose up -d --build --wait
 seed_demo_users	PASS	3	docker compose exec -T backend python -m app.cli seed-demo-users
-lint	PASS	5	make -s lint
-types	PASS	19	make -s types
-backend_tests	PASS	47	make -s test-backend
-safety_suite	PASS	11	make -s test-safety
-frontend_tests	PASS	5	make -s test-frontend
-smoke	PASS	0	make -s smoke
+lint	PASS	103	make -s lint
+types	PASS	29	make -s types
+backend_tests	PASS	54	make -s test-backend
+safety_suite	PASS	12	make -s test-safety
+frontend_tests	PASS	4	make -s test-frontend
+smoke	PASS	1	make -s smoke
 data_quality	PASS	3	make -s data-check
-e2e_accessibility	PASS	58	make -s e2e
+e2e_accessibility	PASS	65	make -s e2e
 demo_media	PASS	1	backend/.venv/bin/python scripts/collect_demo.py
-performance	PASS	121	make -s perf
+performance	PASS	131	make -s perf
 backup_restore	PASS	2	make -s backup-test
-security	PASS	18	make -s security
-zap_baseline	PASS	54	bash scripts/zap_baseline.sh
-prod_config	PASS	1	docker compose --env-file scripts/prod.env.check -f docker-compose.yml -f docker-compose.prod.yml config --quiet
-docs	PASS	55	make -s docs-check
+security	PASS	69	make -s security
+zap_baseline	PASS	143	bash scripts/zap_baseline.sh
+prod_config	PASS	0	docker compose --env-file scripts/prod.env.check -f docker-compose.yml -f docker-compose.prod.yml config --quiet
+docs	PASS	75	make -s docs-check

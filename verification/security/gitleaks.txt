@@ -1,2 +1,19 @@
-[90m2:32PM[0m [32mINF[0m [1mscanned ~4136177 bytes (4.14 MB) in 482ms[0m
-[90m2:32PM[0m [32mINF[0m [1mno leaks found[0m
+Unable to find image 'zricethezav/gitleaks:v8.28.0' locally
+v8.28.0: Pulling from zricethezav/gitleaks
+07e9a47f0c33: Pulling fs layer
+8b608696b82a: Pulling fs layer
+2bdec7b61b4a: Pulling fs layer
+e5e72595f9db: Pulling fs layer
+8b608696b82a: Download complete
+07e9a47f0c33: Download complete
+07e9a47f0c33: Pull complete
+e5e72595f9db: Download complete
+e0b7a96b405c: Download complete
+2bdec7b61b4a: Download complete
+2bdec7b61b4a: Pull complete
+8b608696b82a: Pull complete
+e5e72595f9db: Pull complete
+Digest: sha256:cdbb7c955abce02001a9f6c9f602fb195b7fadc1e812065883f695d1eeaba854
+Status: Downloaded newer image for zricethezav/gitleaks:v8.28.0
+[90m3:32PM[0m [32mINF[0m [1mscanned ~9062002 bytes (9.06 MB) in 983ms[0m
+[90m3:32PM[0m [32mINF[0m [1mno leaks found[0m

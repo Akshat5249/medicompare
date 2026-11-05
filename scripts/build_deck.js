@@ -77,7 +77,7 @@ const framed = (slide, name, x, y, maxW, maxH, alt) => {
 let slide = pres.addSlide({ masterName: "DARK" });
 slide.addText("MediCompare", { placeholder: "title" });
 text(slide, "Medicine prices you can trace to a source. Software proposes, a person decides.", { x: 0.8, y: 2.9, w: 10.5, h: 1.2, fontSize: 26, color: C.background1 });
-text(slide, "Working, tested prototype. Not deployed. Brand products and shop prices shown are fictional demo data.", { x: 0.8, y: 5.6, w: 10.5, h: 0.8, fontSize: 16, color: C.background2 });
+text(slide, "Working, tested prototype. Not deployed. Real prices are NPPA legal maximums. Shop prices shown are fictional demo data.", { x: 0.8, y: 5.6, w: 10.5, h: 0.8, fontSize: 16, color: C.background2 });
 slide.addNotes("Say at the start that this is a prototype, and that brand data is fictional.");
 
 // 2
@@ -130,7 +130,7 @@ text(slide, "Emergency language in search, typing or OCR text shows 112, in Engl
 slide = content("A modular monolith, with OCR isolated in a worker", "Safety, matching and pricing are pure, strictly typed modules.");
 slide.addImage({ path: path.join(ROOT, "portfolio/demo/slides/container.png"), x: 0.6, y: 1.55, ...JSON.parse(fs.readFileSync(path.join(ROOT, "portfolio/demo/slides/sizes.json"))).containerFit, altText: "Container diagram of the system" });
 card(slide, 8.3, 1.7, 4.43, 2.2, "Pure core", "Safety, matching and pricing depend on no web or database code.");
-card(slide, 8.3, 4.15, 4.43, 2.4, "Provenance", `${m.catalogue_real} real NPPA rows with batch and row links. ${m.review_queue} sent to review rather than guessed.`);
+card(slide, 8.3, 4.15, 4.43, 2.4, "Provenance", `${m.catalogue_real} real NPPA rows with batch and row links. ${m.review_queue} sent to review, not guessed.`);
 
 // 8
 slide = content("Safety rules are enforced in code, and tested", `${m.safety_tests} tests in the safety suite.`);
@@ -170,7 +170,7 @@ card(slide, 0.6, 3.9, 12.13, 2.5, "Testing caught real mistakes", "Partial words
 
 // 11
 slide = content("What is not done yet matters most", "State these without being asked.");
-card(slide, 0.6, 1.7, 5.9, 2.3, "Data", "Brands and shop prices are fictional. Real data covers 5 NPPA categories, without salt forms. Jan Aushadhi data needs PMBI's permission.", AMBER_TINT);
+card(slide, 0.6, 1.7, 5.9, 2.3, "Data", "Shop prices are fictional. Real data is NPPA's legal maximums for part of the market. Jan Aushadhi data needs PMBI's permission.", AMBER_TINT);
 card(slide, 6.83, 1.7, 5.9, 2.3, "Evidence", "No real handwriting evaluation. No users, no user research and no measured savings.", AMBER_TINT);
 card(slide, 0.6, 4.25, 5.9, 2.3, "Review", "No legal review, including whether this is medical device software. Hindi and Tamil need native review.", AMBER_TINT);
 card(slide, 6.83, 4.25, 5.9, 2.3, "Operations", "Not deployed. CI has not run on GitHub. No penetration test, and no test on a real low-end phone.", AMBER_TINT);
@@ -178,7 +178,7 @@ card(slide, 6.83, 4.25, 5.9, 2.3, "Operations", "Not deployed. CI has not run on
 // 12
 slide = pres.addSlide({ masterName: "DARK" });
 slide.addText("What comes next", { placeholder: "title" });
-["Get brand data, and permission from PMBI", "Get legal review, starting with device classification", "Run a consented, ethics-approved real-data evaluation", "Test with pharmacists and patients"].forEach((item, index) => {
+["Get real shop prices, and permission from PMBI", "Get legal review, starting with device classification", "Run a consented, ethics-approved real-data evaluation", "Test with pharmacists and patients"].forEach((item, index) => {
   slide.addShape(pres.ShapeType.ellipse, { x: 0.8, y: 2.95 + index * 0.85, w: 0.55, h: 0.55, fill: { color: WHITE }, line: { color: WHITE }, objectName: `Step ${index + 1}` });
   text(slide, String(index + 1), { x: 0.8, y: 2.95 + index * 0.85, w: 0.55, h: 0.55, fontSize: 18, bold: true, align: "center", valign: "middle", color: C.text2 });
   text(slide, item, { x: 1.6, y: 2.95 + index * 0.85, w: 10.5, h: 0.55, fontSize: 22, valign: "middle", color: C.background1 });

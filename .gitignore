@@ -26,3 +26,4 @@ uploads/
 .DS_Store
 medicompare.zip
 SHA256SUMS
+*.egg-info/

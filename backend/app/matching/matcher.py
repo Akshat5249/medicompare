@@ -158,7 +158,7 @@ def match(
                 score -= 0.1
                 reasons.append("Dosage form differs from what is written.")
         if release_code is not None:
-            if release_code == entry.release_type:
+            if release_code == entry.release_type.split(":")[0]:
                 score += 0.05
                 reasons.append("Release type matches what is written.")
             else:

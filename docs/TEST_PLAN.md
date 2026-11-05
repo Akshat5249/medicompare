@@ -16,6 +16,7 @@
 | Accounts and privacy | `backend/tests/test_accounts_privacy.py` | Sessions, lockout, CSRF, roles, consent, export, deletion of rows and objects, retention, rate limits |
 | Pipeline | `backend/tests/test_pipeline.py` | Upload rejection, metadata stripping, pre-processing, both OCR engines, injection images and PDFs, LLM adapter |
 | Portal and admin | `backend/tests/test_portal_admin.py` | Pharmacist access, share links with 410, summary content, import staging, review queue, importers, provenance |
+| NPPA retail import | `backend/tests/test_nppa_retail.py` | Composition parsing from real rows, refusals, strength basis, release per ingredient, real-only mode |
 | UI | `frontend/src/test/components.test.tsx` | All screens and states, translation completeness, no-stock wording, CSP |
 | End-to-end | `frontend/e2e/main-flows.spec.ts` | Main flows and key failures; axe on every page |
 

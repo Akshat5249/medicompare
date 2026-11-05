@@ -39,6 +39,7 @@ def utcnow() -> datetime:
 
 class PriceType(enum.StrEnum):
     ceiling = "ceiling"
+    notified_retail = "notified_retail"
     catalogue = "catalogue"
     mrp = "mrp"
     indicative = "indicative"
@@ -189,8 +190,9 @@ class Route(Base):
 class ReleaseType(Base):
     __tablename__ = "release_types"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    code: Mapped[str] = mapped_column(String(40), unique=True)
-    label: Mapped[str] = mapped_column(String(120))
+    # A code can name the ingredient it applies to, for example "extended:metformin".
+    code: Mapped[str] = mapped_column(String(240), unique=True)
+    label: Mapped[str] = mapped_column(String(300))
 
 
 # ---------------------------------------------------------------- medicines
@@ -204,6 +206,7 @@ class Medicine(Base, TimestampMixin):
     route_id: Mapped[int] = mapped_column(ForeignKey("routes.id"))
     release_type_id: Mapped[int] = mapped_column(ForeignKey("release_types.id"))
     therapeutic_category: Mapped[str | None] = mapped_column(String(80))
+    marketed_by: Mapped[str | None] = mapped_column(String(400))
     # Canonical key of composition, form, route, release; candidates only. equivalence.py decides.
     equivalence_key: Mapped[str] = mapped_column(String(800), index=True)
     ingredient_key: Mapped[str] = mapped_column(String(400), index=True)
@@ -286,7 +289,7 @@ class PriceObservation(Base):
         ForeignKey("medicines.id", ondelete="CASCADE"), index=True
     )
     pack_size_id: Mapped[int] = mapped_column(ForeignKey("pack_sizes.id", ondelete="CASCADE"))
-    price_type: Mapped[str] = mapped_column(String(16))
+    price_type: Mapped[str] = mapped_column(String(24))
     amount_inr: Mapped[Decimal] = mapped_column(Numeric(12, 2))
     source_id: Mapped[int] = mapped_column(ForeignKey("data_sources.id"))
     batch_id: Mapped[int | None] = mapped_column(
@@ -302,7 +305,8 @@ class PriceObservation(Base):
     pack_size: Mapped[PackSize] = relationship()
     __table_args__ = (
         CheckConstraint(
-            "price_type IN ('ceiling','catalogue','mrp','indicative')", name="ck_price_type"
+            "price_type IN ('ceiling','notified_retail','catalogue','mrp','indicative')",
+            name="ck_price_type",
         ),
         CheckConstraint("amount_inr > 0", name="ck_price_positive"),
     )

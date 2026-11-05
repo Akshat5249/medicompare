@@ -1,5 +1,5 @@
 $ make -s data-check
-Thu Nov  5 14:29:02 UTC 2026
+Thu Nov  5 15:28:38 UTC 2026
 {
   "passed": true,
   "checks": {
@@ -14,10 +14,10 @@ Thu Nov  5 14:29:02 UTC 2026
     "real_medicine_uses_demo_brand": 0
   },
   "counts": {
-    "medicines": 379,
-    "price_observations": 373,
+    "medicines": 478,
+    "price_observations": 472,
     "jan_aushadhi_products": 20,
     "jan_aushadhi_kendras": 14,
-    "lasa_pairs": 8
+    "lasa_pairs": 10
   }
 }

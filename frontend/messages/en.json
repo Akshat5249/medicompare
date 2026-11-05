@@ -44,7 +44,7 @@
     "cardRxBody": "Upload it or type it in. You confirm every medicine before any comparison.",
     "cardJaTitle": "Find Jan Aushadhi",
     "cardJaBody": "Look up catalogue listings and Kendras near a PIN code.",
-    "demoNotice": "Brand names and shop prices here are Demo data. Government ceiling prices come from NPPA."
+    "demoNotice": "Real data comes from NPPA: ceiling prices and notified retail prices, which are legal maximums and not shop prices. Anything marked Demo data is fictional."
   },
   "search": {
     "title": "Search results",
@@ -85,7 +85,8 @@
     "updated": "Last updated: {date}",
     "stale": "May be out of date",
     "staleHelp": "This is older than how often the source normally updates.",
-    "ceilingHelp": "A ceiling price is the legal maximum for this formulation. It is not what a shop charges."
+    "ceilingHelp": "A ceiling price is the legal maximum for this formulation. It is not what a shop charges.",
+    "notifiedHelp": "A notified retail price is the legal maximum NPPA set for this company's product. It is not a shop price. The Gazette notification is the official version."
   },
   "options": {
     "title": "Options to discuss with your doctor or pharmacist",
@@ -128,7 +129,8 @@
     "pinInvalid": "Enter a 6-digit PIN code.",
     "noKendras": "No Kendras found in our directory for this search.",
     "distance": "{km} km away",
-    "contact": "This directory does not show what a Kendra has. Contact the Kendra before you travel."
+    "contact": "This directory does not show what a Kendra has. Contact the Kendra before you travel.",
+    "notLoaded": "Real PMBJP data is not loaded yet, because it needs permission from PMBI. No listings or Kendras can be shown."
   },
   "rx": {
     "title": "Prescriptions",
@@ -329,7 +331,7 @@
     "body": "MediCompare helps you understand medicine prices in India. Every price shows its type, source and date.",
     "isNot": "MediCompare is not a pharmacy, seller, prescriber, diagnostic tool, dosing or interaction advisor, teleconsultation service or emergency service.",
     "neutral": "Payments and partnerships never influence how results are ranked.",
-    "data": "Ceiling prices are reproduced from the National Pharmaceutical Pricing Authority (NPPA), Government of India. Brand products, shop prices and Jan Aushadhi entries in this version are Demo data."
+    "data": "Ceiling prices and notified retail prices are reproduced from the National Pharmaceutical Pricing Authority (NPPA), Government of India. These are legal maximums, not shop prices. In this version, anything marked Demo data is fictional, including all Jan Aushadhi entries and shop prices."
   },
   "privacy": {
     "title": "Privacy",

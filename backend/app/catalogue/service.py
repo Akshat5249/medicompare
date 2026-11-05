@@ -328,7 +328,7 @@ def medicine_detail(medicine: Medicine) -> dict[str, Any]:
         "manufacturer": (
             medicine.brand.manufacturer.name
             if medicine.brand and medicine.brand.manufacturer
-            else None
+            else medicine.marketed_by
         ),
         "therapeutic_category": medicine.therapeutic_category,
         "regulatory_flags": [flag_dict(flag) for flag in medicine.flags],

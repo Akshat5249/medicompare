@@ -1,29 +1,61 @@
 $ make -s perf
-Thu Nov  5 14:30:04 UTC 2026
-[2026-11-05 14:30:05,360] docker-desktop/INFO/locust.main: Starting Locust 2.37.0
-[2026-11-05 14:30:05,361] docker-desktop/INFO/locust.main: Run time limit set to 120 seconds
-[2026-11-05 14:30:05,362] docker-desktop/INFO/locust.runners: Ramping to 50 users at a rate of 10.00 per second
-[2026-11-05 14:30:09,372] docker-desktop/INFO/locust.runners: All users spawned: {"Visitor": 50} (50 total users)
-[2026-11-05 14:32:05,137] docker-desktop/INFO/locust.main: --run-time limit reached, shutting down
-[2026-11-05 14:32:05,161] docker-desktop/INFO/locust.main: Shutting down (exit code 0)
+Thu Nov  5 15:29:47 UTC 2026
+Unable to find image 'locustio/locust:2.37.0' locally
+2.37.0: Pulling from locustio/locust
+4f4fb700ef54: Pulling fs layer
+943331d8a9a9: Pulling fs layer
+ea8283e71126: Pulling fs layer
+df007eea74a3: Pulling fs layer
+58b08c97b708: Pulling fs layer
+bee65c05dee3: Pulling fs layer
+e78998c3d878: Pulling fs layer
+f74fa58bc350: Pulling fs layer
+2aa1df742464: Pulling fs layer
+4f4fb700ef54: Already exists
+4f4fb700ef54: Pull complete
+58b08c97b708: Download complete
+df007eea74a3: Download complete
+943331d8a9a9: Download complete
+bee65c05dee3: Download complete
+2aa1df742464: Download complete
+f74fa58bc350: Download complete
+ea8283e71126: Download complete
+5bd2aad8b0c7: Download complete
+943331d8a9a9: Pull complete
+e78998c3d878: Download complete
+df007eea74a3: Pull complete
+58b08c97b708: Pull complete
+bee65c05dee3: Pull complete
+f74fa58bc350: Pull complete
+ea8283e71126: Pull complete
+2aa1df742464: Pull complete
+e78998c3d878: Pull complete
+Digest: sha256:ae11b0e2f04ca0026e8c547ef03c872b90509c9fe8951855f29b111c0a78e81e
+Status: Downloaded newer image for locustio/locust:2.37.0
+[2026-11-05 15:29:58,131] docker-desktop/INFO/locust.main: Starting Locust 2.37.0
+[2026-11-05 15:29:58,133] docker-desktop/INFO/locust.main: Run time limit set to 120 seconds
+[2026-11-05 15:29:58,133] docker-desktop/INFO/locust.runners: Ramping to 50 users at a rate of 10.00 per second
+[2026-11-05 15:30:02,149] docker-desktop/INFO/locust.runners: All users spawned: {"Visitor": 50} (50 total users)
+[2026-11-05 15:31:57,999] docker-desktop/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-05 15:31:58,048] docker-desktop/INFO/locust.main: Shutting down (exit code 0)
 Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
 --------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
-GET      comparison                                                                      2738     0(0.00%) |    155      11     608    130 |   22.86        0.00
-GET      prices                                                                           880     0(0.00%) |     66       5     238     53 |    7.35        0.00
-GET      search                                                                          4666     0(0.00%) |     80       9     347     66 |   38.96        0.00
+GET      comparison                                                                      2257     0(0.00%) |    361      13    2319    290 |   18.87        0.00
+GET      prices                                                                           808     0(0.00%) |    166       5    1306    130 |    6.76        0.00
+GET      search                                                                          3824     0(0.00%) |    201      13    1912    150 |   31.97        0.00
 --------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
-         Aggregated                                                                      8284     0(0.00%) |    103       5     608     80 |   69.16        0.00
+         Aggregated                                                                      6889     0(0.00%) |    249       5    2319    180 |   57.60        0.00
 
 Response time percentiles (approximated)
 Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
 --------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
-GET      comparison                                                                            130    190    240    260    320    360    410    440    530    610    610   2738
-GET      prices                                                                                 53     82     99    110    150    180    200    220    240    240    240    880
-GET      search                                                                                 66     98    120    130    170    190    230    250    320    350    350   4666
+GET      comparison                                                                            290    380    440    490    650    980   1500   1700   2300   2300   2300   2257
+GET      prices                                                                                130    170    200    220    300    440    870   1000   1300   1300   1300    808
+GET      search                                                                                150    200    240    260    370    530    960   1100   1500   1900   1900   3824
 --------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
-         Aggregated                                                                             80    120    150    170    230    290    350    390    490    610    610   8284
+         Aggregated                                                                            180    250    310    350    500    710   1100   1400   2100   2300   2300   6889
 
-comparison     requests=  2730 failures=   0 p50=130ms p95=360ms p99=440ms rps=22.9
-prices         requests=   876 failures=   0 p50=53ms p95=180ms p99=220ms rps=7.3
-search         requests=  4651 failures=   0 p50=66ms p95=200ms p99=250ms rps=39.0
-Aggregated     requests=  8257 failures=   0 p50=80ms p95=290ms p99=390ms rps=69.2
+comparison     requests=  2256 failures=   0 p50=290ms p95=980ms p99=1700ms rps=18.9
+prices         requests=   807 failures=   0 p50=130ms p95=440ms p99=1000ms rps=6.8
+search         requests=  3822 failures=   0 p50=150ms p95=530ms p99=1100ms rps=32.0
+Aggregated     requests=  6885 failures=   0 p50=180ms p95=710ms p99=1400ms rps=57.7

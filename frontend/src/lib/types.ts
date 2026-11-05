@@ -43,7 +43,7 @@ export interface MedicineDetail extends MedicineSummary {
 }
 
 export interface Price {
-  price_type: "ceiling" | "catalogue" | "mrp" | "indicative";
+  price_type: "ceiling" | "notified_retail" | "catalogue" | "mrp" | "indicative";
   price_type_label: string;
   amount_inr: string;
   pack: string;

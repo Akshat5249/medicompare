@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
-import { SearchBox } from "@/components/catalogue";
-import { Card, Warning } from "@/components/ui";
+import { DemoNotice, SearchBox } from "@/components/catalogue";
+import { Card } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
     <div className="space-y-6">
       <h1 className="text-3xl font-bold text-slate-950">{t("title")}</h1>
       <SearchBox />
-      <Warning>{t("demoNotice")}</Warning>
+      <DemoNotice />
       <div className="grid gap-4 sm:grid-cols-3">
         {cards.map((card) => (
           <Card key={card.href}>

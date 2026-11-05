@@ -1,11 +1,11 @@
 $ make -s backup-test
-Thu Nov  5 14:32:05 UTC 2026
-backup size:   181041 bytes
+Thu Nov  5 15:31:58 UTC 2026
+backup size:   218823 bytes
 NOTICE:  database "restore_check" does not exist, skipping
-ok   medicines: 379 rows
-ok   price_observations: 373 rows
+ok   medicines: 478 rows
+ok   price_observations: 472 rows
 ok   users: 21 rows
 ok   prescriptions: 12 rows
 ok   audit_events: 63 rows
-ok   import_batches: 5 rows
+ok   import_batches: 6 rows
 BACKUP/RESTORE PASS

@@ -543,13 +543,18 @@ export function AdminPage() {
               value={kind}
               onChange={(event) => setKind(event.target.value)}
             >
-              {["catalogue", "nppa_ceiling", "ja_products", "ja_kendras", "regulatory_flags"].map(
-                (value) => (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                ),
-              )}
+              {[
+                "catalogue",
+                "nppa_ceiling",
+                "nppa_retail",
+                "ja_products",
+                "ja_kendras",
+                "regulatory_flags",
+              ].map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
             </select>
           </div>
           <div className="flex flex-col gap-1">

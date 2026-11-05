@@ -145,6 +145,9 @@ export function PriceRow({ price }: { price: Price }) {
       {price.price_type === "ceiling" ? (
         <p className="mt-1 text-sm text-slate-700">{t("ceilingHelp")}</p>
       ) : null}
+      {price.price_type === "notified_retail" ? (
+        <p className="mt-1 text-sm text-slate-700">{t("notifiedHelp")}</p>
+      ) : null}
     </div>
   );
 }

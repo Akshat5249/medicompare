@@ -1,4 +1,20 @@
 -- medicompare-backend
+Unable to find image 'aquasec/trivy:0.67.2' locally
+0.67.2: Pulling from aquasec/trivy
+75f76222683e: Pulling fs layer
+034d533adec7: Pulling fs layer
+6e174226ea69: Pulling fs layer
+7625a4dd223a: Pulling fs layer
+75f76222683e: Download complete
+6e174226ea69: Download complete
+6e174226ea69: Pull complete
+034d533adec7: Download complete
+034d533adec7: Pull complete
+7625a4dd223a: Download complete
+75f76222683e: Pull complete
+7625a4dd223a: Pull complete
+Digest: sha256:e2b22eac59c02003d8749f5b8d9bd073b62e30fefaef5b7c8371204e0a4b0c08
+Status: Downloaded newer image for aquasec/trivy:0.67.2
 
 Report Summary
 
